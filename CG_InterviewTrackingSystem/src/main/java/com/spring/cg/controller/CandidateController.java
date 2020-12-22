@@ -43,8 +43,8 @@ public class CandidateController {
 	
 	@ApiOperation(value="Returns all Candidate")
 	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New employee created"),
-			@ApiResponse(code=404, message = "No such employee found")
+			@ApiResponse(code=201, message="New candidate created"),
+			@ApiResponse(code=404, message = "No such candidate found")
 	})
 	@GetMapping(value = "/candidate",produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Candidate> getAllCandidates() {
@@ -53,8 +53,8 @@ public class CandidateController {
 	
 	@ApiOperation(value="Returns Specific Candidate")
 	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New employee created"),
-			@ApiResponse(code=404, message = "No such employee found")
+			@ApiResponse(code=201, message="New candidate created"),
+			@ApiResponse(code=404, message = "No such candidate found")
 	})
 	@GetMapping(value ="/candidate/{candidateid}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public Candidate getCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException{

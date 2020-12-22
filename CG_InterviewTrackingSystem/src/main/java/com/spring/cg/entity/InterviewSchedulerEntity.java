@@ -23,7 +23,7 @@ public class InterviewSchedulerEntity {
 	@Column(name="hrrating")
 	private int hrrating;
 	@Column(name="location")
-	private int location;
+	private String location;
 	
 	@Column(name="finalstatus")
 	private String finalstatus;
@@ -62,7 +62,7 @@ public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
     	this.employeeid = employeeid;
     }
 
-	public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating, int location, String finalstatus) {
+	public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating, String location, String finalstatus) {
 		super();
 		this.interviewid = interviewid;
 		this.techrating = techrating;
@@ -71,7 +71,7 @@ public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
 		this.finalstatus = finalstatus;
 	}
 	
-	public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating, int location, String finalstatus,
+	public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating, String location, String finalstatus,
 			CandidateEntity candidateid, EmployeeEntity employeeid) {
 		super();
 		this.interviewid = interviewid;
@@ -91,7 +91,7 @@ public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
 	public int getHrrating() {
 		return hrrating;
 	}
-	public int getLocation() {
+	public String getLocation() {
 		return location;
 	}
 	public String getFinalstatus() {
@@ -112,7 +112,7 @@ public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
 	public void setHrrating(int hrrating) {
 		this.hrrating = hrrating;
 	}
-	public void setLocation(int location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 	public void setFinalstatus(String finalstatus) {
