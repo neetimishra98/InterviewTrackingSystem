@@ -1,5 +1,10 @@
 package com.spring.cg.service;
 
-public class InterviewSchedulerService {
+import com.spring.cg.entity.InterviewSchedulerEntity;
+
+public interface InterviewSchedulerService {
+	
+	public InterviewSchedulerEntity giveTechRating(int id);
+
 
 }
