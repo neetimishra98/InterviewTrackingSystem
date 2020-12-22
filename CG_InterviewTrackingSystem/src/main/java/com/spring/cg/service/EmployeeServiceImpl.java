@@ -1,5 +1,7 @@
 package com.spring.cg.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +17,61 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Autowired
 	private EmployeeRepo employeeRepo;
-
-	@Override
-	public Employee getEmployeeById(int employeeid) throws EmployeeNotFoundException{
-		Optional<EmployeeEntity> opEmployeeEntity = employeeRepo.findById(employeeid);
-		if(opEmployeeEntity.isPresent()) {
-			EmployeeEntity employeeEntity = opEmployeeEntity.get();
-			return new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(),employeeEntity.getPanelMemberEntity());
+	//FETCH ALL EMPLOYEES
+	//@Override
+	public List<Employee> getAllEmployees() {
+		List<EmployeeEntity> employeeEntityList = employeeRepo.findAll();
+		List<Employee> employees = new ArrayList<Employee>();
+		for(EmployeeEntity employeeEntity: employeeEntityList) {
+			employees.add(new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity()));
 		}
-		else {
-			throw new EmployeeNotFoundException("employeeid" + employeeid);
-		}
-		
+		return employees;
 	}
-
+	//CREATE A NEW EMPLOYEE
 	@Override
 	public Employee createEmployee(Employee employee) {
 		EmployeeEntity employeeEntity = employeeRepo.save(new EmployeeEntity(employee.getEmployeeid(),employee.getName(),employee.getPanelMemberEntity()));
 		return new Employee(employeeEntity.getEmployeeid(),employeeEntity.getName(),employeeEntity.getPanelMemberEntity());
+	}
+
+	//UPDATE AN EMPLOYEE
+	@Override
+	public Employee updateEmployee(Employee employee, int employeeId) throws EmployeeNotFoundException{
+		EmployeeEntity newEmployeeEntity = employeeRepo.findByEmployeeid(employeeId);
+		if(newEmployeeEntity==null){
+			throw new EmployeeNotFoundException("Invalid Employee Id");
+		}
+		EmployeeEntity employeeEntity = employeeRepo.save(new EmployeeEntity(employee.getEmployeeid(), employee.getName(), employee.getPanelMemberEntity()));
+		employeeEntity.setName(newEmployeeEntity.getName());
+		return new Employee(employee.getEmployeeid(), employee.getName(), employee.getPanelMemberEntity());
+	}
+
+	//DELETE AN EMPLOYEE
+	@Override
+	public List<Employee> deleteEmployee(int employeeId) throws EmployeeNotFoundException{
+		EmployeeEntity employeeEntity =
+				employeeRepo.findByEmployeeid(employeeId);
+		if(employeeEntity==null){
+			throw new EmployeeNotFoundException("Invalid Employee Id");
+		}
+		employeeRepo.deleteById(employeeId);
+		List<EmployeeEntity> employeeEntityList = employeeRepo.findAll();
+		List<Employee> employees = new ArrayList<Employee>();
+		for(EmployeeEntity e: employeeEntityList) {
+			employees.add(new Employee(e.getEmployeeid(), e.getName(), e.getPanelMemberEntity()));
+		}
+		return employees;
+	}
+
+	//SEARCH EMPLOYEE
+	public Employee searchEmployee(int employeeId) throws EmployeeNotFoundException {
+		EmployeeEntity employeeEntity = employeeRepo.findByEmployeeid(employeeId);
+		if(employeeEntity==null){
+			throw new EmployeeNotFoundException("Invalid Employee Id");
+
+		}
+		Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity());
+
+		return employee;
 	}
 }
