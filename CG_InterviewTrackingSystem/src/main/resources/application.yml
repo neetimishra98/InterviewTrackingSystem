@@ -1,6 +1,6 @@
 spring:
     datasource:
-        driverClassName: com.mysql.jdbc.Driver
+        driverClassName: org.postgresql.Driver
         url: jdbc:postgresql://localhost:5432/interviewtracking
         username: postgres
         password: root
