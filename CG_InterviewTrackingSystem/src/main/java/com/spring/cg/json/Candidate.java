@@ -39,7 +39,7 @@ public class Candidate {
 	@ApiModelProperty(value="Candidate Experience")
 	private int experience;
 
-	@Min(value=0)
+	@Min(value=2)
 	@Max(value=10)
 	@ApiModelProperty(value="Candidate NoticePeriod")
 	private int noticeperiod;
@@ -72,8 +72,8 @@ public class Candidate {
 		this.noticeperiod = noticeperiod;
 	}
 	
-	public Candidate( String candidatename, String location, 
-			String qualification, String designation, int experience,  String primaryskills, String secondaryskills, int noticeperiod) {
+	public Candidate( String candidatename, String location, String qualification, String designation,
+			int experience,  String primaryskills, String secondaryskills, int noticeperiod) {
 		super();
 		this.candidatename = candidatename;
 		this.location = location;
@@ -98,54 +98,71 @@ public class Candidate {
 	public int getCandidateid() {
 		return candidateid;
 	}
+	
 	public void setCandidateid(int candidateid) {
 		this.candidateid = candidateid;
 	}
+	
 	public String getCandidatename() {
 		return candidatename;
 	}
+	
 	public void setCandidatename(String candidatename) {
 		this.candidatename = candidatename;
 	}
+	
 	public String getLocation() {
 		return location;
 	}
+	
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
 	public String getDesignation() {
 		return designation;
 	}
+	
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
+	
 	public String getQualification() {
 		return qualification;
 	}
+	
 	public void setQualification(String qualification) {
 		this.qualification = qualification;
 	}
+	
 	public int getExperience() {
 		return experience;
 	}
+	
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
+	
 	public String getPrimaryskills() {
 		return primaryskills;
 	}
+	
 	public void setPrimaryskills(String primaryskills) {
 		this.primaryskills = primaryskills;
 	}
+	
 	public String getSecondaryskills() {
 		return secondaryskills;
 	}
+	
 	public void setSecondaryskills(String secondaryskills) {
 		this.secondaryskills = secondaryskills;
 	}
+	
 	public int getNoticeperiod() {
 		return noticeperiod;
 	}
+	
 	public void setNoticeperiod(int noticeperiod) {
 		this.noticeperiod = noticeperiod;
 	}

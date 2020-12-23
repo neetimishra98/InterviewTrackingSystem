@@ -18,10 +18,13 @@ public class InterviewSchedulerEntity {
 	@GeneratedValue
 	@Column(name="interviewid")
 	private int interviewid;
+	
 	@Column(name="techrating")
 	private int techrating;
+	
 	@Column(name="hrrating")
 	private int hrrating;
+	
 	@Column(name="location")
 	private String location;
 	
@@ -31,19 +34,18 @@ public class InterviewSchedulerEntity {
 	@OneToOne(cascade={CascadeType.ALL},
 			fetch=FetchType.EAGER, optional = false)
 	@JoinColumn(name="candidateid")
-	private CandidateEntity candidateid;
+	private CandidateEntity candidate;
 	
 	@OneToOne(cascade={CascadeType.ALL},
 			fetch=FetchType.EAGER, optional = false)
 	@JoinColumn(name="employeeid")
-	private EmployeeEntity employeeid;
+	private EmployeeEntity employee;
 	
 	public InterviewSchedulerEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
-public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
+	public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
 		super();
 		this.interviewid= interviewid;
 		this.techrating = techrating;
@@ -55,12 +57,15 @@ public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
 		this.interviewid= interviewid;
 	}
     
-    public InterviewSchedulerEntity(int interviewid, CandidateEntity candidateid, EmployeeEntity employeeid) {
-    	super();
-    	this.interviewid = interviewid;
-    	this.candidateid = candidateid;
-    	this.employeeid = employeeid;
-    }
+   
+
+	public InterviewSchedulerEntity(int techrating, int hrrating, String location, String finalstatus) {
+		super();
+		this.techrating = techrating;
+		this.hrrating = hrrating;
+		this.location = location;
+		this.finalstatus = finalstatus;
+	}
 
 	public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating, String location, String finalstatus) {
 		super();
@@ -72,67 +77,92 @@ public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
 	}
 	
 	public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating, String location, String finalstatus,
-			CandidateEntity candidateid, EmployeeEntity employeeid) {
+			CandidateEntity candidate) {
 		super();
 		this.interviewid = interviewid;
 		this.techrating = techrating;
 		this.hrrating = hrrating;
 		this.location = location;
 		this.finalstatus = finalstatus;
-		this.candidateid = candidateid;
-		this.employeeid = employeeid;
+		this.candidate = candidate;
 	}
+	
+	
+	
+	
+	public InterviewSchedulerEntity(int techrating, int hrrating, String location, String finalstatus,
+			CandidateEntity candidate) {
+		super();
+		this.techrating = techrating;
+		this.hrrating = hrrating;
+		this.location = location;
+		this.finalstatus = finalstatus;
+		this.candidate = candidate;
+	}
+
 	public int getInterviewid() {
 		return interviewid;
 	}
+	
 	public int getTechrating() {
 		return techrating;
 	}
+	
 	public int getHrrating() {
 		return hrrating;
 	}
+	
 	public String getLocation() {
 		return location;
 	}
+	
 	public String getFinalstatus() {
 		return finalstatus;
 	}
-	public CandidateEntity getCandidateid() {
-		return candidateid;
+	
+	
+	
+	public CandidateEntity getCandidate() {
+		return candidate;
 	}
-	public EmployeeEntity getEmployeeid() {
-		return employeeid;
+
+	public void setCandidate(CandidateEntity candidate) {
+		this.candidate = candidate;
 	}
+
+	public EmployeeEntity getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(EmployeeEntity employee) {
+		this.employee = employee;
+	}
+
 	public void setInterviewid(int interviewid) {
 		this.interviewid = interviewid;
 	}
+	
 	public void setTechrating(int techrating) {
 		this.techrating = techrating;
 	}
+	
 	public void setHrrating(int hrrating) {
 		this.hrrating = hrrating;
 	}
+	
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
 	public void setFinalstatus(String finalstatus) {
 		this.finalstatus = finalstatus;
 	}
-	public void setCandidateid(CandidateEntity candidateid) {
-		this.candidateid = candidateid;
-	}
-	
-	public void setEmployeeid(EmployeeEntity employeeid) {
-		this.employeeid = employeeid;
-	}
 
-	
-	
-	
 	@Override
 	public String toString() {
 		return "InterviewSchedulerEntity [interviewid=" + interviewid + ", techrating=" + techrating + ", hrrating="
-				+ hrrating + ", location=" + location + ", finalstatus=" + finalstatus + "]";
+				+ hrrating + ", location=" + location + ", finalstatus=" + finalstatus + ", candidate=" + candidate
+				+ "]";
 	}
-
+	
 }
