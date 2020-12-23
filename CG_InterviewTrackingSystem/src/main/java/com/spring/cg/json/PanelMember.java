@@ -18,7 +18,7 @@ public class PanelMember {
 	@ApiModelProperty(value="Panel Location")
 	private String location;
 	
-	@NotNull
+	
 	@NotBlank
 	@ApiModelProperty(value="Panel Type")
 	private String type;

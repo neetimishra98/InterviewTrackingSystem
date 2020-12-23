@@ -44,7 +44,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     }
 
     public PanelMember findPanelMember(int panelId) throws PanelMemberNotFoundException {
-        PanelMemberEntity panelMemberEntity = panelMemberRepo.findByPanelid(panelId);
+        PanelMemberEntity panelMemberEntity = panelMemberRepo.findById(panelId);
         if(panelMemberEntity==null){
             throw new PanelMemberNotFoundException("Invalid Employee Id");
 
@@ -58,7 +58,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     @Override
     public List<PanelMember> deletePanelMember(int panelMemberId) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException{
         PanelMemberEntity panelMemberEntity =
-                panelMemberRepo.findByPanelid(panelMemberId);
+                panelMemberRepo.findById(panelMemberId);
         if(panelMemberEntity==null){
             throw new PanelMemberNotFoundException("Invalid Panel Id");
         }

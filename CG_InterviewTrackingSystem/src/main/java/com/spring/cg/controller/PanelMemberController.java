@@ -38,7 +38,7 @@ public class PanelMemberController {
         return panelMemberService.getAllPanelMembers();
     }
 
-
+    //RETURNS SPECIFIC PANEL MEMBERS FROM THE DATABASE
     @ApiOperation(value="Returns a specific panel members")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="Found the panel member"),
@@ -48,8 +48,8 @@ public class PanelMemberController {
     public PanelMember getAllPanelMembers(@PathVariable("pid") int panelId) throws PanelMemberNotFoundException {
         return panelMemberService.findPanelMember(panelId);
     }
-
-
+    
+    //CREATE PANEL MEMBER FROM THE DATABASE
     @ApiOperation(value="Adds a panel member")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="New panel members created"),
@@ -67,7 +67,7 @@ public class PanelMemberController {
             @ApiResponse(code=404, message = "No such panel member found")
     })
     @DeleteMapping(value="/panelmember/delete/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PanelMember> deletePanelMember(@PathVariable ("id") int panelmemberId)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException {
-        return new ResponseEntity<PanelMember>((PanelMember)panelMemberService.deletePanelMember(panelmemberId), HttpStatus.OK);
+    public ResponseEntity<List<PanelMember>> deletePanelMember(@PathVariable ("id") int panelmemberId)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException {
+        return new ResponseEntity<List<PanelMember>>(panelMemberService.deletePanelMember(panelmemberId), HttpStatus.OK);
     }
 }
