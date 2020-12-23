@@ -74,18 +74,18 @@ public class PanelMemberServiceImpl implements PanelMemberService{
         return panelMembers;
     }
     
+  	
     //SURRENDER AS HR PANEL
-  	@Override
-  	public PanelMember surrenderAsHRPanel(PanelMember panelMember, int panelid) throws PanelMemberNotFoundException {
-  		PanelMemberEntity newPanelMemberEntity = panelMemberRepo.findByPanelid(panelid);
-  		if(newPanelMemberEntity==null) {
-  			
+	@Override
+  	public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException {
+  		PanelMemberEntity panelMemberEntity = panelMemberRepo.findByPanelid(panelid);
+  		if(panelMemberEntity==null) {
   			throw new PanelMemberNotFoundException("Invalid Panel Id");
   		}
-  	
-  		PanelMemberEntity panelMemberEntity = panelMemberRepo.save(new PanelMember(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType()));
-  		panelMemberEntity.setType(newPanelMemberEntity.getType());
-  		return new PanelMember(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType());
+  		else 
+  			panelMemberEntity.setType(null);
+  		
+  		return panelMemberRepo.save(panelMemberEntity);
   		
   	}
 }

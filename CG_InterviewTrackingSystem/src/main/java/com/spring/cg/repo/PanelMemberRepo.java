@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PanelMemberRepo extends JpaRepository<PanelMemberEntity, Integer> {
     public PanelMemberEntity findByPanelid(int panelid);
     public PanelMemberEntity deleteById(int panelMemberId);
-	public PanelMemberEntity save(PanelMember panelMember);
+	//public PanelMemberEntity save(PanelMember panelMember);
 }

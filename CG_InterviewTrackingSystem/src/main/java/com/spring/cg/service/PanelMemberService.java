@@ -1,5 +1,6 @@
 package com.spring.cg.service;
 
+import com.spring.cg.entity.PanelMemberEntity;
 import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.exception.PanelMemberNotSurrenderedException;
@@ -12,5 +13,5 @@ public interface PanelMemberService {
     public List<PanelMember> getAllPanelMembers();
     public PanelMember findPanelMember(int panelId) throws PanelMemberNotFoundException;
     public List<PanelMember> deletePanelMember(int panelMemberId) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException;
-    public PanelMember surrenderAsHRPanel(PanelMember panelMember, int panelid) throws PanelMemberNotFoundException;
+	public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException;
 }
