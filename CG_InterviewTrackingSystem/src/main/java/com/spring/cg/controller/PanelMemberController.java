@@ -49,7 +49,6 @@ public class PanelMemberController {
         return panelMemberService.findPanelMember(panelId);
     }
 
-
     @ApiOperation(value="Adds a panel member")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="New panel members created"),
