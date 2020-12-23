@@ -1,4 +1,6 @@
 package com.spring.cg.controller;
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
+import com.spring.cg.json.Candidate;
 import com.spring.cg.json.InterviewScheduler;
+import com.spring.cg.service.CandidateService;
 import com.spring.cg.service.InterviewSchedulerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -41,7 +45,10 @@ public class InterviewSchedulerController {
 	
 	@Autowired
 	private InterviewSchedulerService interviewSchedulerService;
-	//for creating interview
+	
+	@Autowired
+	private CandidateService candidateService;
+	
 	
 		@ApiOperation(value="Schedules new Interview")
 		@ApiResponses(value= {
@@ -123,6 +130,18 @@ public class InterviewSchedulerController {
 		return interviewschedulerService.getAllInterviewSchedule();
 	}
 	*/
+	
+	
+	//to view interview members
+	@ApiOperation(value="Returns all InterviewMembers")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="New candidate created"),
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value = "/interviewscheduler/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Candidate> viewInterviewMembers() {
+		return candidateService.getAllCandidates();
+	}
 	
 	
 	
