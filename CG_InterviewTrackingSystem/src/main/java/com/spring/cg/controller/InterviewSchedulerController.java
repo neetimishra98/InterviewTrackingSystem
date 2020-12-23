@@ -1,5 +1,6 @@
 package com.spring.cg.controller;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,19 +24,64 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
 import com.spring.cg.json.InterviewScheduler;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.spring.cg.entity.InterviewSchedulerEntity;
+import com.spring.cg.exception.InterviewNotFoundException;
+>>>>>>> b3564d1256413555ef8d266011090f392a013031
 import com.spring.cg.service.InterviewSchedulerService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3564d1256413555ef8d266011090f392a013031
 import io.swagger.annotations.ApiResponses;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/cgits")
+<<<<<<< HEAD
 @Api(value="Interview Schedule related APIs")
+=======
+@Api(value="InterviewScheduler related REST APIs")
+>>>>>>> b3564d1256413555ef8d266011090f392a013031
 public class InterviewSchedulerController {
+	
+	@Autowired
+	private InterviewSchedulerService interviewSchedulerService;
+	
+	
+	////Gives TechRating to the candidate if TechRating is null
+	@ApiOperation(value="Returns InterviewSchedulerEntity after giving TechRating")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message="TechRating given successfully"),
+			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
+	})
+	@GetMapping(value="/interviewscheduler/tech/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public InterviewSchedulerEntity giveTechRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
+		return interviewSchedulerService.giveTechRating(interviewid);
+	}
+	
+	//Gives hrRating to the candidate if hrRating is null
+	@ApiOperation(value="Returns InterviewSchedulerEntity after giving HrRating")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message="HrRating given successfully"),
+			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
+	})
+	@GetMapping(value="/interviewscheduler/hr/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public InterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
+		return interviewSchedulerService.giveHrRating(interviewid);
+	}
 
 	@Autowired
 	private InterviewSchedulerService interviewschedulerService;

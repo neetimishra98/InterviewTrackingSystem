@@ -157,7 +157,18 @@ public class InterviewSchedulerEntity {
 	public void setFinalstatus(String finalstatus) {
 		this.finalstatus = finalstatus;
 	}
+<<<<<<< HEAD
 
+=======
+	public void setCandidateid(CandidateEntity candidateid) {
+		this.candidateid = candidateid;
+	}
+	
+	public void setEmployeeid(EmployeeEntity employeeid) {
+		this.employeeid = employeeid;
+	}
+	
+>>>>>>> b3564d1256413555ef8d266011090f392a013031
 	@Override
 	public String toString() {
 		return "InterviewSchedulerEntity [interviewid=" + interviewid + ", techrating=" + techrating + ", hrrating="

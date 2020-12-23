@@ -73,4 +73,18 @@ public class PanelMemberServiceImpl implements PanelMemberService{
         }
         return panelMembers;
     }
+    
+    //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
+	@Override
+  	public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException {
+  		PanelMemberEntity panelMemberEntity = panelMemberRepo.findByPanelid(panelid);
+  		if(panelMemberEntity==null) {
+  			throw new PanelMemberNotFoundException("Invalid Panel Id");
+  		}
+  		else 
+  			panelMemberEntity.setType(null);
+  		
+  		return panelMemberRepo.save(panelMemberEntity);
+  		
+  	}
 }
