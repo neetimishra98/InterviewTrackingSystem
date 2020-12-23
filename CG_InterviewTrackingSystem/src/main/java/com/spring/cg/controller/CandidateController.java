@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.cg.exception.CandidateNotFoundException;
+import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.json.Candidate;
+import com.spring.cg.json.PanelMember;
 import com.spring.cg.service.CandidateService;
 
 import io.swagger.annotations.Api;
@@ -35,11 +37,19 @@ public class CandidateController {
 	@Autowired
 	private CandidateService candidateService;
 	
-	@ApiOperation(value="Creates Candidate")
+	
+	@ApiOperation(value="Adds Candidate")
 	@PostMapping(value ="/candidate" ,produces = MediaType.APPLICATION_JSON_VALUE,consumes =MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Candidate> createCandidate(@Valid @RequestBody Candidate candidate) {
 		return new ResponseEntity<Candidate>(candidateService.createCandidate(candidate), HttpStatus.OK);
 	}
+	
+	
+	 
+
+	
+	
+	
 	
 	@ApiOperation(value="Returns all Candidate")
 	@ApiResponses(value= {
@@ -50,6 +60,8 @@ public class CandidateController {
 	public List<Candidate> getAllCandidates() {
 		return candidateService.getAllCandidates();
 	}
+	
+	
 	
 	@ApiOperation(value="Returns Specific Candidate")
 	@ApiResponses(value= {

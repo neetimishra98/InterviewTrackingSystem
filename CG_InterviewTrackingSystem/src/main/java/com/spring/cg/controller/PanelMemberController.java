@@ -1,5 +1,6 @@
 package com.spring.cg.controller;
 
+import com.spring.cg.entity.PanelMemberEntity;
 import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.exception.PanelMemberNotSurrenderedException;
@@ -48,8 +49,12 @@ public class PanelMemberController {
     public PanelMember getAllPanelMembers(@PathVariable("pid") int panelId) throws PanelMemberNotFoundException {
         return panelMemberService.findPanelMember(panelId);
     }
+<<<<<<< HEAD
     
     //CREATE PANEL MEMBER FROM THE DATABASE
+=======
+
+>>>>>>> 4b121056b9ce21671e8bca6c9e6bc3805cb84783
     @ApiOperation(value="Adds a panel member")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="New panel members created"),
@@ -70,4 +75,15 @@ public class PanelMemberController {
     public ResponseEntity<List<PanelMember>> deletePanelMember(@PathVariable ("id") int panelmemberId)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException {
         return new ResponseEntity<List<PanelMember>>(panelMemberService.deletePanelMember(panelmemberId), HttpStatus.OK);
     }
+  	
+    //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
+  	@ApiOperation(value="Updates a particular Panel Member")
+  	@ApiResponses(value= {
+  			@ApiResponse(code=201, message="Panel Member updated"),
+  			@ApiResponse(code=404, message = "No such panel member found")
+  	})
+  	@GetMapping(value="/panelmember/surrender/{panelid}", produces=MediaType.APPLICATION_JSON_VALUE)
+  	public PanelMemberEntity surrenderAsHRPanel(@PathVariable int panelid) throws PanelMemberNotFoundException {
+  		return panelMemberService.surrenderAsHRPanel(panelid);
+  	}
 }
