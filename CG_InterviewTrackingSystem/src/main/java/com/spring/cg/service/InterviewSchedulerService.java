@@ -24,4 +24,7 @@ public interface InterviewSchedulerService {
 	
 	//to view interview members
 	public List<Candidate> viewInterviewMembers();
+	
+	//to view interview members
+	public List<Candidate> viewInterviewMembersbyHr();
 }

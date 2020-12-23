@@ -146,6 +146,17 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		}
 		return candidates;
 	}
+	
+	@Override
+	public List<Candidate> viewInterviewMembersbyHr() {
+		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
+		List<Candidate> candidates = new ArrayList<Candidate>();
+		for(CandidateEntity candidateEntity: candidateEntityList) {
+			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
+		}
+		return candidates;
+	}
 
 	
 }
