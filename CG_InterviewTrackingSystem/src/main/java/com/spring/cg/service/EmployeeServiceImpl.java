@@ -64,14 +64,21 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	//SEARCH EMPLOYEE
-	public Employee searchEmployee(int employeeId) throws EmployeeNotFoundException {
-		EmployeeEntity employeeEntity = employeeRepo.findByEmployeeid(employeeId);
-		if(employeeEntity==null){
-			throw new EmployeeNotFoundException("Invalid Employee Id");
+	public Employee searchEmployee(String employeeId) throws EmployeeNotFoundException {
 
+		EmployeeEntity employeeEntity = employeeRepo.findByName(employeeId);
+		if(employeeEntity!=null) {
+			Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity());
+			return employee;
 		}
-		Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity());
-
-		return employee;
+		else{
+			employeeEntity = employeeRepo.findByEmployeeid(Integer.valueOf(employeeId));
+			System.out.println("Entered the else loop...");
+			if(employeeEntity==null) {
+				throw new EmployeeNotFoundException("Invalid Employee Id");
+			}
+			Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity());
+			return employee;
+		}
 	}
 }

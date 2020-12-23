@@ -8,7 +8,7 @@ import java.util.List;
 public interface EmployeeService {
 	public Employee createEmployee(Employee employee);
 	public List<Employee> getAllEmployees();
-	public Employee searchEmployee(int employeeId) throws EmployeeNotFoundException;
+	public Employee searchEmployee(String employeeId) throws EmployeeNotFoundException;
 	public Employee updateEmployee(Employee employee, int employeeId) throws EmployeeNotFoundException;
 	public List<Employee> deleteEmployee(int employeeId) throws EmployeeNotFoundException;
 }

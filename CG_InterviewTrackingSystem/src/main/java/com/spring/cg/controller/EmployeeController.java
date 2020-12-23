@@ -33,13 +33,13 @@ public class EmployeeController {
 			@ApiResponse(code=201, message="New employee created"),
 			@ApiResponse(code=404, message = "No such employee found")
 	})	
-	@GetMapping(value ="/employee",produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value ="/employee/list",produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Employee> getAllEmployees() {
 		return employeeService.getAllEmployees();
 	}
 	//CREATE A NEW EMPLOYEE
 	@ApiOperation(value="Creates employee")
-	@PostMapping(value="/employee",produces =MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/employee/add",produces =MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
 		return new ResponseEntity<Employee>(employeeService.createEmployee(employee), HttpStatus.OK);
 	}
@@ -49,7 +49,7 @@ public class EmployeeController {
 			@ApiResponse(code=201, message="Employee updated"),
 			@ApiResponse(code=404, message = "No such employee found")
 	})
-	@PutMapping(value="/employee/{id}", produces= MediaType.APPLICATION_JSON_VALUE, consumes= MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value="/employee/update/{id}", produces= MediaType.APPLICATION_JSON_VALUE, consumes= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Employee> updateEmployee(@Valid @RequestBody Employee employee, @PathVariable("id") int employeeId) throws EmployeeNotFoundException{
 		return new ResponseEntity<Employee>(employeeService.updateEmployee(employee, employeeId), HttpStatus.OK);
 	}
@@ -59,8 +59,8 @@ public class EmployeeController {
 			@ApiResponse(code=201, message="Found the employee in schema"),
 			@ApiResponse(code=404, message = "No such employee found")
 	})
-	@GetMapping(value="/employee/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Employee> searchEmployee(@PathVariable ("id") int employeeId)throws EmployeeNotFoundException {
+	@GetMapping(value="/employee/search/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Employee> searchEmployee(@PathVariable ("id") String employeeId)throws EmployeeNotFoundException {
 		return new ResponseEntity<Employee>(employeeService.searchEmployee(employeeId), HttpStatus.OK);
 	}
 	//DELETE AN EMPLOYEE
