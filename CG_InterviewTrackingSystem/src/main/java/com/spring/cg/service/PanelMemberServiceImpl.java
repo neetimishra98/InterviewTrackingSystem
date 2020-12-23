@@ -77,7 +77,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
 	@Override
   	public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException {
-  		PanelMemberEntity panelMemberEntity = panelMemberRepo.findByPanelid(panelid);
+  		PanelMemberEntity panelMemberEntity = panelMemberRepo.findById(panelid);
   		if(panelMemberEntity==null) {
   			throw new PanelMemberNotFoundException("Invalid Panel Id");
   		}

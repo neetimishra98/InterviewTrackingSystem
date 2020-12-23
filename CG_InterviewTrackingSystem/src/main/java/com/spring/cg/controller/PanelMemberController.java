@@ -49,12 +49,7 @@ public class PanelMemberController {
     public PanelMember getAllPanelMembers(@PathVariable("pid") int panelId) throws PanelMemberNotFoundException {
         return panelMemberService.findPanelMember(panelId);
     }
-<<<<<<< HEAD
-    
-    //CREATE PANEL MEMBER FROM THE DATABASE
-=======
 
->>>>>>> 4b121056b9ce21671e8bca6c9e6bc3805cb84783
     @ApiOperation(value="Adds a panel member")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="New panel members created"),
