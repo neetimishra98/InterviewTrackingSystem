@@ -71,7 +71,7 @@ public class PanelMemberController {
         return new ResponseEntity<PanelMember>((PanelMember)panelMemberService.deletePanelMember(panelmemberId), HttpStatus.OK);
     }
   	
-    //SURRENDER AS HR PANEL
+    //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
   	@ApiOperation(value="Updates a particular Panel Member")
   	@ApiResponses(value= {
   			@ApiResponse(code=201, message="Panel Member updated"),
