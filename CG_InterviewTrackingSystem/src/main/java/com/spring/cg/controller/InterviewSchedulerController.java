@@ -106,9 +106,6 @@ public class InterviewSchedulerController {
 	public InterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
 		return interviewSchedulerService.giveHrRating(interviewid);
 	}
-	
-	
-
 	/*@Autowired
 	private InterviewSchedulerService interviewschedulerService;
 	
