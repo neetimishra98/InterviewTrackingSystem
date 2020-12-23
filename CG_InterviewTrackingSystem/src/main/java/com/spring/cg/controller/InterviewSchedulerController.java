@@ -35,5 +35,16 @@ public class InterviewSchedulerController {
 	public InterviewSchedulerEntity giveTechRating(@PathVariable("id")int id) throws InterviewNotFoundException{
 		return interviewSchedulerService.giveTechRating(id);
 	}
+	
+	//Gives hrRating to the candidate if hrRating is null
+	@ApiOperation(value="Returns InterviewSchedulerEntity after giving HrRating")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message="HrRating given successfully"),
+			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
+	})
+	@GetMapping(value="/interviewscheduler/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public InterviewSchedulerEntity giveHrRating(@PathVariable("id")int id) throws InterviewNotFoundException{
+		return interviewSchedulerService.giveHrRating(id);
+	}
 
 }

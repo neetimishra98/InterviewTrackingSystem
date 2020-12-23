@@ -26,8 +26,22 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		ise.setFinalstatus("Tech_complete");
 		}
 		return interviewSchedulerRepo.save(ise);
+    }	
+	
+	@Override
+	public InterviewSchedulerEntity giveHrRating(int id) {
 		
-    
+		double Hrrating=0;
+		int min=0;
+		int max=10;
+			 Hrrating=Math.random()*(max-min+1)+min;
+		
+		InterviewSchedulerEntity ise = interviewSchedulerRepo.findByInterviewid(id);
+		if(ise.getHrrating()==0) {
+		ise.setHrrating((int) Hrrating);
+		ise.setFinalstatus("Hr_complete");
+		}
+		return interviewSchedulerRepo.save(ise);   
     }	
 
 }
