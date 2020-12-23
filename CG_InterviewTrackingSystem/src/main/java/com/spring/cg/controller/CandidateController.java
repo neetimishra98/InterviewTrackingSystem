@@ -44,13 +44,6 @@ public class CandidateController {
 		return new ResponseEntity<Candidate>(candidateService.createCandidate(candidate), HttpStatus.OK);
 	}
 	
-	
-	 
-
-	
-	
-	
-	
 	@ApiOperation(value="Returns all Candidate")
 	@ApiResponses(value= {
 			@ApiResponse(code=201, message="New candidate created"),

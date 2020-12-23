@@ -52,5 +52,20 @@ public class CandidateServiceImpl implements CandidateService{
 		}
 		
 	}
+	
+	//VIEW CANDIDATE FOR HR USING CANDIDATE ID
+	@Override
+	public Candidate getCandidateByIdForHR(int candidateid) throws CandidateNotFoundException{
+		Optional<CandidateEntity> opCandidateEntity = candidateRepo.findById(candidateid);
+		if(opCandidateEntity.isPresent()) {
+			CandidateEntity candidateEntity = opCandidateEntity.get();
+			return new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod());
+		}
+		else {
+			throw new CandidateNotFoundException("candidateid" + candidateid);
+		}
+		
+	}
 
 }
