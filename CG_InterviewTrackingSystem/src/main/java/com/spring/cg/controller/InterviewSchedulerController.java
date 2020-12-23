@@ -59,11 +59,7 @@ public class InterviewSchedulerController {
 		public InterviewScheduler createNewInterviewSchedule(@PathVariable int candidateid, @RequestBody InterviewScheduler interviewscheduler)throws CandidateNotFoundException {
 			return interviewSchedulerService.createNewInterviewSchedule(candidateid, interviewscheduler);
 		}
-		
-		
-		
-		
-		
+	
 		@ApiOperation(value="Updates Interview Schedule details")
 		@ApiResponses(value= {
 				@ApiResponse(code=201, message="Interview Schedule is Updated"),
@@ -75,9 +71,6 @@ public class InterviewSchedulerController {
 			
 			return interviewSchedulerService. updateInterviewSchedule(interviewid, interviewscheduler);
 		}
-		
-		
-		
 		
 		
 		@ApiOperation(value="Cancels Interview Schedule")
@@ -140,7 +133,16 @@ public class InterviewSchedulerController {
 		return candidateService.getAllCandidates();
 	}
 	
-	
-	
+	//to view interview members
+	@ApiOperation(value="Returns all InterviewMembers")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="New candidate created"),
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value = "/interviewscheduler/Hr/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Candidate> viewInterviewMembersbyHr() {
+		return candidateService.getAllCandidates();
+	}
+
 	
 }
