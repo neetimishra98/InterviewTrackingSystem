@@ -27,7 +27,7 @@ public class InterviewSchedulerController {
 	private InterviewSchedulerService interviewSchedulerService;
 	
 	
-	////Gives TechRating to the candidate if TechRating is null
+	//Gives TechRating to the candidate if TechRating is null
 	@ApiOperation(value="Returns InterviewSchedulerEntity after giving TechRating")
 	@ApiResponses(value= {
 			@ApiResponse(code=200, message="TechRating given successfully"),
