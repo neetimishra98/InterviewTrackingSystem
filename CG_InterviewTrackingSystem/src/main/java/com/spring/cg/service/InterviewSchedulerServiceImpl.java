@@ -13,21 +13,35 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	InterviewSchedulerRepo interviewSchedulerRepo;
 
 	@Override
-	public InterviewSchedulerEntity giveTechRating(int id) {
+	public InterviewSchedulerEntity giveTechRating(int interviewid) {
 		
 		double techrating=0;
 		int min=0;
 		int max=10;
 			 techrating=Math.random()*(max-min+1)+min;
 		
-		InterviewSchedulerEntity ise = interviewSchedulerRepo.findByInterviewid(id);
-		if(ise.getTechrating()==0) {
-		ise.setTechrating((int)techrating);
-		ise.setFinalstatus("Tech_complete");
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+		if(interviewSchedulerEntity.getTechrating()==0) {
+			interviewSchedulerEntity.setTechrating((int)techrating);
+			interviewSchedulerEntity.setFinalstatus("Tech_complete");
 		}
-		return interviewSchedulerRepo.save(ise);
+		return interviewSchedulerRepo.save(interviewSchedulerEntity);
+    }	
+	
+	@Override
+	public InterviewSchedulerEntity giveHrRating(int interviewid) {
 		
-    
+		double Hrrating=0;
+		int min=0;
+		int max=10;
+			 Hrrating=Math.random()*(max-min+1)+min;
+		
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+		if(interviewSchedulerEntity.getHrrating()==0) {
+			interviewSchedulerEntity.setHrrating((int) Hrrating);
+			interviewSchedulerEntity.setFinalstatus("Hr_complete");
+		}
+		return interviewSchedulerRepo.save(interviewSchedulerEntity);   
     }	
 
 }

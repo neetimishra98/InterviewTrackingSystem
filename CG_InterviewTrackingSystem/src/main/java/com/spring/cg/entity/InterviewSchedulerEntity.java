@@ -125,9 +125,6 @@ public InterviewSchedulerEntity(int interviewid, int techrating, int hrrating) {
 	public void setEmployeeid(EmployeeEntity employeeid) {
 		this.employeeid = employeeid;
 	}
-
-	
-	
 	
 	@Override
 	public String toString() {

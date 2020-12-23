@@ -12,4 +12,5 @@ public interface PanelMemberService {
     public List<PanelMember> getAllPanelMembers();
     public PanelMember findPanelMember(int panelId) throws PanelMemberNotFoundException;
     public List<PanelMember> deletePanelMember(int panelMemberId) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException;
+    public PanelMember surrenderAsHRPanel(PanelMember panelMember, int panelid) throws PanelMemberNotFoundException;
 }
