@@ -34,6 +34,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<ErrorMessage>(errorMessage,new HttpHeaders(), errorMessage.getStatus());
 	}
 	
+	@ExceptionHandler(value = {PanelMemberNotFoundException.class})
+	public ResponseEntity<ErrorMessage> handlePanelMemberNotFoundException(PanelMemberNotFoundException ex){
+		String error = "PanelMember is not found";
+		
+		ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST,ex.getLocalizedMessage(),error);
+		return new ResponseEntity<ErrorMessage>(errorMessage,new HttpHeaders(), errorMessage.getStatus());
+	}
+	
+	@ExceptionHandler(value = {PanelMemberNotSurrenderedException.class})
+	public ResponseEntity<ErrorMessage> handlePanelMemberNotSurrenderedException(PanelMemberNotSurrenderedException ex){
+		String error = "PanelMember is not Surrendered";
+		
+		ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST,ex.getLocalizedMessage(),error);
+		return new ResponseEntity<ErrorMessage>(errorMessage,new HttpHeaders(), errorMessage.getStatus());
+	}
+	
 	@Override
 	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
             HttpHeaders headers,

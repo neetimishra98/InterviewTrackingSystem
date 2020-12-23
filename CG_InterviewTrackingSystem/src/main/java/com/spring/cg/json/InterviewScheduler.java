@@ -4,13 +4,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import com.spring.cg.entity.CandidateEntity;
-import com.spring.cg.entity.EmployeeEntity;
-
 import io.swagger.annotations.ApiModelProperty;
 
 public class InterviewScheduler {
+	
+	
 	@Min(value=10000000)
 	@Max(value=99999999)
 	@ApiModelProperty(value="Interview ID")
@@ -37,14 +35,13 @@ public class InterviewScheduler {
 	private String finalstatus;
 	
 	@ApiModelProperty(value="Interview Candidate")
-	private CandidateEntity candidateid;
+	private Candidate candidate;
 	
 	@ApiModelProperty(value="Interview Employee")
-	private EmployeeEntity employeeid;
+	private Employee employee;
 	
 	public InterviewScheduler() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public InterviewScheduler(int interviewid) {
@@ -52,12 +49,15 @@ public class InterviewScheduler {
 		this.interviewid = interviewid;
 	}
 	
-	public InterviewScheduler(int interviewid, CandidateEntity candidateid, EmployeeEntity employeeid) {
-    	super();
-    	this.interviewid = interviewid;
-    	this.candidateid = candidateid;
-    	this.employeeid = employeeid;
-    }
+	
+
+	public InterviewScheduler(int techrating, int hrrating, String location,String finalstatus) {
+		super();
+		this.techrating = techrating;
+		this.hrrating = hrrating;
+		this.location = location;
+		this.finalstatus = finalstatus;
+	}
 
 	public InterviewScheduler(int interviewid, int techrating, int hrrating) {
 		super();
@@ -76,62 +76,82 @@ public class InterviewScheduler {
 	}
 	
 	public InterviewScheduler(int interviewid, int techrating, int hrrating, String location, String finalstatus,
-			CandidateEntity candidateid, EmployeeEntity employeeid) {
+			Candidate candidate) {
 		super();
 		this.interviewid = interviewid;
 		this.techrating = techrating;
 		this.hrrating = hrrating;
 		this.location = location;
 		this.finalstatus = finalstatus;
-		this.candidateid = candidateid;
-		this.employeeid = employeeid;
+		this.candidate = candidate;
+	}
+
+	
+	public int getInterviewid() {
+		return interviewid;
+	}
+	
+	public int getTechrating() {
+		return techrating;
+	}
+	
+	public int getHrrating() {
+		return hrrating;
+	}
+	
+	public String  getLocation() {
+		return location;
+	}
+	
+	public String  getFinalstatus() {
+		return finalstatus;
+	}	
+	
+	
+	
+
+	public Candidate getCandidate() {
+		return candidate;
+	}
+
+	public void setCandidate(Candidate candidate) {
+		this.candidate = candidate;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public void setInterviewid(int interviewid) {
+		this.interviewid = interviewid;
+	}
+	
+	public void setTechrating(int techrating) {
+		this.techrating = techrating;
+	}
+	
+	public void setHrrating(int hrrating) {
+		this.hrrating = hrrating;
+	}
+	
+	public void setLocation(String  location) {
+		this.location = location;
+	}
+	
+	public void setFinalstatus(String  finalstatus) {
+		this.finalstatus = finalstatus;
 	}
 
 	@Override
 	public String toString() {
-		return "InterviewSchedulerEntity [interviewid=" + interviewid + ", techrating=" + techrating + ", hrrating="
-				+ hrrating + ", location=" + location + ", finalstatus=" + finalstatus + "]";
+		return "InterviewScheduler [interviewid=" + interviewid + ", techrating=" + techrating + ", hrrating="
+				+ hrrating + ", location=" + location + ", finalstatus=" + finalstatus + ", candidate=" + candidate
+				+ "]";
 	}
-	public int getInterviewid() {
-		return interviewid;
-	}
-	public int getTechrating() {
-		return techrating;
-	}
-	public int getHrrating() {
-		return hrrating;
-	}
-	public String  getLocation() {
-		return location;
-	}
-	public String  getFinalstatus() {
-		return finalstatus;
-	}	
-	public CandidateEntity getCandidateid() {
-		return candidateid;
-	}
-	public EmployeeEntity getEmployeeid() {
-		return employeeid;
-	}
-	public void setInterviewid(int interviewid) {
-		this.interviewid = interviewid;
-	}
-	public void setTechrating(int techrating) {
-		this.techrating = techrating;
-	}
-	public void setHrrating(int hrrating) {
-		this.hrrating = hrrating;
-	}
-	public void setLocation(String  location) {
-		this.location = location;
-	}
-	public void setFinalstatus(String  finalstatus) {
-		this.finalstatus = finalstatus;
-	}
-	public void setCandidateid(CandidateEntity candidateid) {
-		this.candidateid = candidateid;
-	}
-	public void setEmployeeid(EmployeeEntity employeeid) {
-		this.employeeid = employeeid;
-	}
+	
+	
 }

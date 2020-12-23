@@ -1,5 +1,6 @@
 package com.spring.cg.controller;
 
+import com.spring.cg.entity.PanelMemberEntity;
 import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.exception.PanelMemberNotSurrenderedException;
@@ -38,7 +39,7 @@ public class PanelMemberController {
         return panelMemberService.getAllPanelMembers();
     }
 
-
+    //RETURNS SPECIFIC PANEL MEMBERS FROM THE DATABASE
     @ApiOperation(value="Returns a specific panel members")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="Found the panel member"),
@@ -66,18 +67,18 @@ public class PanelMemberController {
             @ApiResponse(code=404, message = "No such panel member found")
     })
     @DeleteMapping(value="/panelmember/delete/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PanelMember> deletePanelMember(@PathVariable ("id") int panelmemberId)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException {
-        return new ResponseEntity<PanelMember>((PanelMember)panelMemberService.deletePanelMember(panelmemberId), HttpStatus.OK);
+    public ResponseEntity<List<PanelMember>> deletePanelMember(@PathVariable ("id") int panelmemberId)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException {
+        return new ResponseEntity<List<PanelMember>>(panelMemberService.deletePanelMember(panelmemberId), HttpStatus.OK);
     }
-    
-    //SURRENDER AS HR PANEL
+  	
+    //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
   	@ApiOperation(value="Updates a particular Panel Member")
   	@ApiResponses(value= {
   			@ApiResponse(code=201, message="Panel Member updated"),
   			@ApiResponse(code=404, message = "No such panel member found")
   	})
-  	@PutMapping(value="/panelmember/surrender/{panelid}", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-  	public ResponseEntity<PanelMember> surrenderAsHRPanel(@Valid @RequestBody PanelMember panelMember, @PathVariable int panelid) throws PanelMemberNotFoundException {
-  		return new ResponseEntity<PanelMember>(panelMemberService.surrenderAsHRPanel(panelMember, panelid), HttpStatus.OK);
+  	@GetMapping(value="/panelmember/surrender/{panelid}", produces=MediaType.APPLICATION_JSON_VALUE)
+  	public PanelMemberEntity surrenderAsHRPanel(@PathVariable int panelid) throws PanelMemberNotFoundException {
+  		return panelMemberService.surrenderAsHRPanel(panelid);
   	}
 }

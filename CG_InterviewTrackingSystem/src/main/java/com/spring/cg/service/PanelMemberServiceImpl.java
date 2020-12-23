@@ -44,7 +44,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     }
 
     public PanelMember findPanelMember(int panelId) throws PanelMemberNotFoundException {
-        PanelMemberEntity panelMemberEntity = panelMemberRepo.findByPanelid(panelId);
+        PanelMemberEntity panelMemberEntity = panelMemberRepo.findById(panelId);
         if(panelMemberEntity==null){
             throw new PanelMemberNotFoundException("Invalid Employee Id");
 
@@ -58,7 +58,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     @Override
     public List<PanelMember> deletePanelMember(int panelMemberId) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException{
         PanelMemberEntity panelMemberEntity =
-                panelMemberRepo.findByPanelid(panelMemberId);
+                panelMemberRepo.findById(panelMemberId);
         if(panelMemberEntity==null){
             throw new PanelMemberNotFoundException("Invalid Panel Id");
         }
@@ -74,18 +74,17 @@ public class PanelMemberServiceImpl implements PanelMemberService{
         return panelMembers;
     }
     
-    //SURRENDER AS HR PANEL
-  	@Override
-  	public PanelMember surrenderAsHRPanel(PanelMember panelMember, int panelid) throws PanelMemberNotFoundException {
-  		PanelMemberEntity newPanelMemberEntity = panelMemberRepo.findByPanelid(panelid);
-  		if(newPanelMemberEntity==null) {
-  			
+    //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
+	@Override
+  	public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException {
+  		PanelMemberEntity panelMemberEntity = panelMemberRepo.findById(panelid);
+  		if(panelMemberEntity==null) {
   			throw new PanelMemberNotFoundException("Invalid Panel Id");
   		}
-  	
-  		PanelMemberEntity panelMemberEntity = panelMemberRepo.save(new PanelMember(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType()));
-  		panelMemberEntity.setType(newPanelMemberEntity.getType());
-  		return new PanelMember(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType());
+  		else 
+  			panelMemberEntity.setType(null);
+  		
+  		return panelMemberRepo.save(panelMemberEntity);
   		
   	}
 }
