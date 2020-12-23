@@ -1,6 +1,7 @@
 package com.spring.cg.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
+import com.spring.cg.json.Candidate;
 import com.spring.cg.json.InterviewScheduler;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.repo.InterviewSchedulerRepo;
@@ -133,7 +135,17 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
     }	
 	
 	
-	
+	//to view interview members
+	@Override
+	public List<Candidate> viewInterviewMembers() {
+		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
+		List<Candidate> candidates = new ArrayList<Candidate>();
+		for(CandidateEntity candidateEntity: candidateEntityList) {
+			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
+		}
+		return candidates;
+	}
 
 	
 }

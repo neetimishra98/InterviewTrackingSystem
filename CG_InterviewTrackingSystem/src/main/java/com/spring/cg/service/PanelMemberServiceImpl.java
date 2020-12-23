@@ -74,6 +74,18 @@ public class PanelMemberServiceImpl implements PanelMemberService{
         return panelMembers;
     }
     
+    //SURRENDER AS TECH PANEL
+    @Override
+	public PanelMemberEntity updatePanelTech(int panelId) throws PanelMemberNotFoundException{
+        PanelMemberEntity panelMemberEntity = panelMemberRepo.findById(panelId);
+        if(panelMemberEntity==null){
+            throw new PanelMemberNotFoundException("Invalid Panel Id");
+        }
+        panelMemberEntity.setType(null);
+        return panelMemberRepo.save(panelMemberEntity);
+    }
+
+ 
     //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
 	@Override
   	public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException {

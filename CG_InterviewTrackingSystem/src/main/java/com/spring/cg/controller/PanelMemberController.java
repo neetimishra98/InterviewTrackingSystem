@@ -70,6 +70,19 @@ public class PanelMemberController {
     public ResponseEntity<List<PanelMember>> deletePanelMember(@PathVariable ("id") int panelmemberId)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException {
         return new ResponseEntity<List<PanelMember>>(panelMemberService.deletePanelMember(panelmemberId), HttpStatus.OK);
     }
+    
+    //SURRENDER AS TECH PANEL
+    @ApiOperation(value="Returns PanelMember Entity after Surrendering")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message="surrendered given successfully"),
+			@ApiResponse(code=404, message = "No such Panel found"),
+  			@ApiResponse(code=201, message="Panel Member updated")
+
+	})
+	@GetMapping(value="/panelmember/surrendertech/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public PanelMemberEntity updatePanelTech(@PathVariable("id")int panelId) throws PanelMemberNotFoundException{
+		return panelMemberService.updatePanelTech(panelId);
+	}
   	
     //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
   	@ApiOperation(value="Updates a particular Panel Member")

@@ -5,6 +5,7 @@ import java.util.List;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
+import com.spring.cg.json.Candidate;
 import com.spring.cg.json.InterviewScheduler;
 
 public interface InterviewSchedulerService {
@@ -19,4 +20,8 @@ public interface InterviewSchedulerService {
 	public boolean deleteById(int interviewid)throws InterviewSchedulerNotFoundException;
 	
 	public InterviewScheduler createNewInterviewSchedule(int candidateid, InterviewScheduler interviewscheduler)throws CandidateNotFoundException;
+	
+	
+	//to view interview members
+	public List<Candidate> viewInterviewMembers();
 }
