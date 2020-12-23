@@ -22,9 +22,9 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/cgits")
 @Api(value="InterviewScheduler related REST APIs")
 public class InterviewSchedulerController {
-	
 	@Autowired
 	private InterviewSchedulerService interviewSchedulerService;
+	
 	
 	@ApiOperation(value="Returns InterviewSchedulerEntity after giving TechRating")
 	@ApiResponses(value= {
@@ -42,9 +42,8 @@ public class InterviewSchedulerController {
 			@ApiResponse(code=200, message="HrRating given successfully"),
 			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
 	})
-	@GetMapping(value="/interviewscheduler/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/interviewscheduler/hr/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public InterviewSchedulerEntity giveHrRating(@PathVariable("id")int id) throws InterviewNotFoundException{
 		return interviewSchedulerService.giveHrRating(id);
 	}
-
 }
