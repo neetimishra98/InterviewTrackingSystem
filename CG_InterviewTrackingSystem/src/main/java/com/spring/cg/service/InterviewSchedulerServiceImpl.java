@@ -1,13 +1,10 @@
 package com.spring.cg.service;
 
-<<<<<<< HEAD
+
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
@@ -20,9 +17,9 @@ import com.spring.cg.util.InterviewSchedulerUtil;
 
 @Service
 public class InterviewSchedulerServiceImpl implements InterviewSchedulerService {
-
+	
 	@Autowired
-	private InterviewSchedulerRepo interviewschedulerRepo;
+	InterviewSchedulerRepo interviewSchedulerRepo;
 	
 	@Autowired
 	private CandidateRepo candidateRepo;
@@ -42,7 +39,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	@Override
 	public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException {
 	
-		Optional<InterviewSchedulerEntity> interviewschedulerEntityOp = interviewschedulerRepo.findById(interviewid);
+		Optional<InterviewSchedulerEntity> interviewschedulerEntityOp = interviewSchedulerRepo.findById(interviewid);
 		
 		if(interviewschedulerEntityOp.isPresent())
 		{
@@ -51,7 +48,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			interviewschedulerEntity.setHrrating(interviewscheduler.getHrrating());
 			interviewschedulerEntity.setFinalstatus(interviewscheduler.getFinalstatus());
 			
-			interviewschedulerEntity = interviewschedulerRepo.save(interviewschedulerEntity);
+			interviewschedulerEntity = interviewSchedulerRepo.save(interviewschedulerEntity);
 			return InterviewSchedulerUtil.convertInterviewSchedulerEntityIntoInterviewScheduler(interviewschedulerEntity);
 		}
 		else
@@ -71,7 +68,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		{
 			CandidateEntity candidateEntity = candidateEntityOp.get();
 			InterviewSchedulerEntity ise = InterviewSchedulerUtil.convertInterviewSchedulerIntoInterviewSchedulerEntityForScheduleInterview(interviewscheduler, candidateEntity) ;
-			InterviewSchedulerEntity interviewschedulerEntity =interviewschedulerRepo.save(ise);
+			InterviewSchedulerEntity interviewschedulerEntity =interviewSchedulerRepo.save(ise);
 		
 			return InterviewSchedulerUtil.convertInterviewSchedulerEntityIntoInterviewSchedulerForScheduleInterview(interviewschedulerEntity);
 		}
@@ -85,11 +82,11 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	@Override
 	public boolean deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
 		
-		Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewschedulerRepo.findById(interviewid);
+		Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
 		InterviewScheduler interviewscheduler = null;
 		if(opinterviewschedulerEntity.isPresent())
 		{	
-			interviewschedulerRepo.deleteById(interviewid);
+			interviewSchedulerRepo.deleteById(interviewid);
 			return true;
 		}
 		else
@@ -97,19 +94,10 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 		}
 	}
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.spring.cg.entity.InterviewSchedulerEntity;
-import com.spring.cg.repo.InterviewSchedulerRepo;
-
-@Service
-public class InterviewSchedulerServiceImpl implements InterviewSchedulerService {
 	
-	@Autowired
-	InterviewSchedulerRepo interviewSchedulerRepo;
-
+	
+	
+	//for giving techrating
 	@Override
 	public InterviewSchedulerEntity giveTechRating(int interviewid) {
 		
@@ -126,6 +114,8 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);
     }	
 	
+	
+	//for giving hrrating
 	@Override
 	public InterviewSchedulerEntity giveHrRating(int interviewid) {
 		
@@ -141,6 +131,9 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		}
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);   
     }	
->>>>>>> b3564d1256413555ef8d266011090f392a013031
+	
+	
+	
 
+	
 }
