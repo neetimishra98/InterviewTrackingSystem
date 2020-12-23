@@ -22,10 +22,12 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/cgits")
 @Api(value="InterviewScheduler related REST APIs")
 public class InterviewSchedulerController {
+	
 	@Autowired
 	private InterviewSchedulerService interviewSchedulerService;
 	
 	
+	////Gives TechRating to the candidate if TechRating is null
 	@ApiOperation(value="Returns InterviewSchedulerEntity after giving TechRating")
 	@ApiResponses(value= {
 			@ApiResponse(code=200, message="TechRating given successfully"),
@@ -42,14 +44,9 @@ public class InterviewSchedulerController {
 			@ApiResponse(code=200, message="HrRating given successfully"),
 			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
 	})
-<<<<<<< HEAD
 	@GetMapping(value="/interviewscheduler/hr/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public InterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
 		return interviewSchedulerService.giveHrRating(interviewid);
-=======
-	@GetMapping(value="/interviewscheduler/hr/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public InterviewSchedulerEntity giveHrRating(@PathVariable("id")int id) throws InterviewNotFoundException{
-		return interviewSchedulerService.giveHrRating(id);
->>>>>>> ffc2e5a1982e98e233dd82055d3683a7bf3ad8e5
 	}
+
 }
