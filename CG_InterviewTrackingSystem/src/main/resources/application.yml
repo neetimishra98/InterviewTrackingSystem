@@ -3,8 +3,8 @@ spring:
         driverClassName: org.postgresql.Driver
         url: jdbc:postgresql://localhost:5432/interviewtracking
         username: postgres
-
-        password: 12345        
+        password: 12345
+        
     jpa:
         generate-ddl: true
         show-sql: true

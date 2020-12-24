@@ -14,8 +14,8 @@ public interface InterviewSchedulerService {
 	
 	//public List<InterviewScheduler> getAllInterviewSchedule();
 	
-	public InterviewSchedulerEntity giveTechRating(int interviewid);
-	public InterviewSchedulerEntity giveHrRating(int interviewid);
+	public InterviewSchedulerEntity giveTechRating(String interviewid);
+	public InterviewSchedulerEntity giveHrRating(String interviewid);
 	
 	public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException;
 	

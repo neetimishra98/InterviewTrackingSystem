@@ -11,5 +11,7 @@ public interface InterviewSchedulerRepo extends JpaRepository<InterviewScheduler
 	
 	public InterviewSchedulerEntity findByInterviewid(int interviewid);
 	
+	public InterviewSchedulerEntity findByfinalstatus(String finalstatus);
+	
 
 }
