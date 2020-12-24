@@ -19,23 +19,13 @@ public class Employee {
 	@NotBlank
 	@ApiModelProperty(value="Employee Name")
 	private String name;
-	@ApiModelProperty(value="Employee PanelMember")
-	private PanelMemberEntity panelMemberEntity;
 	
 	public Employee() {
 		super();
 	}
 
-	public Employee(int employeeid, String name, PanelMemberEntity panelMemberEntity)
+	public Employee(int employeeid, String name)
 	{
-		super();
-		this.employeeid = employeeid;
-		this.name = name;
-		this.panelMemberEntity = panelMemberEntity;
-	}
-	
-
-	public Employee(int employeeid, String name) {
 		super();
 		this.employeeid = employeeid;
 		this.name = name;
@@ -57,18 +47,9 @@ public class Employee {
 		this.name = name;
 	}
 
-	public PanelMemberEntity getPanelMemberEntity() {
-		return panelMemberEntity;
-	}
-
-	public void setPanelMemberEntity(PanelMemberEntity panelMemberEntity) {
-		this.panelMemberEntity = panelMemberEntity;
-	}
-
 	@Override
 	public String toString() {
-		return "EmployeeEntity [employeeid=" + employeeid + ", name=" + name + ", panelMemberEntity="
-				+ panelMemberEntity + "]";
+		return "EmployeeEntity [employeeid=" + employeeid + ", name=" + name +"]";
 	}
 
 }

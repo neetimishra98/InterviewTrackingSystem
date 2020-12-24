@@ -1,7 +1,7 @@
 package com.spring.cg.repo;
 
-import com.spring.cg.entity.PanelMemberEntity;
 import com.spring.cg.exception.EmployeeNotFoundException;
+import com.spring.cg.json.PanelMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.spring.cg.entity.EmployeeEntity;

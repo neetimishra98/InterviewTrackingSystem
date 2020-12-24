@@ -16,27 +16,19 @@ import javax.persistence.Table;
 public class EmployeeEntity {
 	
 	@Id
-	@GeneratedValue
 	@Column(name="employeeid")
 	private int employeeid;
 	@Column(name="name")
 	private String name;
 	
-
-	@OneToOne(cascade={CascadeType.ALL},
-			fetch=FetchType.EAGER, optional = false)
-	@JoinColumn(name="panelid")
-	private PanelMemberEntity panelMemberEntity;
-	
 	public EmployeeEntity() {
 		super();
 	}
 
-	public EmployeeEntity(int employeeid, String name, PanelMemberEntity panelMemberEntity) {
+	public EmployeeEntity(int employeeid, String name) {
 		super();
 		this.employeeid = employeeid;
 		this.name = name;
-		this.panelMemberEntity = panelMemberEntity;
 	}
 	
 
@@ -55,18 +47,10 @@ public class EmployeeEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public PanelMemberEntity getPanelMemberEntity() {
-		return panelMemberEntity;
-	}
-
-	public void setPanelMemberEntity(PanelMemberEntity panelMemberEntity) {
-		this.panelMemberEntity = panelMemberEntity;
-	}
 
 	@Override
 	public String toString() {
-		return "EmployeeEntity [employeeid=" + employeeid + ", name=" + name + "panelMemberEntity ="+ panelMemberEntity+"]";
+		return "EmployeeEntity [employeeid=" + employeeid + ", name=" + name +"]";
 	}
 
 
