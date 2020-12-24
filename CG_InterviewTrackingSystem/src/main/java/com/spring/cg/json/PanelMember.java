@@ -28,11 +28,11 @@ public class PanelMember {
 	private EmployeeEntity employeeEntity;
 
 
-	public PanelMemberEntity() {
+	public PanelMember() {
 		super();
 	}
 
-	public PanelMemberEntity(int panelid, String location, String type, EmployeeEntity employeeEntity) {
+	public PanelMember(int panelid, String location, String type, EmployeeEntity employeeEntity) {
 		super();
 		this.panelid = panelid;
 		this.location = location;
