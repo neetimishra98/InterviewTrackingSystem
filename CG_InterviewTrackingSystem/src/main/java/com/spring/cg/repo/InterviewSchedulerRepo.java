@@ -7,5 +7,7 @@ import com.spring.cg.entity.InterviewSchedulerEntity;
 public interface InterviewSchedulerRepo extends JpaRepository<InterviewSchedulerEntity, Integer>{
 	
 	public InterviewSchedulerEntity findByInterviewid(int interviewid);
+	public InterviewSchedulerEntity findByfinalstatus(String finalstatus);
+	
 
 }

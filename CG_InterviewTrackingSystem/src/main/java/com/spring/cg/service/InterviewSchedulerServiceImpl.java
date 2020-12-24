@@ -101,39 +101,46 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	
 	//for giving techrating
 	@Override
-	public InterviewSchedulerEntity giveTechRating(int interviewid) {
-		
-		double techrating=0;
-		int min=0;
-		int max=10;
-			 techrating=Math.random()*(max-min+1)+min;
-		
-		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
-		if(interviewSchedulerEntity.getTechrating()==0) {
-			interviewSchedulerEntity.setTechrating((int)techrating);
-			interviewSchedulerEntity.setFinalstatus("Tech_complete");
+	public InterviewSchedulerEntity giveTechRating(String interviewid) {
+
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByfinalstatus(interviewid);
+		if(interviewSchedulerEntity != null) {
+			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
 		}
-		return interviewSchedulerRepo.save(interviewSchedulerEntity);
-    }	
-	
-	
-	//for giving hrrating
+		else{
+			interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(Integer.valueOf(interviewid));
+			//System.out.println("Entered the else loop...");
+			if(interviewSchedulerEntity.getTechrating()==0) {
+				double Techrating=0;
+				int min=0;
+				int max=10;
+					 Techrating=Math.random()*(max-min+1)+min;	
+				interviewSchedulerEntity.setHrrating((int)Techrating);
+				}
+			return interviewSchedulerRepo.save(interviewSchedulerEntity);
+		}	
+	}
+	//For giving Hrrating
 	@Override
-	public InterviewSchedulerEntity giveHrRating(int interviewid) {
-		
-		double Hrrating=0;
-		int min=0;
-		int max=10;
-			 Hrrating=Math.random()*(max-min+1)+min;
-		
-		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
-		if(interviewSchedulerEntity.getHrrating()==0) {
-			interviewSchedulerEntity.setHrrating((int) Hrrating);
-			interviewSchedulerEntity.setFinalstatus("Hr_complete");
+	public InterviewSchedulerEntity giveHrRating(String interviewid) {
+
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByfinalstatus(interviewid);
+		if(interviewSchedulerEntity != null) {
+			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
 		}
-		return interviewSchedulerRepo.save(interviewSchedulerEntity);   
-    }	
-	
+		else{
+			interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(Integer.valueOf(interviewid));
+			//System.out.println("Entered the else loop...");
+			if(interviewSchedulerEntity.getHrrating()==0) {
+				double Hrrating=0;
+				int min=0;
+				int max=10;
+					 Hrrating=Math.random()*(max-min+1)+min;	
+				interviewSchedulerEntity.setHrrating((int)Hrrating);
+				}
+			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
+		}
+	}
 	
 	//to view interview members
 	@Override

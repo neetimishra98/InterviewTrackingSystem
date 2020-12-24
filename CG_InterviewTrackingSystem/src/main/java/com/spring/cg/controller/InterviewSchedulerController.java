@@ -92,7 +92,7 @@ public class InterviewSchedulerController {
 			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
 	})
 	@GetMapping(value="/interviewscheduler/tech/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public InterviewSchedulerEntity giveTechRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
+	public InterviewSchedulerEntity giveTechRating(@PathVariable("interviewid")String interviewid) throws InterviewNotFoundException{
 		return interviewSchedulerService.giveTechRating(interviewid);
 	}
 	
@@ -103,7 +103,7 @@ public class InterviewSchedulerController {
 			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
 	})
 	@GetMapping(value="/interviewscheduler/hr/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public InterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
+	public InterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")String interviewid) throws InterviewNotFoundException{
 		return interviewSchedulerService.giveHrRating(interviewid);
 	}
 	/*@Autowired

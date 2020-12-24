@@ -35,7 +35,6 @@ public class InterviewSchedulerEntity {
 			fetch=FetchType.EAGER, optional = false)
 	@JoinColumn(name="candidateid")
 	private CandidateEntity candidate;
-	
 	public InterviewSchedulerEntity() {
 		super();
 	}
@@ -52,8 +51,7 @@ public class InterviewSchedulerEntity {
 		this.interviewid= interviewid;
 	}
     
-   
-
+  
 	public InterviewSchedulerEntity(int techrating, int hrrating, String location, String finalstatus) {
 		super();
 		this.techrating = techrating;
@@ -81,9 +79,6 @@ public class InterviewSchedulerEntity {
 		this.finalstatus = finalstatus;
 		this.candidate = candidate;
 	}
-	
-	
-	
 	
 	public InterviewSchedulerEntity(int techrating, int hrrating, String location, String finalstatus,
 			CandidateEntity candidate) {
@@ -141,11 +136,10 @@ public class InterviewSchedulerEntity {
 		this.location = location;
 	}
 	
+	
 	public void setFinalstatus(String finalstatus) {
 		this.finalstatus = finalstatus;
-	}
-
-	
+	}	
 	@Override
 	public String toString() {
 		return "InterviewSchedulerEntity [interviewid=" + interviewid + ", techrating=" + techrating + ", hrrating="
