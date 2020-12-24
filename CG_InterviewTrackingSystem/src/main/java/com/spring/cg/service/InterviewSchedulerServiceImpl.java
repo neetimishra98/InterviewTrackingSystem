@@ -134,7 +134,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);   
     }	
 	
-	
+/*	
 	//to view interview members
 	@Override
 	public List<Candidate> viewInterviewMembers() {
@@ -147,6 +147,8 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		return candidates;
 	}
 	
+	*/
+	
 	@Override
 	public List<Candidate> viewInterviewMembersbyHr() {
 		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
@@ -158,6 +160,16 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		return candidates;
 	}
 
+
+
+	//to view Interview Members for tech
+	@Override
+	public CandidateEntity viewInterviewMembersForTech(int interviewid) {
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+		CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
+		return candidateEntity;
+		
+	}
 
 
 	

@@ -2,6 +2,8 @@ package com.spring.cg.service;
 
 
 import java.util.List;
+
+import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
@@ -23,10 +25,18 @@ public interface InterviewSchedulerService {
 	
 	
 	//to view interview members
-	public List<Candidate> viewInterviewMembers();
+	//public List<Candidate> viewInterviewMembers();
 	
 	//to view interview members
 	public List<Candidate> viewInterviewMembersbyHr();
+	
+	//to view Interview Members for tech
+	public CandidateEntity viewInterviewMembersForTech(int interviewid);
+	
+	
+	
+	
+	
 	
 	
 }
