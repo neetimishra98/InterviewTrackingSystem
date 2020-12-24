@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface EmployeeRepo extends JpaRepository<EmployeeEntity, Integer>{
     public EmployeeEntity findByEmployeeid(int employeeId) throws EmployeeNotFoundException;
-    @Query( "select panelMemberEntity from EmployeeEntity e")
+    @Query( "select e from EmployeeEntity e")
     public List<EmployeeEntity> getAllEmployee();
     public EmployeeEntity findByName(String employeeName) throws EmployeeNotFoundException;
     public List<EmployeeEntity> deleteByEmployeeid(int employeeId);
