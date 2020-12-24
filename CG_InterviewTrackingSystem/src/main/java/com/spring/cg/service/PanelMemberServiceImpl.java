@@ -28,17 +28,15 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     public PanelMember addPanelMember(PanelMember panelMember, String employeeName) throws EmployeeNotFoundException{
         EmployeeEntity employeeEntity = employeeRepo.findByName(employeeName);
         PanelMemberEntity panelMemberEntity =
-                panelMemberRepo.save(new PanelMemberEntity(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType()));
-        Employee emp = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), panelMemberEntity);
-        employeeService.updateEmployee(emp, employeeEntity.getEmployeeid());
-        return new PanelMember(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType());
+                panelMemberRepo.save(new PanelMemberEntity(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType(), employeeEntity));
+        return new PanelMember(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType(), panelMemberEntity.getEmployeeEntity());
     }
 
     public List<PanelMember> getAllPanelMembers(){
         List<PanelMemberEntity> panelMemberEntityList = panelMemberRepo.findAll();
         List<PanelMember> panelMembers = new ArrayList<PanelMember>();
         for(PanelMemberEntity panelMemberEntity : panelMemberEntityList) {
-            panelMembers.add(new PanelMember(panelMemberEntity.getPanelid(), panelMemberEntity.getLocation(), panelMemberEntity.getType()));
+            panelMembers.add(new PanelMember(panelMemberEntity.getPanelid(), panelMemberEntity.getLocation(), panelMemberEntity.getType(), panelMemberEntity.getEmployeeEntity()));
         }
         return panelMembers;
     }
@@ -49,27 +47,28 @@ public class PanelMemberServiceImpl implements PanelMemberService{
             throw new PanelMemberNotFoundException("Invalid Employee Id");
 
         }
-        PanelMember panelMember = new PanelMember(panelMemberEntity.getPanelid(), panelMemberEntity.getLocation(), panelMemberEntity.getType());
+        PanelMember panelMember = new PanelMember(panelMemberEntity.getPanelid(), panelMemberEntity.getLocation(), panelMemberEntity.getType(), panelMemberEntity.getEmployeeEntity());
 
         return panelMember;
     }
 
     //DELETE AN EMPLOYEE
     @Override
-    public List<PanelMember> deletePanelMember(int panelMemberId) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException{
+    public List<PanelMember> deletePanelMember(String employeeName) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException{
+        EmployeeEntity employeeEntity = employeeRepo.findByName(employeeName);
         PanelMemberEntity panelMemberEntity =
-                panelMemberRepo.findById(panelMemberId);
+                panelMemberRepo.findByEmployeeEntity(employeeEntity);
         if(panelMemberEntity==null){
             throw new PanelMemberNotFoundException("Invalid Panel Id");
         }
         if(panelMemberEntity.getType()!=null){
             throw new PanelMemberNotSurrenderedException("Panel Member has not yet surrendered, can't delete the employee directly");
         }
-        panelMemberRepo.deleteById(panelMemberId);
+        panelMemberRepo.deleteById(panelMemberEntity.getPanelid());
         List<PanelMemberEntity> panelMemberEntityList = panelMemberRepo.findAll();
         List<PanelMember> panelMembers = new ArrayList<PanelMember>();
         for(PanelMemberEntity p: panelMemberEntityList) {
-            panelMembers.add(new PanelMember(p.getPanelid(), p.getLocation(), p.getType()));
+            panelMembers.add(new PanelMember(p.getPanelid(), p.getLocation(), p.getType(), p.getEmployeeEntity()));
         }
         return panelMembers;
     }

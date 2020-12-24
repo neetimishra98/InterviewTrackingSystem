@@ -23,15 +23,15 @@ public class EmployeeServiceImpl implements EmployeeService{
 		List<EmployeeEntity> employeeEntityList = employeeRepo.findAll();
 		List<Employee> employees = new ArrayList<Employee>();
 		for(EmployeeEntity employeeEntity: employeeEntityList) {
-			employees.add(new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity()));
+			employees.add(new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName()));
 		}
 		return employees;
 	}
 	//CREATE A NEW EMPLOYEE
 	@Override
 	public Employee createEmployee(Employee employee) {
-		EmployeeEntity employeeEntity = employeeRepo.save(new EmployeeEntity(employee.getEmployeeid(),employee.getName(),employee.getPanelMemberEntity()));
-		return new Employee(employeeEntity.getEmployeeid(),employeeEntity.getName(),employeeEntity.getPanelMemberEntity());
+		EmployeeEntity employeeEntity = employeeRepo.save(new EmployeeEntity(employee.getEmployeeid(),employee.getName()));
+		return new Employee(employeeEntity.getEmployeeid(),employeeEntity.getName());
 	}
 
 	//UPDATE AN EMPLOYEE
@@ -41,9 +41,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 		if(newEmployeeEntity==null){
 			throw new EmployeeNotFoundException("Invalid Employee Id");
 		}
-		EmployeeEntity employeeEntity = employeeRepo.save(new EmployeeEntity(employee.getEmployeeid(), employee.getName(), employee.getPanelMemberEntity()));
+		EmployeeEntity employeeEntity = employeeRepo.save(new EmployeeEntity(employee.getEmployeeid(), employee.getName()));
 		employeeEntity.setName(newEmployeeEntity.getName());
-		return new Employee(employee.getEmployeeid(), employee.getName(), employee.getPanelMemberEntity());
+		return new Employee(employee.getEmployeeid(), employee.getName());
 	}
 
 	//DELETE AN EMPLOYEE
@@ -58,7 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		List<EmployeeEntity> employeeEntityList = employeeRepo.findAll();
 		List<Employee> employees = new ArrayList<Employee>();
 		for(EmployeeEntity e: employeeEntityList) {
-			employees.add(new Employee(e.getEmployeeid(), e.getName(), e.getPanelMemberEntity()));
+			employees.add(new Employee(e.getEmployeeid(), e.getName()));
 		}
 		return employees;
 	}
@@ -68,7 +68,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 		EmployeeEntity employeeEntity = employeeRepo.findByName(employeeId);
 		if(employeeEntity!=null) {
-			Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity());
+			Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName());
 			return employee;
 		}
 		else{
@@ -77,7 +77,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 			if(employeeEntity==null) {
 				throw new EmployeeNotFoundException("Invalid Employee Id");
 			}
-			Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName(), employeeEntity.getPanelMemberEntity());
+			Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName());
 			return employee;
 		}
 	}
