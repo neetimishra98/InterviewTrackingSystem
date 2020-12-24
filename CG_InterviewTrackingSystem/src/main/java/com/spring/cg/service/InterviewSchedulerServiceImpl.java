@@ -115,11 +115,13 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 				int min=0;
 				int max=10;
 					 Techrating=Math.random()*(max-min+1)+min;	
-				interviewSchedulerEntity.setHrrating((int)Techrating);
+				interviewSchedulerEntity.setTechrating((int)Techrating);
 				}
 			return interviewSchedulerRepo.save(interviewSchedulerEntity);
 		}	
 	}
+	
+	
 	//For giving Hrrating
 	@Override
 	public InterviewSchedulerEntity giveHrRating(String interviewid) {
@@ -141,29 +143,24 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
 		}
 	}
-	
-	//to view interview members
-	@Override
-	public List<Candidate> viewInterviewMembers() {
-		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
-		List<Candidate> candidates = new ArrayList<Candidate>();
-		for(CandidateEntity candidateEntity: candidateEntityList) {
-			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
+	//To View Interview Members For Hr
+		@Override
+		public CandidateEntity viewInterviewMembersForHr(int interviewid) {
+			InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+			CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
+			return candidateEntity;
+			
 		}
-		return candidates;
-	}
-	
+
+	//to view Interview Members for tech
 	@Override
-	public List<Candidate> viewInterviewMembersbyHr() {
-		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
-		List<Candidate> candidates = new ArrayList<Candidate>();
-		for(CandidateEntity candidateEntity: candidateEntityList) {
-			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
-		}
-		return candidates;
+	public CandidateEntity viewInterviewMembersForTech(int interviewid) {
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+		CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
+		return candidateEntity;
+		
 	}
+
 
 	
 }

@@ -6,4 +6,7 @@ import com.spring.cg.entity.CandidateEntity;
 
 public interface CandidateRepo extends JpaRepository<CandidateEntity, Integer>  {
 
+	
+
 }
+

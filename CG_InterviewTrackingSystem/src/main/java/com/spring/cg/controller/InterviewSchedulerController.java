@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.InterviewNotFoundException;
 import io.swagger.annotations.Api;
@@ -133,16 +135,29 @@ public class InterviewSchedulerController {
 		return candidateService.getAllCandidates();
 	}
 	
-	//to view interview members
+	//to view interview members for Hr using interviewid
 	@ApiOperation(value="Returns all InterviewMembers")
 	@ApiResponses(value= {
 			@ApiResponse(code=201, message="New candidate created"),
 			@ApiResponse(code=404, message = "No such candidate found")
 	})
-	@GetMapping(value = "/interviewscheduler/Hr/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Candidate> viewInterviewMembersbyHr() {
-		return candidateService.getAllCandidates();
+	@GetMapping(value = "/interviewscheduler/hr/viewinterviewmembersforhr/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public CandidateEntity viewInterviewMembersForHr(@PathVariable("interviewid")int interviewid) {
+		return interviewSchedulerService.viewInterviewMembersForHr(interviewid);
 	}
+	
+	//view Interview members for tech using interviewid
+	@ApiOperation(value="Returns all InterviewMembers")
+	@ApiResponses(value= {
+			@ApiResponse(code=200, message="Candidate with given interviewid displayed successfully"),
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value = "/interviewscheduler/tech/viewinterviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public CandidateEntity viewInterviewMembersForTech(@PathVariable("interviewid")int interviewid) {
+		return interviewSchedulerService.viewInterviewMembersForTech(interviewid);
+	}
+	
+
 
 	
 }
