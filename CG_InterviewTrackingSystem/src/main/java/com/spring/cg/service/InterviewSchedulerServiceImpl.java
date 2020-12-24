@@ -143,21 +143,14 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
 		}
 	}
-	
-	
-	
-	@Override
-	public List<Candidate> viewInterviewMembersbyHr() {
-		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
-		List<Candidate> candidates = new ArrayList<Candidate>();
-		for(CandidateEntity candidateEntity: candidateEntityList) {
-			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
+	//To View Interview Members For Hr
+		@Override
+		public CandidateEntity viewInterviewMembersForHr(int interviewid) {
+			InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+			CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
+			return candidateEntity;
+			
 		}
-		return candidates;
-	}
-
-
 
 	//to view Interview Members for tech
 	@Override

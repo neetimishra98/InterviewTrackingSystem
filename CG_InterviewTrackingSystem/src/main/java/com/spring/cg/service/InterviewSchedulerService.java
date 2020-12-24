@@ -28,7 +28,8 @@ public interface InterviewSchedulerService {
 	//public List<Candidate> viewInterviewMembers();
 	
 	//to view interview members
-	public List<Candidate> viewInterviewMembersbyHr();
+	public CandidateEntity viewInterviewMembersForHr(int interviewid);
+
 	
 	//to view Interview Members for tech
 	public CandidateEntity viewInterviewMembersForTech(int interviewid);

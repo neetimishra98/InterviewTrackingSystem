@@ -135,18 +135,17 @@ public class InterviewSchedulerController {
 		return candidateService.getAllCandidates();
 	}
 	
-	//to view interview members
+	//to view interview members for Hr using interviewid
 	@ApiOperation(value="Returns all InterviewMembers")
 	@ApiResponses(value= {
 			@ApiResponse(code=201, message="New candidate created"),
 			@ApiResponse(code=404, message = "No such candidate found")
 	})
-	@GetMapping(value = "/interviewscheduler/Hr/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Candidate> viewInterviewMembersbyHr() {
-		return candidateService.getAllCandidates();
+	@GetMapping(value = "/interviewscheduler/hr/viewinterviewmembersforhr/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public CandidateEntity viewInterviewMembersForHr(@PathVariable("interviewid")int interviewid) {
+		return interviewSchedulerService.viewInterviewMembersForHr(interviewid);
 	}
 	
-
 	//view Interview members for tech using interviewid
 	@ApiOperation(value="Returns all InterviewMembers")
 	@ApiResponses(value= {
