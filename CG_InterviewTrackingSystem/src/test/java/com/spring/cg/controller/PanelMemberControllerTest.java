@@ -1,17 +1,20 @@
 package com.spring.cg.controller;
 
-import com.spring.cg.json.PanelMember;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.spring.cg.json.PanelMember;
 
 class PanelMemberControllerTest {
-    @Test
-    public void testFindPanelMemberById(){
-        RestTemplate restTemplate = new RestTemplate();
-        PanelMember panelMember = restTemplate.getForObject("http://localhost:8080/cgits/panelmember/search/15010115", PanelMember.class);
-        assertNotNull(panelMember);
-    }
+
+	//TEST CASE TO FIND PANEL MEMBER BY GIVING CORRECT PANEL ID - PASS
+	@Test
+	public void testFindPanelMemberById() {
+		RestTemplate restTemplate = new RestTemplate();
+		PanelMember panelMember = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/surrender/hr/11000000", PanelMember.class);
+		assertNotNull(panelMember);
+	}
 
 }
