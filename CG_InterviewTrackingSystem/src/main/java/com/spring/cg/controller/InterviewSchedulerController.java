@@ -143,6 +143,8 @@ public class InterviewSchedulerController {
 	public List<Candidate> viewInterviewMembersbyHr() {
 		return candidateService.getAllCandidates();
 	}
+	
+
 
 	
 }
