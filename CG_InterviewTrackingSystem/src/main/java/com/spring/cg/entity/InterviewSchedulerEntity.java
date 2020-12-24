@@ -36,12 +36,6 @@ public class InterviewSchedulerEntity {
 	@JoinColumn(name="candidateid")
 	private CandidateEntity candidate;
 	
-	@OneToOne(cascade={CascadeType.ALL},
-			fetch=FetchType.EAGER, optional = false)
-	@JoinColumn(name="employeeid")
-	private EmployeeEntity employee;
-
-	
 	public InterviewSchedulerEntity() {
 		super();
 	}
@@ -129,14 +123,6 @@ public class InterviewSchedulerEntity {
 
 	public void setCandidate(CandidateEntity candidate) {
 		this.candidate = candidate;
-	}
-
-	public EmployeeEntity getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(EmployeeEntity employee) {
-		this.employee = employee;
 	}
 
 	public void setInterviewid(int interviewid) {
