@@ -1,6 +1,7 @@
 package com.spring.cg.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -54,8 +55,6 @@ public class CandidateController {
 		return candidateService.getAllCandidates();
 	}
 	
-	
-	
 	@ApiOperation(value="Returns Specific Candidate")
 	@ApiResponses(value= {
 			@ApiResponse(code=201, message="New candidate created"),
@@ -65,5 +64,15 @@ public class CandidateController {
 	public Candidate getCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException{
 		return candidateService.getCandidateById(candidateid);
 	}
-
+	
+	//VIEW A CANDIDATE FOR HR 
+	@ApiOperation(value="Returns specific Candidate")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="New candidate created"),
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value = "/candidate/hr/{candidateid}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Candidate, String> listInterviewCandidates(@PathVariable int candidateid) throws CandidateNotFoundException {
+		return candidateService.listInterviewCandidates(candidateid);
+	}
 }
