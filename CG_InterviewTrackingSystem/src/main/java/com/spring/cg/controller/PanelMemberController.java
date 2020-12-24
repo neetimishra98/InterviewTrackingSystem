@@ -80,7 +80,7 @@ public class PanelMemberController {
 
 	})
 	@GetMapping(value="/panelmember/surrendertech/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public PanelMemberEntity updatePanelTech(@PathVariable("id")int panelId) throws PanelMemberNotFoundException{
+	public PanelMember updatePanelTech(@PathVariable("id")int panelId) throws PanelMemberNotFoundException{
 		return panelMemberService.updatePanelTech(panelId);
 	}
   	

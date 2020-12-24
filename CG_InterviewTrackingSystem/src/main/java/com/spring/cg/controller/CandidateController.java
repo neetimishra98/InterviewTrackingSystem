@@ -38,13 +38,14 @@ public class CandidateController {
 	@Autowired
 	private CandidateService candidateService;
 	
-	
+	//ADDS A CANDIDATE
 	@ApiOperation(value="Adds Candidate")
 	@PostMapping(value ="/candidate" ,produces = MediaType.APPLICATION_JSON_VALUE,consumes =MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Candidate> createCandidate(@Valid @RequestBody Candidate candidate) {
 		return new ResponseEntity<Candidate>(candidateService.createCandidate(candidate), HttpStatus.OK);
 	}
 	
+	//LIST ALL CANDIDATES
 	@ApiOperation(value="Returns all Candidate")
 	@ApiResponses(value= {
 			@ApiResponse(code=201, message="New candidate created"),
@@ -55,6 +56,7 @@ public class CandidateController {
 		return candidateService.getAllCandidates();
 	}
 	
+	//VIEW A CANDIDATE
 	@ApiOperation(value="Returns Specific Candidate")
 	@ApiResponses(value= {
 			@ApiResponse(code=201, message="New candidate created"),
@@ -65,7 +67,7 @@ public class CandidateController {
 		return candidateService.getCandidateById(candidateid);
 	}
 	
-	//VIEW A CANDIDATE FOR HR 
+	//VIEW A CANDIDATE WITH STATUS FOR HR 
 	@ApiOperation(value="Returns specific Candidate")
 	@ApiResponses(value= {
 			@ApiResponse(code=201, message="New candidate created"),
@@ -75,4 +77,15 @@ public class CandidateController {
 	public Map<Candidate, String> listInterviewCandidates(@PathVariable int candidateid) throws CandidateNotFoundException {
 		return candidateService.listInterviewCandidates(candidateid);
 	}
+	
+	//VIEW A CANDIDATE WITH STATUS FOR TECH 
+		@ApiOperation(value="Returns specific Candidate with interview status")
+		@ApiResponses(value= {
+				@ApiResponse(code=201, message="Candidate Details"),
+				@ApiResponse(code=404, message = "No such candidate found")
+		})
+		@GetMapping(value = "/candidate/techview/{candidateid}",produces = MediaType.APPLICATION_JSON_VALUE)
+		public Map<Candidate, String> listTechInterviewCandidates(@PathVariable int candidateid) throws CandidateNotFoundException {
+			return candidateService.listTechInterviewCandidates(candidateid);
+		}
 }

@@ -87,5 +87,18 @@ public class CandidateServiceImpl implements CandidateService{
 		return candidates;
 	}
 	
+	//To view Candidate For Tech
+		public Map<Candidate, String> listTechInterviewCandidates(int candidateid) throws CandidateNotFoundException{
+			Optional<CandidateEntity> opCandidateEntity = candidateRepo.findById(candidateid);
+			Map<Candidate, String> candidates = new HashMap<Candidate, String>();
+			if(opCandidateEntity.isPresent()) {
+				CandidateEntity candidateEntity = opCandidateEntity.get();
+				candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+						candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+			}
+			return candidates;
+		}
+
+	
 
 }

@@ -12,6 +12,12 @@ public interface CandidateService {
 	public List<Candidate> getAllCandidates();
 	public Candidate getCandidateById(int candidateid) throws CandidateNotFoundException;
 	public Candidate getCandidateByIdForHR(int candidateid) throws CandidateNotFoundException;
+	
+	//To view Candidate For HR
 	public Map<Candidate, String> listInterviewCandidates(int candidateid) throws CandidateNotFoundException;
+	
+	//To view Candidate For Tech
+	public Map<Candidate, String> listTechInterviewCandidates(int candidateid) throws CandidateNotFoundException;
+
 
 }
