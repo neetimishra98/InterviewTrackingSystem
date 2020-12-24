@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.spring.cg.entity.EmployeeEntity;
 import io.swagger.annotations.ApiModelProperty;
 
 public class PanelMember {
@@ -22,20 +23,29 @@ public class PanelMember {
 	@NotBlank
 	@ApiModelProperty(value="Panel Type")
 	private String type;
-	
-	
+
+	@ApiModelProperty(value="Employee ID")
+	private EmployeeEntity employeeEntity;
+
+
 	public PanelMember() {
 		super();
 	}
-	
-	public PanelMember(int panelid, String location, String type) {
+
+	public PanelMember(int panelid, String location, String type, EmployeeEntity employeeEntity) {
 		super();
 		this.panelid = panelid;
 		this.location = location;
 		this.type = type;
-		
+		this.employeeEntity = employeeEntity;
 	}
 
+
+	@Override
+	public String toString() {
+		return "PanelMemberEntity [panelid=" + panelid + ", location=" + location + ", type=" + type + ", employeeEntity="
+				+ employeeEntity+"]";
+	}
 
 	public int getPanelid() {
 		return panelid;
@@ -61,11 +71,12 @@ public class PanelMember {
 		this.type = type;
 	}
 
+	public EmployeeEntity getEmployeeEntity() {
+		return employeeEntity;
+	}
 
-	@Override
-	public String toString() {
-		return "PanelMemberEntity [panelID=" + panelid + ", location=" + location + ", type=" + type
-				+  "]";
+	public void setEmployeeEntity(EmployeeEntity employeeEntity) {
+		this.employeeEntity = employeeEntity;
 	}
 
 }

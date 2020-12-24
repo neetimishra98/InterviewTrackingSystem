@@ -10,5 +10,6 @@ public interface CandidateService {
 	public Candidate createCandidate(Candidate candidate);
 	public List<Candidate> getAllCandidates();
 	public Candidate getCandidateById(int candidateid) throws CandidateNotFoundException;
+	public Candidate getCandidateByIdForHR(int candidateid) throws CandidateNotFoundException;
 
 }

@@ -12,7 +12,7 @@ public interface PanelMemberService {
     public PanelMember addPanelMember(PanelMember panelMember, String employeeName) throws EmployeeNotFoundException;
     public List<PanelMember> getAllPanelMembers();
     public PanelMember findPanelMember(int panelId) throws PanelMemberNotFoundException;
-    public List<PanelMember> deletePanelMember(int panelMemberId) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException;
+    public List<PanelMember> deletePanelMember(String employeeName) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException;
     public PanelMemberEntity updatePanelTech(int panelId) throws PanelMemberNotFoundException;
     public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException;
 }

@@ -48,8 +48,6 @@ public class InterviewScheduler {
 		super();
 		this.interviewid = interviewid;
 	}
-	
-	
 
 	public InterviewScheduler(int techrating, int hrrating, String location,String finalstatus) {
 		super();
