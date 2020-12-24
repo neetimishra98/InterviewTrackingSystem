@@ -66,7 +66,7 @@ public class InterviewSchedulerController {
 				@ApiResponse(code=404, message="No such Interview is Schedule")
 		})
 		@PutMapping(value="/interviewscheduler/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
-		public InterviewScheduler updateInterviewSchedule(@PathVariable int interviewid, @RequestBody InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException
+		public InterviewScheduler updateInterviewSchedule(@Valid @PathVariable int interviewid, @RequestBody InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException
 		{
 			
 			return interviewSchedulerService. updateInterviewSchedule(interviewid, interviewscheduler);
@@ -79,7 +79,7 @@ public class InterviewSchedulerController {
 				@ApiResponse(code=404, message="No such Interview is Schedule")
 		})
 		@DeleteMapping(value="//interviewschedulerdel/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
-		public boolean cancelInterviewScheduleById(@PathVariable int interviewid)throws InterviewSchedulerNotFoundException
+		public boolean cancelInterviewScheduleById(@Valid @PathVariable int interviewid)throws InterviewSchedulerNotFoundException
 		{
 			return interviewSchedulerService.deleteById(interviewid);
 		}
