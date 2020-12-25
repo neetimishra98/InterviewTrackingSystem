@@ -9,11 +9,14 @@ import com.spring.cg.json.Employee;
 import com.spring.cg.json.PanelMember;
 import com.spring.cg.repo.EmployeeRepo;
 import com.spring.cg.repo.PanelMemberRepo;
+import com.spring.cg.util.PanelMemberUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PanelMemberServiceImpl implements PanelMemberService{
@@ -75,13 +78,18 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     
     //SURRENDER AS TECH PANEL
     @Override
-	public PanelMemberEntity updatePanelTech(int panelId) throws PanelMemberNotFoundException{
-        PanelMemberEntity panelMemberEntity = panelMemberRepo.findById(panelId);
-        if(panelMemberEntity==null){
+	public PanelMember updatePanelTech(int panelId) throws PanelMemberNotFoundException{
+    	Optional<PanelMemberEntity> opPanelMemberEntity = Optional.of(panelMemberRepo.findById(panelId));
+        if(opPanelMemberEntity.isPresent()){
+        	PanelMemberEntity panelMemberEntity = opPanelMemberEntity.get();
+        		panelMemberEntity.setType(null);
+        		panelMemberEntity = panelMemberRepo.save(panelMemberEntity);
+        	return PanelMemberUtil.convertPanelMemberEntitytoPanelMember(panelMemberEntity);
+        }
+        else {
             throw new PanelMemberNotFoundException("Invalid Panel Id");
         }
-        panelMemberEntity.setType(null);
-        return panelMemberRepo.save(panelMemberEntity);
+       
     }
 
  

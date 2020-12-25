@@ -1,7 +1,9 @@
 package com.spring.cg.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.cg.json.Candidate;
 import com.spring.cg.repo.CandidateRepo;
+import com.spring.cg.repo.InterviewSchedulerRepo;
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 
@@ -18,6 +21,9 @@ public class CandidateServiceImpl implements CandidateService{
 	
 	@Autowired
 	private CandidateRepo candidateRepo;
+	
+	@Autowired
+	InterviewSchedulerRepo interviewSchedulerRepo;
 	
 	@Override
 	public Candidate createCandidate(Candidate candidate) {
@@ -67,5 +73,32 @@ public class CandidateServiceImpl implements CandidateService{
 		}
 		
 	}
+	
+	//VIEW A CANDIDATE DETAILS FOR HR
+	@Override
+	public Map<Candidate, String> listInterviewCandidates(int candidateid) throws CandidateNotFoundException{
+		Optional<CandidateEntity> opCandidateEntity = candidateRepo.findById(candidateid);
+		Map<Candidate, String> candidates = new HashMap<Candidate, String>();
+		if(opCandidateEntity.isPresent()) {
+			CandidateEntity candidateEntity = opCandidateEntity.get();
+			candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+		}
+		return candidates;
+	}
+	
+	//To view Candidate For Tech
+		public Map<Candidate, String> listTechInterviewCandidates(int candidateid) throws CandidateNotFoundException{
+			Optional<CandidateEntity> opCandidateEntity = candidateRepo.findById(candidateid);
+			Map<Candidate, String> candidates = new HashMap<Candidate, String>();
+			if(opCandidateEntity.isPresent()) {
+				CandidateEntity candidateEntity = opCandidateEntity.get();
+				candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+						candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+			}
+			return candidates;
+		}
+
+	
 
 }
