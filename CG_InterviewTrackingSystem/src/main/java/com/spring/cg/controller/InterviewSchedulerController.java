@@ -144,8 +144,7 @@ public class InterviewSchedulerController {
 	@GetMapping(value = "/interviewscheduler/hr/viewinterviewmembersforhr/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public CandidateEntity viewInterviewMembersForHr(@PathVariable("interviewid")int interviewid) {
 		return interviewSchedulerService.viewInterviewMembersForHr(interviewid);
-	}
-	
+	}	
 	//view Interview members for tech using interviewid
 	@ApiOperation(value="Returns all InterviewMembers")
 	@ApiResponses(value= {
@@ -155,9 +154,5 @@ public class InterviewSchedulerController {
 	@GetMapping(value = "/interviewscheduler/tech/viewinterviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public CandidateEntity viewInterviewMembersForTech(@PathVariable("interviewid")int interviewid) {
 		return interviewSchedulerService.viewInterviewMembersForTech(interviewid);
-	}
-	
-
-
-	
+	}	
 }

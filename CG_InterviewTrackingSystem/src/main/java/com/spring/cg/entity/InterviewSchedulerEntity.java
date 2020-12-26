@@ -50,8 +50,7 @@ public class InterviewSchedulerEntity {
 		super();
 		this.interviewid= interviewid;
 	}
-    
-  
+     
 	public InterviewSchedulerEntity(int techrating, int hrrating, String location, String finalstatus) {
 		super();
 		this.techrating = techrating;
