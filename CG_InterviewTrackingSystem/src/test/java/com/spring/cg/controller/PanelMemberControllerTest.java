@@ -24,7 +24,7 @@ class PanelMemberControllerTest {
 	public void testFindPanelMemberByBlank() {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			panelMemberInvalid = restTemplate.getForObject("http://localhost:9091/cgits/employee/search/", PanelMember.class);
+			panelMemberInvalid = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/surrender/hr/", PanelMember.class);
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
@@ -33,4 +33,6 @@ class PanelMemberControllerTest {
 			assertNotNull(panelMemberInvalid, "<<BLANK>> Was Not Found");
 		}
 	}
+	
+	
 }

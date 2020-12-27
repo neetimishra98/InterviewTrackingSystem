@@ -31,7 +31,7 @@ public class CandidateControllerTest {
 	public void testFindCandidateByBlank() {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/employee/search/", Candidate.class);
+			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/", Candidate.class);
 		}
 		catch(Exception e){
 			candidateInvalid = null;

@@ -77,7 +77,18 @@ public class CandidateController {
 	public Map<Candidate, String> viewCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException {
 		return candidateService.viewCandidateById(candidateid);
 	}
-	
+	/*
+	//VIEW A CANDIDATE WITH STATUS FOR HR 
+		@ApiOperation(value="Returns specific Candidate")
+		@ApiResponses(value= {
+				@ApiResponse(code=201, message="New candidate created"),
+				@ApiResponse(code=404, message = "No such candidate found")
+		})
+		@GetMapping(value = "/candidate/hr/{candidatename}",produces = MediaType.APPLICATION_JSON_VALUE)
+		public Map<Candidate, String> viewCandidateByName(@PathVariable String candidatename) throws CandidateNotFoundException {
+			return candidateService.viewCandidateByName(candidatename);
+		}
+	*/
 	//VIEW A CANDIDATE WITH STATUS FOR TECH 
 		@ApiOperation(value="Returns specific Candidate with interview status")
 		@ApiResponses(value= {

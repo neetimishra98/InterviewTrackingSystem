@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.cg.json.Candidate;
+import com.spring.cg.json.Employee;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.repo.InterviewSchedulerRepo;
 import com.spring.cg.entity.CandidateEntity;
+import com.spring.cg.entity.EmployeeEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
+import com.spring.cg.exception.EmployeeNotFoundException;
 
 
 @Service
@@ -71,6 +74,7 @@ public class CandidateServiceImpl implements CandidateService{
 		}
 		return candidates;
 	}
+	
 	
 	//To view Candidate For Tech
 		public Map<Candidate, String> listTechInterviewCandidates(int candidateid) throws CandidateNotFoundException{
