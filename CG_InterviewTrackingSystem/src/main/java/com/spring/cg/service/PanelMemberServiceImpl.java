@@ -67,6 +67,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
         if(panelMemberEntity.getType()!=null){
             throw new PanelMemberNotSurrenderedException("Panel Member has not yet surrendered, can't delete the employee directly");
         }
+        panelMemberEntity.setEmployeeEntity(null);
         panelMemberRepo.deleteById(panelMemberEntity.getPanelid());
         List<PanelMemberEntity> panelMemberEntityList = panelMemberRepo.findAll();
         List<PanelMember> panelMembers = new ArrayList<PanelMember>();
