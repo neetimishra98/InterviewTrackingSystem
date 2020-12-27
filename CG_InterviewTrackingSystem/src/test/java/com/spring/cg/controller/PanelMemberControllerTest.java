@@ -34,5 +34,82 @@ class PanelMemberControllerTest {
 		}
 	}
 	
+	//ADD PANEL MEMBER TEST CASES
+	//PANEL MEMBER WITH VALID EMPLOYEE FOREIGN KEY
+	@Test
+	public void testAddPanelMemberValid() {
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			PanelMember request = new PanelMember(10501505, "Pune", "HR", null);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Charles", request, PanelMember.class);
+		}
+		catch(Exception e){
+				panelMemberInvalid = null;
+		}
+		finally{
+			assertEquals(panelMemberInvalid.getPanelid(), 10501505);
+		}
+	}
+	//PANEL MEMBER BLANK WITH VALID EMPLOYEE FOREIGN KEY
+	@Test
+	public void testAddPanelMemberBlank() {
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			PanelMember request = new PanelMember();
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Charles", request, PanelMember.class);
+		}
+		catch(Exception e){
+			panelMemberInvalid = null;
+		}
+		finally{
+			assertNull(panelMemberInvalid, "No panel member could be added/found");
+		}
+	}
+	@Test
+	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
+	public void testAddPanelMemberBlankEmployee() {
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			PanelMember request = new PanelMember();
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/", request, PanelMember.class);
+		}
+		catch(Exception e){
+			panelMemberInvalid = null;
+		}
+		finally{
+			assertNull(panelMemberInvalid, "No panel member could be added/found");
+		}
+	}
+	@Test
+	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
+	public void testAddPanelMemberInvalidConstructor() {
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			PanelMember request = new PanelMember(150000000, "Pune", "HR", null);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Charles", request, PanelMember.class);
+		}
+		catch(Exception e){
+			panelMemberInvalid = null;
+		}
+		finally{
+			assertNull(panelMemberInvalid, "No panel member could be added/found");
+		}
+	}
+	@Test
+	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
+	public void testAddPanelMemberInvalidEmployee() {
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			PanelMember request = new PanelMember(150000000, "Pune", "HR", null);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Andruw", request, PanelMember.class);
+		}
+		catch(Exception e){
+			panelMemberInvalid = null;
+		}
+		finally{
+			assertNull(panelMemberInvalid, "No panel member could be added/found");
+		}
+	}
+	
 	
 }
