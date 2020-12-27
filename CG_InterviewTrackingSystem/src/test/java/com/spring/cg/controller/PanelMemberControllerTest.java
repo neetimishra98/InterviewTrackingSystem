@@ -33,6 +33,4 @@ class PanelMemberControllerTest {
 			assertNotNull(panelMemberInvalid, "<<BLANK>> Was Not Found");
 		}
 	}
-		
-
 }
