@@ -1,7 +1,5 @@
 package com.spring.cg.repo;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.spring.cg.entity.CandidateEntity;
@@ -13,5 +11,6 @@ public interface InterviewSchedulerRepo extends JpaRepository<InterviewScheduler
 	
 	public InterviewSchedulerEntity findByfinalstatus(String finalstatus);
 	
-	public InterviewSchedulerEntity findBylocation(String location);
+	//public InterviewSchedulerEntity findBylocation(String location);
+	public InterviewSchedulerEntity findByCandidate(CandidateEntity candidateEntity);
 }

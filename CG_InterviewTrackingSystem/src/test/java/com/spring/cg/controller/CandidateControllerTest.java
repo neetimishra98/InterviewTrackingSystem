@@ -15,5 +15,13 @@ public class CandidateControllerTest {
 		Candidate candidate=restTemplate.getForObject("http://localhost:8080/cgits/candidate/15", Candidate.class);
 		assertNotNull(candidate);
 	}
+	
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE ID - PASS
+	@Test
+	public void testFindCandidateByIdHr() {
+		RestTemplate restTemplate = new RestTemplate();
+		Candidate candidate=restTemplate.getForObject("http://localhost:8080/cgits/candidate/hr/15", Candidate.class);
+		assertNotNull(candidate);
+	}
 
 }

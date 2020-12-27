@@ -1,21 +1,17 @@
 package com.spring.cg.service;
-
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
-import com.spring.cg.json.Candidate;
 import com.spring.cg.json.InterviewScheduler;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.repo.InterviewSchedulerRepo;
 import com.spring.cg.util.InterviewSchedulerUtil;
-
 
 @Service
 public class InterviewSchedulerServiceImpl implements InterviewSchedulerService {
@@ -85,9 +81,6 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 		}
 	}
-	
-	
-	
 	//for giving techrating
 	@Override
 	public InterviewSchedulerEntity giveTechRating(String interviewid) {
