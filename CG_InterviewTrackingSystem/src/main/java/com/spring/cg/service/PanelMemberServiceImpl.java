@@ -67,6 +67,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
         if(panelMemberEntity.getType()!=null){
             throw new PanelMemberNotSurrenderedException("Panel Member has not yet surrendered, can't delete the employee directly");
         }
+        panelMemberEntity.setEmployeeEntity(null);
         panelMemberRepo.deleteById(panelMemberEntity.getPanelid());
         List<PanelMemberEntity> panelMemberEntityList = panelMemberRepo.findAll();
         List<PanelMember> panelMembers = new ArrayList<PanelMember>();
@@ -95,15 +96,17 @@ public class PanelMemberServiceImpl implements PanelMemberService{
  
     //SURRENDER AS HR PANEL (USING PANEL ID AS INPUT)
 	@Override
-  	public PanelMemberEntity surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException {
-  		PanelMemberEntity panelMemberEntity = panelMemberRepo.findById(panelid);
-  		if(panelMemberEntity==null) {
-  			throw new PanelMemberNotFoundException("Invalid Panel Id");
-  		}
-  		else 
-  			panelMemberEntity.setType(null);
-  		
-  		return panelMemberRepo.save(panelMemberEntity);
+  	public PanelMember surrenderAsHRPanel(int panelid) throws PanelMemberNotFoundException {
+		Optional<PanelMemberEntity> opPanelMemberEntity = Optional.of(panelMemberRepo.findById(panelid));
+        if(opPanelMemberEntity.isPresent()){
+        	PanelMemberEntity panelMemberEntity = opPanelMemberEntity.get();
+        		panelMemberEntity.setType(null);
+        		panelMemberEntity = panelMemberRepo.save(panelMemberEntity);
+        	return PanelMemberUtil.convertPanelMemberEntitytoPanelMember(panelMemberEntity);
+        }
+        else {
+            throw new PanelMemberNotFoundException("Invalid Panel Id");
+        }
   		
   	}
 }

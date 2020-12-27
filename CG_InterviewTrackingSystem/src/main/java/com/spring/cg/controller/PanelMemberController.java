@@ -91,7 +91,7 @@ public class PanelMemberController {
   			@ApiResponse(code=404, message = "No such panel member found")
   	})
   	@GetMapping(value="/panelmember/surrender/hr/{panelid}", produces=MediaType.APPLICATION_JSON_VALUE)
-  	public PanelMemberEntity surrenderAsHRPanel(@PathVariable int panelid) throws PanelMemberNotFoundException {
+  	public PanelMember surrenderAsHRPanel(@PathVariable int panelid) throws PanelMemberNotFoundException {
   		return panelMemberService.surrenderAsHRPanel(panelid);
   	}
 }

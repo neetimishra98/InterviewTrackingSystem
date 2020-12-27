@@ -74,8 +74,8 @@ public class CandidateController {
 			@ApiResponse(code=404, message = "No such candidate found")
 	})
 	@GetMapping(value = "/candidate/hr/{candidateid}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<Candidate, String> listInterviewCandidates(@PathVariable int candidateid) throws CandidateNotFoundException {
-		return candidateService.listInterviewCandidates(candidateid);
+	public Map<Candidate, String> viewCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException {
+		return candidateService.viewCandidateById(candidateid);
 	}
 	
 	//VIEW A CANDIDATE WITH STATUS FOR TECH 
