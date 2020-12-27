@@ -53,7 +53,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(value = {InterviewSchedulerNotFoundException.class})
 	public ResponseEntity<ErrorMessage> handleInterviewSchedulerNotFoundException(
-			CandidateNotFoundException ex) {
+			InterviewSchedulerNotFoundException ex) {
 		String error = "Interview not found";
 
 	ErrorMessage errorMessage = 
