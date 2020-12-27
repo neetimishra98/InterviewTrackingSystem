@@ -2,6 +2,9 @@ package com.spring.cg.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,7 +31,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.InterviewNotFoundException;
@@ -44,6 +46,8 @@ import io.swagger.annotations.ApiResponses;
 
 @Api(value="InterviewScheduler related REST APIs")
 public class InterviewSchedulerController {
+	
+	private static Logger logger = LoggerFactory.getLogger(InterviewSchedulerController.class);
 	
 	@Autowired
 	private InterviewSchedulerService interviewSchedulerService;
@@ -62,30 +66,44 @@ public class InterviewSchedulerController {
 			return interviewSchedulerService.createNewInterviewSchedule(candidateid, interviewscheduler);
 		}
 	
+	//Update Interview Schedule
 		@ApiOperation(value="Updates Interview Schedule details")
 		@ApiResponses(value= {
 				@ApiResponse(code=201, message="Interview Schedule is Updated"),
-				@ApiResponse(code=404, message="No such Interview is Schedule")
-		})
-		@PutMapping(value="/interviewscheduler/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
+				@ApiResponse(code=404, message="No such Interview is Schedule")})
+				@PutMapping(value="/interviewscheduler/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
 		public InterviewScheduler updateInterviewSchedule(@Valid @PathVariable int interviewid, @RequestBody InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException
-		{
-			
-			return interviewSchedulerService. updateInterviewSchedule(interviewid, interviewscheduler);
-		}
+			{
+				try {
+					  logger.info("Enter InterviewSchedulerController:: method=updateScheduleInterview");
+					  return interviewSchedulerService. updateInterviewSchedule(interviewid, interviewscheduler);
+					}   catch(InterviewSchedulerNotFoundException interviewSchedulerNotFoundException) {
+						logger.error(interviewSchedulerNotFoundException.getLocalizedMessage());
+						return null;
+					}
+					
+				}
 		
 		
+
+		//Cancel Interview Schedule
 		@ApiOperation(value="Cancels Interview Schedule")
 		@ApiResponses(value= {
 				@ApiResponse(code=201, message="Scheduled Interview Canceled"),
 				@ApiResponse(code=404, message="No such Interview is Schedule")
 		})
 		@DeleteMapping(value="//interviewschedulerdel/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
-		public boolean cancelInterviewScheduleById(@Valid @PathVariable int interviewid)throws InterviewSchedulerNotFoundException
+		public InterviewScheduler cancelInterviewScheduleById(@PathVariable int interviewid)throws InterviewSchedulerNotFoundException
 		{
-			return interviewSchedulerService.deleteById(interviewid);
+			try {
+				logger.info("Enter InterviewSchedulerController:: method=cancelScheduleInterview");
+				return interviewSchedulerService.deleteById(interviewid);
+			}catch(InterviewSchedulerNotFoundException interviewSchedulerNotFoundException) {
+				logger.error(interviewSchedulerNotFoundException.getLocalizedMessage());
+				return null;
+			}
 		}
-	
+
 	
 	//Gives TechRating to the candidate if TechRating is null
 	@ApiOperation(value="Returns InterviewSchedulerEntity after giving TechRating")

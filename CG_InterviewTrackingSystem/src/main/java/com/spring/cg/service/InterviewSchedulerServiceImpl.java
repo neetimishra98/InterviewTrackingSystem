@@ -67,14 +67,14 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		}
 	}	
 	@Override
-	public boolean deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
+	public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
 		
 		Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
 		InterviewScheduler interviewscheduler = null;
 		if(opinterviewschedulerEntity.isPresent())
 		{	
 			interviewSchedulerRepo.deleteById(interviewid);
-			return true;
+			return interviewscheduler;
 		}
 		else
 		{
