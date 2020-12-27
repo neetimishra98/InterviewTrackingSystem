@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	
@@ -49,6 +50,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST,ex.getLocalizedMessage(),error);
 		return new ResponseEntity<ErrorMessage>(errorMessage,new HttpHeaders(), errorMessage.getStatus());
 	}
+	
+	@ExceptionHandler(value = {InterviewSchedulerNotFoundException.class})
+	public ResponseEntity<ErrorMessage> handleInterviewSchedulerNotFoundException(
+			CandidateNotFoundException ex) {
+		String error = "Interview not found";
+
+	ErrorMessage errorMessage = 
+      new ErrorMessage(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+    return new ResponseEntity<ErrorMessage>(
+    		errorMessage, new HttpHeaders(), errorMessage.getStatus());
+	
+}
 	
 	@Override
 	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
