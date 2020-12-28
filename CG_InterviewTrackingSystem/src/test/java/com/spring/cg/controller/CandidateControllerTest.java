@@ -1,29 +1,32 @@
 package com.spring.cg.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.logging.LogManager;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.client.RestTemplate;
 
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.json.Candidate;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.service.CandidateService;
-import com.sun.istack.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.boot.test.context.SpringBootTest;
+
 
 @SpringBootTest
 public class CandidateControllerTest {
 	
-	public Candidate candidateInvalid;
-	
 	private static Logger logger = LogManager.getLogger(CandidateControllerTest.class);
+	
+	public Candidate candidateInvalid;
 	
 	@Autowired
 	private CandidateRepo candidateRepo;
@@ -265,7 +268,7 @@ public class CandidateControllerTest {
 				logger.info("[END] testFindCandidateByIdHr()");
 			}
 			
-			//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE ID - Fail
+			//TEST CASE TO VIEW A CANDIDATE FOR HR USING NEGATIVE CANDIDATE ID - FAIL
 			@Test
 			public void testViewCandidateByIdForHRFail_CandidateNotFoundException(){
 				    logger.info("[START] testViewCandidateByIdForHRFail()");		
@@ -277,6 +280,19 @@ public class CandidateControllerTest {
 				);
 					logger.info("[END] testViewCandidateByIdForHRFail()");
 			}
+			
+			//TEST CASE TO VIEW A CANDIDATE FOR HR USING WRONG CANDIDATE ID SIZE - FAIL
+				@Test
+				public void testViewCandidateByIdForHRSize_CandidateNotFoundException(){
+					    logger.info("[START] testViewCandidateByIdForHRFail()");		
+						RestTemplate restTemplate = new RestTemplate();
+						assertThrows(CandidateNotFoundException.class,
+						()->{
+								candidateService.viewCandidateForHR("1111");
+						}	
+					);
+						logger.info("[END] testViewCandidateByIdForHRFail()");
+				}
 
 			//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - PASS
 			@Test
@@ -317,6 +333,6 @@ public class CandidateControllerTest {
 			finally{
 				assertNotNull(candidateInvalid, "<<BLANK>> Was Not Found");
 			}
-			logger.info("[START] testViewCandidateByBlank()");
+			logger.info("[END] testViewCandidateByBlank()");
 		}
 }
