@@ -232,38 +232,59 @@ public class CandidateControllerTest {
 							
 		logger.info("[END] testViewCandidateByPrimarySkillsFail()");
 	}	
-				
+			
+
+	//TEST CASE TO FIND PANEL MEMBER BY GIVING CORRECT PANEL ID - PASS
+		@Test
+		public void testFindPanelMemberById() {
+			RestTemplate restTemplate = new RestTemplate();
+			Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/12345678", Candidate.class);
+			assertNotNull(candidate);
+		}
+			
+		//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE ID - PASS
+		@Test
+		public void testFindCandidateByIdHr() {
+			RestTemplate restTemplate = new RestTemplate();
+			Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/12345678", Candidate.class);
+			assertEquals(candidate.getCandidateid(), 12345678);
+		}
 		
-
-
-
-
-
-
-
-
-
-
-	//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE ID - PASS
-	@Test
-	public void testFindCandidateByIdHr() {
-		RestTemplate restTemplate = new RestTemplate();
-		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/12345678", Candidate.class);
-		assertEquals(candidate.getCandidateid(), 12345678);
-	}
-
-	//TEST CASE TO VIEW A CANDIDATE FOR HR USING <<BLANK>> PATH VARIABLE - FAIL
-	@Test
-	public void testFindCandidateByBlank() {
-		RestTemplate restTemplate = new RestTemplate();
-		try {
-			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/", Candidate.class);
+		//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - PASS
+		@Test
+		public void testFindCandidateByNameHr() {
+			RestTemplate restTemplate = new RestTemplate();
+			Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/sean", Candidate.class);
+			assertEquals(candidate.getCandidateid(), "sean");
 		}
-		catch(Exception e){
-			candidateInvalid = null;
+
+		//TEST CASE TO VIEW A CANDIDATE FOR HR USING INVALID CANDIDATE NAME - FAIL
+		@Test
+		public void testFindCandidateByNameInvalid() {
+			RestTemplate restTemplate = new RestTemplate();
+			try {
+				candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/tom", Candidate.class);
+			}
+			catch(Exception e){
+				candidateInvalid = null;
+			}
+			finally{
+				assertNotNull(candidateInvalid, "Tom Was Not Found");
+			}
 		}
-		finally{
-			assertNotNull(candidateInvalid, "<<BLANK>> Was Not Found");
+			
+		//TEST CASE TO VIEW A CANDIDATE FOR HR USING <<BLANK>> PATH VARIABLE - FAIL
+		@Test
+		public void testFindCandidateByBlank() {
+			RestTemplate restTemplate = new RestTemplate();
+			try {
+				candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/", Candidate.class);
+			}
+			catch(Exception e){
+				candidateInvalid = null;
+			}
+			finally{
+				assertNotNull(candidateInvalid, "<<BLANK>> Was Not Found");
+			}
 		}
-	}
 }

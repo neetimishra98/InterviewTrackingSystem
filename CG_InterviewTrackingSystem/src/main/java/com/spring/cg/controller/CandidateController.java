@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.cg.exception.CandidateNotFoundException;
-import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.json.Candidate;
-import com.spring.cg.json.Employee;
-import com.spring.cg.json.PanelMember;
+import com.spring.cg.json.Designation;
+import com.spring.cg.json.Location;
+import com.spring.cg.json.PrimarySkills;
+import com.spring.cg.json.Qualification;
+import com.spring.cg.json.SecondarySkills;
 import com.spring.cg.service.CandidateService;
 
 import io.swagger.annotations.Api;
