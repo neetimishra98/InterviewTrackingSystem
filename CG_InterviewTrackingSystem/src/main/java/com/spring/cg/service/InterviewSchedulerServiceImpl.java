@@ -97,6 +97,32 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	
 	
 	
+	//to view all interview members for tech
+		@Override
+		public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException{
+			List<InterviewSchedulerEntity> interviewSchedulerEntity=interviewSchedulerRepo.findAll();
+			List<InterviewScheduler> membersList=new ArrayList<InterviewScheduler>();
+			
+			for(InterviewSchedulerEntity membersEntity: interviewSchedulerEntity) {
+				membersList.add(new InterviewScheduler(membersEntity.getInterviewid(),
+						membersEntity.getTechrating(), membersEntity.getLocation(),
+						membersEntity.getFinalstatus()));
+			}
+			return membersList;
+		}
+	
+	
+		//to view candidate information using interview id for tech
+				@Override
+				public CandidateEntity viewInterviewMembersForTech(int interviewid) throws InterviewSchedulerNotFoundException {
+					InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+					CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
+					return candidateEntity;
+					
+				}
+	
+	
+	
 	//for giving techrating
 	@Override
 	public InterviewSchedulerEntity giveTechRating(int interviewid) {
@@ -109,26 +135,13 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
 		if(interviewSchedulerEntity.getTechrating()==0) {
 			interviewSchedulerEntity.setTechrating((int)techrating);
-			interviewSchedulerEntity.setFinalstatus("Tech_complete");
+			interviewSchedulerEntity.setFinalstatus("Techcomplete");
 		}
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);
-    }	
-<<<<<<< HEAD
-	
-	
-	//to view Interview Members for tech
-		@Override
-		public CandidateEntity viewInterviewMembersForTech(int interviewid) throws InterviewSchedulerNotFoundException {
-			InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
-			CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
-			return candidateEntity;
-			
-		}
+    }
 
 
-	
-}
-=======
+		
+
 	}
 
->>>>>>> c0f0827a37492d906b365b70fd314f54de2e93a1

@@ -100,7 +100,7 @@ public class InterviewSchedulerController {
 				}
 	  
 	  
-	  //view all interview members for tech
+	//view all interview members for tech
 	  @ApiOperation(value="Returns InterviewScheduler List for Tech")
 		@ApiResponses(value= {
 				@ApiResponse(code=200, message="List viewed successfully for Tech"),
@@ -112,6 +112,19 @@ public class InterviewSchedulerController {
 		}
 	  
 	
+	  
+	//view Interview members for tech using interview id
+			@ApiOperation(value="Returns all InterviewMembers")
+			@ApiResponses(value= {
+					@ApiResponse(code=200, message="Candidate with given interviewid displayed successfully"),
+					@ApiResponse(code=404, message = "No such candidate found")
+			})
+			@GetMapping(value = "/interviewscheduler/tech/viewinterviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+			public CandidateEntity viewInterviewMembersForTech(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException {
+				return interviewSchedulerService.viewInterviewMembersForTech(interviewid);
+			}
+	  
+			
 	
 	//Gives TechRating to the candidate if TechRating is null
 	@ApiOperation(value="Returns InterviewSchedulerEntity after giving TechRating")
@@ -140,17 +153,7 @@ public class InterviewSchedulerController {
 	}
 	*/
 	
-	
-	//view Interview members for tech using interviewid
-		@ApiOperation(value="Returns all InterviewMembers")
-		@ApiResponses(value= {
-				@ApiResponse(code=200, message="Candidate with given interviewid displayed successfully"),
-				@ApiResponse(code=404, message = "No such candidate found")
-		})
-		@GetMapping(value = "/interviewscheduler/tech/viewinterviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
-		public CandidateEntity viewInterviewMembersForTech(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException {
-			return interviewSchedulerService.viewInterviewMembersForTech(interviewid);
-		}
+
 
 
 	
