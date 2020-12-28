@@ -94,7 +94,16 @@ public class PanelMemberControllerTest {
 		logger.info("[END] testFindPanelMemberByBlank()");
 	}
 	
-	
+	//TEST CASE TO CHECK IF PANEL MEMBER ALREADY SURRENDERED OR NOT - FAIL
+			@Test
+			public void testPanelMemberSurrendered() {
+				logger.info("[START] testPanelMemberSurrendered()");
+				RestTemplate restTemplate = new RestTemplate();
+				PanelMember panelMember = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/hr/11000000", PanelMember.class);
+				assertEquals(panelMember.getType(), null);
+				logger.info("[END] testPanelMemberSurrendered() - Already surrendered");
+
+			}
 	
 	//ADD PANEL MEMBER TEST CASES
 	//PANEL MEMBER WITH VALID EMPLOYEE FOREIGN KEY
