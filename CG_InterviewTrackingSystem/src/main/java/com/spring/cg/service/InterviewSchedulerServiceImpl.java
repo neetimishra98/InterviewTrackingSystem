@@ -96,6 +96,21 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	}
 	
 	
+	//to view interview members for tech
+	@Override
+	public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException{
+		List<InterviewSchedulerEntity> interviewSchedulerEntity=interviewSchedulerRepo.findAll();
+		List<InterviewScheduler> membersList=new ArrayList<InterviewScheduler>();
+		
+		for(InterviewSchedulerEntity membersEntity: interviewSchedulerEntity) {
+			membersList.add(new InterviewScheduler(membersEntity.getInterviewid(),
+					membersEntity.getTechrating(), membersEntity.getLocation(),
+					membersEntity.getFinalstatus()));
+		}
+		return membersList;
+	}
+	
+	
 	
 	//for giving techrating
 	@Override
@@ -109,28 +124,12 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
 		if(interviewSchedulerEntity.getTechrating()==0) {
 			interviewSchedulerEntity.setTechrating((int)techrating);
-			interviewSchedulerEntity.setFinalstatus("Tech_complete");
+			interviewSchedulerEntity.setFinalstatus("Techcomplete");
 		}
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);
     }	
 	
 	
-	//for giving hrrating
-	@Override
-	public InterviewSchedulerEntity giveHrRating(int interviewid) {
-		
-		double Hrrating=0;
-		int min=0;
-		int max=10;
-			 Hrrating=Math.random()*(max-min+1)+min;
-		
-		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
-		if(interviewSchedulerEntity.getHrrating()==0) {
-			interviewSchedulerEntity.setHrrating((int) Hrrating);
-			interviewSchedulerEntity.setFinalstatus("Hr_complete");
-		}
-		return interviewSchedulerRepo.save(interviewSchedulerEntity);   
-    }	
 	
 	
 	//to view interview members
@@ -156,12 +155,6 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		return candidates;
 	}
 
-	@Override
-	public InterviewScheduler createNewInterviewSchedule(int candidateid, InterviewScheduler interviewscheduler)
-			throws CandidateNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	
