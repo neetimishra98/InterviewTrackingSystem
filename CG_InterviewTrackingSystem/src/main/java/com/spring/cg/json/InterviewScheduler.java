@@ -22,7 +22,7 @@ public class InterviewScheduler {
  private Candidate candidate;
  
  @ApiModelProperty(value="Interview Panel")
- private  PanelMember panelMember;
+ private  PanelMember panelid;
  
  @NotNull
  @NotBlank
@@ -37,12 +37,12 @@ public class InterviewScheduler {
  @NotNull
  @NotBlank
  @ApiModelProperty(value="Interview Start time")
- private Time start_time;
+ private String start_time;
 
  @NotNull
  @NotBlank
  @ApiModelProperty(value="Interview End time")
- private Time end_time;
+ private String end_time;
  
  @Min(value=0)
  @Max(value=10)
@@ -56,14 +56,14 @@ public class InterviewScheduler {
  
  
  
- public InterviewScheduler(int interviewid, Candidate candidate, PanelMember panelMember,
-		 String location, Date date,Time start_time,
-		 Time end_time,int hrrating,
-		 String finalstatus, @Min(0) @Max(10) int techrating) {
+ public InterviewScheduler(int interviewid, Candidate candidate, PanelMember panelid,
+		 String location, Date date,String start_time,
+		 String end_time,int hrrating,
+		 String finalstatus,int techrating) {
 	super();
 	this.interviewid = interviewid;
 	this.candidate = candidate;
-	this.panelMember = panelMember;
+	this.panelid = panelid;
 	this.location = location;
 	this.date = date;
 	this.start_time = start_time;
@@ -143,27 +143,27 @@ public void setDate(Date date) {
 	this.date = date;
 }
 
-public Time getStart_time() {
+public String getStart_time() {
 	return start_time;
 }
 
-public void setStart_time(Time start_time) {
+public void setStart_time(String start_time) {
 	this.start_time = start_time;
 }
 
-public Time getEnd_time() {
+public String getEnd_time() {
 	return end_time;
 }
 
 public PanelMember getPanelMember() {
-	return panelMember;
+	return panelid;
 }
 
 public void setPanelMember(PanelMember panel) {
-	this.panelMember = panel;
+	this.panelid = panel;
 }
 
-public void setEnd_time(Time end_time) {
+public void setEnd_time(String end_time) {
 	this.end_time = end_time;
 }
 
@@ -195,17 +195,17 @@ public Candidate getCandidate() {
  @Override
 public String toString() {
 	return "InterviewScheduler [interviewid=" + interviewid + ", candidate=" + candidate + ", panelMember="
-			+ panelMember + ", location=" + location + ", date=" + date + ", start_time=" + start_time + ", end_time="
+			+ panelid + ", location=" + location + ", date=" + date + ", start_time=" + start_time + ", end_time="
 			+ end_time + ", techrating=" + techrating + ", finalstatus=" + finalstatus + "]";
 }
 
-public InterviewScheduler(@Min(10000000) @Max(99999999) int interviewid, Candidate candidate, PanelMember panelMember,
-		@NotNull @NotBlank String location, @NotNull @NotBlank Date date, @NotNull @NotBlank Time start_time,
-		@NotNull @NotBlank Time end_time, @Min(0) @Max(10) int techrating, @NotNull @NotBlank String finalstatus) {
+public InterviewScheduler(int interviewid, Candidate candidate, PanelMember panelid,
+		String location,Date date,String start_time,
+		 String end_time, int techrating,String finalstatus) {
 	super();
 	this.interviewid = interviewid;
 	this.candidate = candidate;
-	this.panelMember = panelMember;
+	this.panelid = panelid;
 	this.location = location;
 	this.date = date;
 	this.start_time = start_time;
