@@ -1,11 +1,15 @@
 package com.spring.cg.repo;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 
 public interface CandidateRepo extends JpaRepository<CandidateEntity, Integer>  {
+
+	
 	
     @Query("SELECT ce FROM CandidateEntity ce WHERE UPPER(ce.candidatename) = UPPER(?1)")
 	 public List<CandidateEntity> findByNameIgnoreCase(String candidatename);

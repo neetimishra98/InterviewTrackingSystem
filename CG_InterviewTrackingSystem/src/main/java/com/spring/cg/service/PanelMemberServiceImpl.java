@@ -5,7 +5,6 @@ import com.spring.cg.entity.PanelMemberEntity;
 import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.exception.PanelMemberNotSurrenderedException;
-import com.spring.cg.json.Employee;
 import com.spring.cg.json.PanelMember;
 import com.spring.cg.repo.EmployeeRepo;
 import com.spring.cg.repo.PanelMemberRepo;
@@ -22,10 +21,10 @@ import java.util.Optional;
 public class PanelMemberServiceImpl implements PanelMemberService{
     @Autowired
     PanelMemberRepo panelMemberRepo;
+   
     @Autowired
     EmployeeRepo employeeRepo;
-    @Autowired
-    private EmployeeService employeeService;
+    
 
     @Override
     public PanelMember addPanelMember(PanelMember panelMember, String employeeName) throws EmployeeNotFoundException{
