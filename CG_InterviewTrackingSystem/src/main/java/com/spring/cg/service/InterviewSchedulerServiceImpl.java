@@ -2,8 +2,10 @@ package com.spring.cg.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.entity.PanelMemberEntity;
@@ -69,6 +71,9 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		if(interviewschedulerEntityOp.isPresent())
 		{
 			InterviewSchedulerEntity interviewschedulerEntity = interviewschedulerEntityOp.get();
+			interviewschedulerEntity.setDate(interviewscheduler.getDate());
+			interviewschedulerEntity.setStart_time(interviewscheduler.getStart_time());
+			interviewschedulerEntity.setEnd_time(interviewscheduler.getEnd_time());
 			interviewschedulerEntity.setTechrating(interviewscheduler.getTechrating());
 			interviewschedulerEntity.setFinalstatus(interviewscheduler.getFinalstatus());
 			

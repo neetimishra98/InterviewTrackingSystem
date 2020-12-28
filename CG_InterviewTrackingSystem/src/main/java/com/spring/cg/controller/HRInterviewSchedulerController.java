@@ -1,16 +1,24 @@
 package com.spring.cg.controller;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.cg.exception.InterviewSchedulerNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.json.HRInterviewScheduler;
+import com.spring.cg.json.InterviewScheduler;
 import com.spring.cg.service.HRInterviewSchedulerService;
 
 import io.swagger.annotations.Api;
@@ -23,6 +31,8 @@ import io.swagger.annotations.ApiResponses;
 
 @Api(value = "HRInterviewScheduler related REST APIs")
 public class HRInterviewSchedulerController {
+	
+	private static Logger logger = LoggerFactory.getLogger(HRInterviewSchedulerController.class);
 
 	@Autowired
 	private HRInterviewSchedulerService hrinterviewSchedulerService;
@@ -38,6 +48,45 @@ public class HRInterviewSchedulerController {
 			throws PanelMemberNotFoundException {
 		return hrinterviewSchedulerService.createNewHRInterviewSchedule(candidateid, panelid, hrinterviewscheduler);
 	}
+	
+	
+	//Update Interview Schedule
+	@ApiOperation(value="Updates Interview Schedule details")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="Interview Schedule is Updated"),
+			@ApiResponse(code=404, message="No such Interview is Schedule")
+	})
+	@PutMapping(value="/hrinterviewscheduler/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public HRInterviewScheduler updateInterviewSchedule(@Valid @PathVariable int interviewid, @RequestBody HRInterviewScheduler hrinterviewscheduler)throws InterviewSchedulerNotFoundException
+	{
+		try {
+			logger.info("Enter HRInterviewSchedulerController:: method=updateScheduleInterview");
+			return hrinterviewSchedulerService.updateInterviewSchedule(interviewid, hrinterviewscheduler);
+		} catch(InterviewSchedulerNotFoundException interviewSchedulerNotFoundException) {
+			logger.error(interviewSchedulerNotFoundException.getLocalizedMessage());
+			return null;
+		}
+		
+	}
+	
+	
+	//Cancel Interview Schedule
+	  @ApiOperation(value="Cancels Interview Schedule")
+	  @ApiResponses(value= {
+		  @ApiResponse(code=201, message="Scheduled Interview Canceled"),
+		  @ApiResponse(code=404, message="No such Interview is Schedule")})
+		   
+			@DeleteMapping(value="//hrinterviewschedulerdel/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
+			public HRInterviewScheduler cancelInterviewScheduleById(@PathVariable int interviewid)throws InterviewSchedulerNotFoundException
+			{
+				try {
+					logger.info("Enter HRInterviewSchedulerController:: method=cancelScheduleInterview");
+					return hrinterviewSchedulerService.deleteById(interviewid);
+				}catch(InterviewSchedulerNotFoundException interviewSchedulerNotFoundException) {
+					logger.error(interviewSchedulerNotFoundException.getLocalizedMessage());
+					return null;
+					}
+				}
 	
 	
 }

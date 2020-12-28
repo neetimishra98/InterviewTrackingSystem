@@ -72,7 +72,7 @@ public class InterviewSchedulerController {
 				{
 					try {
 						logger.info("Enter InterviewSchedulerController:: method=updateScheduleInterview");
-						return interviewSchedulerService. updateInterviewSchedule(interviewid, interviewscheduler);
+						return interviewSchedulerService.updateInterviewSchedule(interviewid, interviewscheduler);
 					} catch(InterviewSchedulerNotFoundException interviewSchedulerNotFoundException) {
 						logger.error(interviewSchedulerNotFoundException.getLocalizedMessage());
 						return null;

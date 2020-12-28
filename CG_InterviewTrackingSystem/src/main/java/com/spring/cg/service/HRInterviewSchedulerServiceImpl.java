@@ -10,7 +10,7 @@ import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.HRInterviewSchedulerEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.entity.PanelMemberEntity;
-import com.spring.cg.exception.PanelMemberNotFoundException;
+import com.spring.cg.exception.*;
 import com.spring.cg.json.HRInterviewScheduler;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.repo.HRInterviewSchedulerRepo;
@@ -72,4 +72,45 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 		}
 		return null;
 	}
+	
+	
+	//to update the schedule hr interview
+		@Override
+		public HRInterviewScheduler updateInterviewSchedule(int interviewid, HRInterviewScheduler hrinterviewscheduler)throws InterviewSchedulerNotFoundException {
+		
+			Optional<HRInterviewSchedulerEntity> interviewschedulerEntityOp = hrinterviewSchedulerRepo.findById(interviewid);
+			
+			if(interviewschedulerEntityOp.isPresent())
+			{
+				HRInterviewSchedulerEntity hrinterviewschedulerEntity = interviewschedulerEntityOp.get();
+				hrinterviewschedulerEntity.setDate(hrinterviewscheduler.getDate());
+				hrinterviewschedulerEntity.setStart_time(hrinterviewscheduler.getStart_time());
+				hrinterviewschedulerEntity.setEnd_time(hrinterviewscheduler.getEnd_time());
+				hrinterviewschedulerEntity.setHrrating(hrinterviewscheduler.getHrrating());
+				hrinterviewschedulerEntity.setFinalstatus(hrinterviewscheduler.getFinalstatus());
+				
+				hrinterviewschedulerEntity = interviewSchedulerRepo.save(hrinterviewschedulerEntity);
+				return HRInterviewSchedulerUtil.convertHRInterviewSchedulerEntityIntoHRInterviewSchedulerForScheduleInterview(hrinterviewschedulerEntity);
+			}
+			else
+				throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
+		}
+		
+		
+		//to cancel the schedule interview
+			@Override
+			public HRInterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
+				
+				Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
+				HRInterviewScheduler interviewscheduler = null;
+				if(opinterviewschedulerEntity.isPresent())
+				{	
+					interviewSchedulerRepo.deleteById(interviewid);
+					return interviewscheduler;
+				}
+				else
+				{
+					throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
+				}
+			}
 }
