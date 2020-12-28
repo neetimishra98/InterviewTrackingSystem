@@ -17,7 +17,7 @@ public interface InterviewSchedulerService {
 	
 	public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException;
 	
-	public boolean deleteById(int interviewid)throws InterviewSchedulerNotFoundException;
+	public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException;
 	
 	public InterviewScheduler createNewInterviewSchedule(int candidateid, InterviewScheduler interviewscheduler)throws CandidateNotFoundException;
 	
