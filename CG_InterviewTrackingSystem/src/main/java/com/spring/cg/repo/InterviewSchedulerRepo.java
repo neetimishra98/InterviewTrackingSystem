@@ -14,5 +14,4 @@ public interface InterviewSchedulerRepo extends JpaRepository<InterviewScheduler
 
 	public HRInterviewSchedulerEntity save(HRInterviewSchedulerEntity hrinterviewschedulerEntity);
 
-
 }

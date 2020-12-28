@@ -32,7 +32,6 @@ public class CandidateControllerTest {
 	private CandidateService candidateService;
 	
 	
-	
 	// Test Case for adding Candidate Details
 /*	@Test
 	public void testAddCandidateSuccess()

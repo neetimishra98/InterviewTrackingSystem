@@ -47,7 +47,7 @@ public class InterviewSchedulerController {
 	@Autowired
 	private CandidateService candidateService;
 	
-	
+
 		@ApiOperation(value="Schedules new Interview")
 		@ApiResponses(value= {
 				@ApiResponse(code=201, message="New Interview is Scheduled"),
@@ -56,10 +56,7 @@ public class InterviewSchedulerController {
 		@PostMapping(value="/interviewscheduler/{candidateid}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 		public InterviewScheduler createNewInterviewSchedule(@PathVariable int candidateid, @RequestBody InterviewScheduler interviewscheduler)throws CandidateNotFoundException {
 			return interviewSchedulerService.createNewInterviewSchedule(candidateid, interviewscheduler);
-		}
-	
-		
-		
+		}	
 		//Update Interview Schedule
 				@ApiOperation(value="Updates Interview Schedule details")
 				@ApiResponses(value= {

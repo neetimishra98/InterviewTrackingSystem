@@ -134,8 +134,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);
     }	
 	
-	
-	
+
 	
 	//to view interview members
 	@Override
@@ -159,8 +158,6 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		}
 		return candidates;
 	}
-
-
-
+	
 	
 }
