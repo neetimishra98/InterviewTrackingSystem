@@ -69,6 +69,9 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		if(interviewschedulerEntityOp.isPresent())
 		{
 			InterviewSchedulerEntity interviewschedulerEntity = interviewschedulerEntityOp.get();
+			interviewschedulerEntity.setDate(interviewscheduler.getDate());
+			interviewschedulerEntity.setStart_time(interviewscheduler.getStart_time());
+			interviewschedulerEntity.setEnd_time(interviewscheduler.getEnd_time());
 			interviewschedulerEntity.setTechrating(interviewscheduler.getTechrating());
 			interviewschedulerEntity.setFinalstatus(interviewscheduler.getFinalstatus());
 			
