@@ -67,8 +67,8 @@ public class PanelMemberController {
             @ApiResponse(code=404, message = "No such panel member found")
     })
     @DeleteMapping(value="/panelmember/{Name}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<PanelMember>> deletePanelMember(@PathVariable ("Name") String employeeName)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException {
-        return new ResponseEntity<List<PanelMember>>(panelMemberService.deletePanelMember(employeeName), HttpStatus.OK);
+    public ResponseEntity<List<PanelMember>> deletePanelMemberByName(@PathVariable ("Name") String employeeName)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException {
+        return new ResponseEntity<List<PanelMember>>(panelMemberService.deletePanelMemberByName(employeeName), HttpStatus.OK);
     }
     
     //SURRENDER AS TECH PANEL

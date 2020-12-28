@@ -56,7 +56,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
 
     //DELETE AN EMPLOYEE
     @Override
-    public List<PanelMember> deletePanelMember(String employeeName) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException{
+    public List<PanelMember> deletePanelMemberByName(String employeeName) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException{
         EmployeeEntity employeeEntity = employeeRepo.findByName(employeeName);
         PanelMemberEntity panelMemberEntity =
                 panelMemberRepo.findByEmployeeEntity(employeeEntity);
