@@ -23,7 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class PanelMemberControllerTest {
 	
-	private static Logger logger = LogManager.getLogger(CandidateControllerTest.class);
+	private static Logger logger = LogManager.getLogger(PanelMemberControllerTest.class);
 
 	public PanelMember panelMemberInvalid;
 	
