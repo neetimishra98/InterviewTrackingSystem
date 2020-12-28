@@ -74,7 +74,7 @@ public class CandidateServiceImpl implements CandidateService{
 		}
 		return candidates;
 	}
-	
+		
 	
 	//To view Candidate For Tech
 		public Map<Candidate, String> listTechInterviewCandidates(int candidateid) throws CandidateNotFoundException{
@@ -88,6 +88,6 @@ public class CandidateServiceImpl implements CandidateService{
 			return candidates;
 		}
 
-	
+		
 
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.json.Candidate;
+import com.spring.cg.json.Employee;
 import com.spring.cg.json.PanelMember;
 import com.spring.cg.service.CandidateService;
 
@@ -77,18 +78,7 @@ public class CandidateController {
 	public Map<Candidate, String> viewCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException {
 		return candidateService.viewCandidateById(candidateid);
 	}
-	/*
-	//VIEW A CANDIDATE WITH STATUS FOR HR 
-		@ApiOperation(value="Returns specific Candidate")
-		@ApiResponses(value= {
-				@ApiResponse(code=201, message="New candidate created"),
-				@ApiResponse(code=404, message = "No such candidate found")
-		})
-		@GetMapping(value = "/candidate/hr/{candidatename}",produces = MediaType.APPLICATION_JSON_VALUE)
-		public Map<Candidate, String> viewCandidateByName(@PathVariable String candidatename) throws CandidateNotFoundException {
-			return candidateService.viewCandidateByName(candidatename);
-		}
-	*/
+
 	//VIEW A CANDIDATE WITH STATUS FOR TECH 
 		@ApiOperation(value="Returns specific Candidate with interview status")
 		@ApiResponses(value= {
@@ -99,4 +89,6 @@ public class CandidateController {
 		public Map<Candidate, String> listTechInterviewCandidates(@PathVariable int candidateid) throws CandidateNotFoundException {
 			return candidateService.listTechInterviewCandidates(candidateid);
 		}
+		
+		
 }
