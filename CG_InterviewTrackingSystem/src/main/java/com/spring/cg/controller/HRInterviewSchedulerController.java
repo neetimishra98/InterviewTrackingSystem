@@ -54,6 +54,7 @@ public class HRInterviewSchedulerController {
 			throws PanelMemberNotFoundException {
 		return hrinterviewSchedulerService.createNewHRInterviewSchedule(candidateid, panelid, hrinterviewscheduler);
 	}
+	
 
 	//Update Interview Schedule
 		@ApiOperation(value="Updates Interview Schedule details")
