@@ -40,7 +40,7 @@ public interface CandidateService {
 	public Map<Candidate, String> viewCandidateForHR(String candidateId) throws CandidateNotFoundException;
 	
 	//To view Candidate For Tech
-	public Map<Candidate, String> listTechInterviewCandidates(int candidateid) throws CandidateNotFoundException;
+	public Map<Candidate, String> viewCandidateForTech(String candidateId) throws CandidateNotFoundException;
 	
 
 

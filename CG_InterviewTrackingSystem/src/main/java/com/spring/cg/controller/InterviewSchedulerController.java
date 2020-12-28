@@ -97,6 +97,19 @@ public class InterviewSchedulerController {
 					return null;
 					}
 				}
+	  
+	  
+	  //view all interview members for tech
+	  @ApiOperation(value="Returns InterviewScheduler List for Tech")
+		@ApiResponses(value= {
+				@ApiResponse(code=200, message="List viewed successfully for Tech"),
+				@ApiResponse(code=404, message = "No member found")
+		})
+		@GetMapping(value="/interviewscheduler/viewallinterviewmembers/fortech/", produces=MediaType.APPLICATION_JSON_VALUE)
+		public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException{
+		  	return interviewSchedulerService.viewAllInterviewMembersForTech();
+		}
+	  
 	
 	
 	//Gives TechRating to the candidate if TechRating is null
@@ -110,16 +123,7 @@ public class InterviewSchedulerController {
 		return interviewSchedulerService.giveTechRating(interviewid);
 	}
 	
-	//Gives hrRating to the candidate if hrRating is null
-	@ApiOperation(value="Returns InterviewSchedulerEntity after giving HrRating")
-	@ApiResponses(value= {
-			@ApiResponse(code=200, message="HrRating given successfully"),
-			@ApiResponse(code=404, message = "No such candidate found with given interviewid")
-	})
-	@GetMapping(value="/interviewscheduler/hr/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public InterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
-		return interviewSchedulerService.giveHrRating(interviewid);
-	}
+	
 	/*@Autowired
 	private InterviewSchedulerService interviewschedulerService;
 	

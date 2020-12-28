@@ -8,6 +8,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.cg.json.Candidate;
+import com.spring.cg.json.Designation;
+import com.spring.cg.json.Employee;
+import com.spring.cg.json.Location;
+import com.spring.cg.json.PrimarySkills;
+import com.spring.cg.json.Qualification;
+import com.spring.cg.json.SecondarySkills;
+import com.spring.cg.repo.CandidateRepo;
+import com.spring.cg.repo.DesignationRepo;
+import com.spring.cg.repo.InterviewSchedulerRepo;
+import com.spring.cg.repo.LocationRepo;
+import com.spring.cg.repo.PrimarySkillsRepo;
+import com.spring.cg.repo.QualificationRepo;
+import com.spring.cg.repo.SecondarySkillsRepo;
+import com.spring.cg.util.CandidateUtil;
+
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.json.Candidate;
@@ -211,53 +227,50 @@ public class CandidateServiceImpl implements CandidateService{
 		return CandidateUtil.convertSecondarySkillsEntityListIntoSecondarySkillsList(secondaryskillsRepo.findAll());
 	}
 
-
-
-
-
-
-
-
-
-
-
-	
 	//VIEW CANDIDATE FOR HR USING CANDIDATE ID AND CANDIDATE NAME
-		@Override
-		public Map<Candidate, String> viewCandidateForHR(String candidateId) throws CandidateNotFoundException {
-
-			CandidateEntity candidateEntity = candidateRepo.findByCandidatename(candidateId);
-			Map<Candidate, String> candidates = new HashMap<Candidate, String>();
-			if(candidateEntity!=null) {
-				candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-						candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
-				return candidates;
-			}
-			else{
-				candidateEntity = candidateRepo.findByCandidateid(Integer.valueOf(candidateId));
-				System.out.println("Entered the else loop...");
-				if(candidateEntity==null) {
-					throw new CandidateNotFoundException("Invalid Candidate Id");
-				}
-				candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-						candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
-				return candidates;
-			}
-		}
-		
-	
-	//To view Candidate For Tech
-		public Map<Candidate, String> listTechInterviewCandidates(int candidateid) throws CandidateNotFoundException{
-			Optional<CandidateEntity> opCandidateEntity = candidateRepo.findById(candidateid);
-			Map<Candidate, String> candidates = new HashMap<Candidate, String>();
-			if(opCandidateEntity.isPresent()) {
-				CandidateEntity candidateEntity = opCandidateEntity.get();
-				candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-						candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
-			}
+	@Override
+	public Map<Candidate, String> viewCandidateForHR(String candidateId) throws CandidateNotFoundException {
+		CandidateEntity candidateEntity = candidateRepo.findByCandidatename(candidateId);
+		Map<Candidate, String> candidates = new HashMap<Candidate, String>();
+		if(candidateEntity!=null) {
+			candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+				candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
 			return candidates;
 		}
+		else{
+			candidateEntity = candidateRepo.findByCandidateid(Integer.valueOf(candidateId));
+			if(candidateEntity==null) {
+				throw new CandidateNotFoundException("Invalid Candidate Id");
+			}
+			candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+				candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+			return candidates;
+		}
+	}
+		
+	
+		//VIEW CANDIDATE FOR TECH USING CANDIDATE ID AND CANDIDATE NAME
+				@Override
+				public Map<Candidate, String> viewCandidateForTech(String candidateId) throws CandidateNotFoundException {
 
+					CandidateEntity candidateEntity = candidateRepo.findByCandidatename(candidateId);
+					Map<Candidate, String> candidates = new HashMap<Candidate, String>();
+					if(candidateEntity!=null) {
+						candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+								candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+						return candidates;
+					}
+					else{
+						candidateEntity = candidateRepo.findByCandidateid(Integer.valueOf(candidateId));
+						System.out.println("Entered the else loop...");
+						if(candidateEntity==null) {
+							throw new CandidateNotFoundException("Invalid Candidate Id");
+						}
+						candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+								candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+						return candidates;
+					}
+				}
 		
 
 }

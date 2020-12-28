@@ -12,14 +12,15 @@ public interface InterviewSchedulerService {
 	
 	//public List<InterviewScheduler> getAllInterviewSchedule();
 	
+	public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException;
+	
 	public InterviewSchedulerEntity giveTechRating(int interviewid);
-	public InterviewSchedulerEntity giveHrRating(int interviewid);
 	
 	public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException;
 	
 	public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException;
 	
-	public InterviewScheduler createNewInterviewSchedule(int candidateid, InterviewScheduler interviewscheduler)throws CandidateNotFoundException;
+	//public InterviewScheduler createNewInterviewSchedule(int candidateid, InterviewScheduler interviewscheduler)throws CandidateNotFoundException;
 	
 	//to view interview members
 	public List<Candidate> viewInterviewMembers();
