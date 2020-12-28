@@ -215,18 +215,28 @@ public class CandidateServiceImpl implements CandidateService{
 
 
 	
-	//VIEW A CANDIDATE DETAILS FOR HR USING CANDIDATE ID
-	@Override
-	public Map<Candidate, String> viewCandidateById(int candidateid) throws CandidateNotFoundException{
-		Optional<CandidateEntity> opCandidateEntity = candidateRepo.findById(candidateid);
-		Map<Candidate, String> candidates = new HashMap<Candidate, String>();
-		if(opCandidateEntity.isPresent()) {
-			CandidateEntity candidateEntity = opCandidateEntity.get();
-			candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+	//VIEW CANDIDATE FOR HR USING CANDIDATE ID AND CANDIDATE NAME
+		@Override
+		public Map<Candidate, String> viewCandidateForHR(String candidateId) throws CandidateNotFoundException {
+
+			CandidateEntity candidateEntity = candidateRepo.findByCandidatename(candidateId);
+			Map<Candidate, String> candidates = new HashMap<Candidate, String>();
+			if(candidateEntity!=null) {
+				candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+						candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+				return candidates;
+			}
+			else{
+				candidateEntity = candidateRepo.findByCandidateid(Integer.valueOf(candidateId));
+				System.out.println("Entered the else loop...");
+				if(candidateEntity==null) {
+					throw new CandidateNotFoundException("Invalid Candidate Id");
+				}
+				candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+						candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+				return candidates;
+			}
 		}
-		return candidates;
-	}
 		
 	
 	//To view Candidate For Tech

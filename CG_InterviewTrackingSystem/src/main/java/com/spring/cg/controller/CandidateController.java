@@ -168,16 +168,17 @@ public class CandidateController {
 
 
 	
-	//VIEW A CANDIDATE WITH STATUS FOR HR 
-	@ApiOperation(value="Returns specific Candidate")
-	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New candidate created"),
-			@ApiResponse(code=404, message = "No such candidate found")
-	})
-	@GetMapping(value = "/candidate/hr/{candidateid}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<Candidate, String> viewCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException {
-		return candidateService.viewCandidateById(candidateid);
-	}
+	//SEARCH CANDIDATE BY USING CANDIDATE ID AND CANDIDATE NAME FOR HR
+		@ApiOperation(value="Searches candidate in the tables")
+		@ApiResponses(value= {
+				@ApiResponse(code=201, message="Found the candidate in schema"),
+				@ApiResponse(code=404, message = "No such candidate found")
+		})
+		@GetMapping(value="/candidate/search/hr/{idorname}", produces= MediaType.APPLICATION_JSON_VALUE)
+			public ResponseEntity<Map<Candidate, String>> viewCandidateForHR(@PathVariable ("id") String candidateId)throws CandidateNotFoundException {
+			return new ResponseEntity<Map<Candidate, String>>(candidateService.viewCandidateForHR(candidateId), HttpStatus.OK);
+
+		}
 
 	//VIEW A CANDIDATE WITH STATUS FOR TECH 
 		@ApiOperation(value="Returns specific Candidate with interview status")
