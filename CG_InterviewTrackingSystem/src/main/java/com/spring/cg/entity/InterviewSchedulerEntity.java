@@ -28,7 +28,7 @@ public class InterviewSchedulerEntity {
  @OneToOne(cascade={CascadeType.ALL},
 	fetch=FetchType.EAGER, optional = false)
 @JoinColumn(name="panelid")
-	private PanelMemberEntity panelMemberEntity;
+	private PanelMemberEntity panelid;
 
 @Column(name="location")
  private String location;
@@ -37,10 +37,10 @@ public class InterviewSchedulerEntity {
  private Date date;
  
  @Column(name="start_time")
- private Time start_time;
+ private String start_time;
  
  @Column(name="end_time")
- private Time end_time;
+ private String end_time;
 
  @Column(name="techrating")
  private int techrating;
@@ -83,7 +83,7 @@ public class InterviewSchedulerEntity {
  }
  
  public InterviewSchedulerEntity(int interviewid, int techrating,String location, String finalstatus,
-   CandidateEntity candidate,PanelMemberEntity PanelMemberEntity) {
+   CandidateEntity candidate,PanelMemberEntity panelid) {
   super();
   this.interviewid = interviewid;
   this.techrating = techrating;
@@ -91,7 +91,7 @@ public class InterviewSchedulerEntity {
   this.location = location;
   this.finalstatus = finalstatus;
   this.candidate = candidate;
-  this.panelMemberEntity=PanelMemberEntity;
+  this.panelid=panelid;
  }
  
  public InterviewSchedulerEntity(int techrating, String location, String finalstatus,
@@ -104,7 +104,7 @@ public class InterviewSchedulerEntity {
  }
 
  public InterviewSchedulerEntity(int interviewid, int techrating, String location, String finalstatus,
-		Date date, Time start_time, Time end_time, CandidateEntity candidate, PanelMemberEntity panel) {
+		Date date, String start_time, String end_time, CandidateEntity candidate, PanelMemberEntity panelid) {
 	super();
 	this.interviewid = interviewid;
 	this.techrating = techrating;
@@ -115,10 +115,10 @@ public class InterviewSchedulerEntity {
 	this.start_time = start_time;
 	this.end_time = end_time;
 	this.candidate = candidate;
-	this.panelMemberEntity = panel;
+	this.panelid = panelid;
  }
 public InterviewSchedulerEntity(int techrating,String location, String finalstatus, Date date,
-		Time start_time, Time end_time, CandidateEntity candidate) {
+		String start_time, String end_time, CandidateEntity candidate) {
 	super();
 	this.techrating = techrating;
 	
@@ -129,12 +129,12 @@ public InterviewSchedulerEntity(int techrating,String location, String finalstat
 	this.end_time = end_time;
 	this.candidate = candidate;
 }
-public InterviewSchedulerEntity(int interviewid, CandidateEntity candidate, PanelMemberEntity panelMemberEntity,
-		String location, Date date, Time start_time, Time end_time, int techrating, String finalstatus) {
+public InterviewSchedulerEntity(int interviewid, CandidateEntity candidate, PanelMemberEntity panelid,
+		String location, Date date, String start_time, String end_time, int techrating, String finalstatus) {
 	super();
 	this.interviewid = interviewid;
 	this.candidate = candidate;
-	this.panelMemberEntity = panelMemberEntity;
+	this.panelid = panelid;
 	this.location = location;
 	this.date = date;
 	this.start_time = start_time;
@@ -145,7 +145,7 @@ public InterviewSchedulerEntity(int interviewid, CandidateEntity candidate, Pane
 }
 
 public InterviewSchedulerEntity(int interviewid, int techrating,String location, String finalstatus,
-		Date date, Time start_time, Time end_time, CandidateEntity candidate) {
+		Date date, String start_time, String end_time, CandidateEntity candidate) {
 	super();
 	this.interviewid = interviewid;
 	this.techrating = techrating;
@@ -176,11 +176,11 @@ public int getInterviewid() {
  }
 
 public PanelMemberEntity getPanel() {
-	return panelMemberEntity;
+	return panelid;
 }
 
 public void setPanel(PanelMemberEntity panel) {
-	this.panelMemberEntity = panel;
+	this.panelid = panel;
 }
 
  public CandidateEntity getCandidate() {
@@ -199,19 +199,19 @@ public void setDate(Date date) {
 	this.date = date;
 }
 
-public Time getStart_time() {
+public String getStart_time() {
 	return start_time;
 }
 
-public void setStart_time(Time start_time) {
+public void setStart_time(String start_time) {
 	this.start_time = start_time;
 }
 
-public Time getEnd_time() {
+public String getEnd_time() {
 	return end_time;
 }
 
-public void setEnd_time(Time end_time) {
+public void setEnd_time(String end_time) {
 	this.end_time = end_time;
 }
 
@@ -233,16 +233,16 @@ public void setInterviewid(int interviewid) {
  }
 
  public PanelMemberEntity getPanelMemberEntity() {
-	return panelMemberEntity;
+	return panelid;
  }
 
-public void setPanelMemberEntity(PanelMemberEntity panelMemberEntity) {
-	this.panelMemberEntity = panelMemberEntity;
+public void setPanelMemberEntity(PanelMemberEntity panelid) {
+	this.panelid = panelid;
  }
 
  @Override
 public String toString() {
 	return "InterviewSchedulerEntity [interviewid=" + interviewid + ", techrating=" + techrating + ", location=" + location + ", finalstatus=" + finalstatus + ", date=" + date + ", start_time="
-			+ start_time + ", end_time=" + end_time + ", candidate=" + candidate + ", panel=" + panelMemberEntity + "]";
+			+ start_time + ", end_time=" + end_time + ", candidate=" + candidate + ", panel=" + panelid + "]";
 }
 }

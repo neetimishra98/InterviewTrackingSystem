@@ -10,7 +10,8 @@ import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.HRInterviewSchedulerEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.entity.PanelMemberEntity;
-import com.spring.cg.exception.*;
+import com.spring.cg.exception.InterviewSchedulerNotFoundException;
+import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.json.HRInterviewScheduler;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.repo.HRInterviewSchedulerRepo;
@@ -46,13 +47,13 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 
 		for (InterviewSchedulerEntity ise : interviewschedulerOp) {
 			// CandidateEntity id = ise.getCandidateid();
-			System.out.println(candidateid ==ise.getCandidate().getCandidateid());
+		//1	System.out.println(candidateid ==ise.getCandidate().getCandidateid());
 			
 			if (candidateid ==ise.getCandidate().getCandidateid()) {
 			
 				InterviewSchedulerEntity ie = ise;
-                System.out.println(ie);
-				if (panelMemberEntityOp.isPresent() && ie.getTechrating() > 0) {
+      //2          System.out.println(ie);
+				if (panelMemberEntityOp.isPresent() && ie.getTechrating() > 0)
 					{
 						HRInterviewSchedulerEntity ise1 = HRInterviewSchedulerUtil
 								.convertHRInterviewSchedulerIntoHRInterviewSchedulerEntityForScheduleInterview(
@@ -63,54 +64,68 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 								.convertHRInterviewSchedulerEntityIntoHRInterviewSchedulerForScheduleInterview(
 										hrinterviewschedulerEntity);
 					}
-				} else {
-					System.out.println("Technical interview of candidate is not scheduled!");
+				else {
 					throw new PanelMemberNotFoundException("No such panel member with panelid " + panelid);
 				}
-			}
-
+		    } 
 		}
 		return null;
 	}
-	
-	
 	//to update the schedule hr interview
-		@Override
-		public HRInterviewScheduler updateInterviewSchedule(int interviewid, HRInterviewScheduler hrinterviewscheduler)throws InterviewSchedulerNotFoundException {
-		
-			Optional<HRInterviewSchedulerEntity> interviewschedulerEntityOp = hrinterviewSchedulerRepo.findById(interviewid);
-			
-			if(interviewschedulerEntityOp.isPresent())
-			{
-				HRInterviewSchedulerEntity hrinterviewschedulerEntity = interviewschedulerEntityOp.get();
-				hrinterviewschedulerEntity.setDate(hrinterviewscheduler.getDate());
-				hrinterviewschedulerEntity.setStart_time(hrinterviewscheduler.getStart_time());
-				hrinterviewschedulerEntity.setEnd_time(hrinterviewscheduler.getEnd_time());
-				hrinterviewschedulerEntity.setHrrating(hrinterviewscheduler.getHrrating());
-				hrinterviewschedulerEntity.setFinalstatus(hrinterviewscheduler.getFinalstatus());
-				
-				hrinterviewschedulerEntity = interviewSchedulerRepo.save(hrinterviewschedulerEntity);
-				return HRInterviewSchedulerUtil.convertHRInterviewSchedulerEntityIntoHRInterviewSchedulerForScheduleInterview(hrinterviewschedulerEntity);
-			}
-			else
-				throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
-		}
-		
-		
-		//to cancel the schedule interview
 			@Override
-			public HRInterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
+			public HRInterviewScheduler updateInterviewSchedule(int interviewid, HRInterviewScheduler hrinterviewscheduler)throws InterviewSchedulerNotFoundException {
+			
+				Optional<HRInterviewSchedulerEntity> interviewschedulerEntityOp = hrinterviewSchedulerRepo.findById(interviewid);
 				
-				Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
-				HRInterviewScheduler interviewscheduler = null;
-				if(opinterviewschedulerEntity.isPresent())
-				{	
-					interviewSchedulerRepo.deleteById(interviewid);
-					return interviewscheduler;
+				if(interviewschedulerEntityOp.isPresent())
+				{
+					HRInterviewSchedulerEntity hrinterviewschedulerEntity = interviewschedulerEntityOp.get();
+					hrinterviewschedulerEntity.setDate(hrinterviewscheduler.getDate());
+					hrinterviewschedulerEntity.setStart_time(hrinterviewscheduler.getStart_time());
+					hrinterviewschedulerEntity.setEnd_time(hrinterviewscheduler.getEnd_time());
+					hrinterviewschedulerEntity.setHrrating(hrinterviewscheduler.getHrrating());
+					hrinterviewschedulerEntity.setFinalstatus(hrinterviewscheduler.getFinalstatus());
+					
+					hrinterviewschedulerEntity = hrinterviewSchedulerRepo.save(hrinterviewschedulerEntity);
+					return HRInterviewSchedulerUtil.convertHRInterviewSchedulerEntityIntoHRInterviewSchedulerForScheduleInterview(hrinterviewschedulerEntity);
 				}
 				else
-				{
 					throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
-				}
 			}
-}
+			
+			
+			//to cancel the schedule interview
+				@Override
+				public HRInterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
+					
+					Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
+					HRInterviewScheduler interviewscheduler = null;
+					if(opinterviewschedulerEntity.isPresent())
+					{	
+						interviewSchedulerRepo.deleteById(interviewid);
+						return interviewscheduler;
+					}
+					else
+					{
+						throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
+					}
+				}
+				
+				
+				@Override
+				public HRInterviewSchedulerEntity giveHRRating(int interviewid) {
+					
+					double techrating=0;
+					int min=0;
+					int max=10;
+						 techrating=Math.random()*(max-min+1)+min;
+					
+					HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
+					if(hrinterviewSchedulerEntity.getHrrating()==0) {
+						hrinterviewSchedulerEntity.setHrrating((int)techrating);
+						hrinterviewSchedulerEntity.setFinalstatus("Tech_complete");
+					}
+					return hrinterviewSchedulerRepo.save(hrinterviewSchedulerEntity);
+			    }	
+	}
+	
