@@ -15,7 +15,7 @@ class PanelMemberControllerTest {
 	@Test
 	public void testFindPanelMemberById() {
 		RestTemplate restTemplate = new RestTemplate();
-		PanelMember panelMember = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/surrender/hr/11000000", PanelMember.class);
+		PanelMember panelMember = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/hr/11000000", PanelMember.class);
 		assertEquals(panelMember.getPanelid(), 11000000);
 	}
 	
@@ -24,7 +24,7 @@ class PanelMemberControllerTest {
 	public void testFindPanelMemberByBlank() {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			panelMemberInvalid = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/surrender/hr/", PanelMember.class);
+			panelMemberInvalid = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/hr/", PanelMember.class);
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
