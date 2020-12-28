@@ -34,7 +34,7 @@ public class PanelMemberController {
             @ApiResponse(code=201, message="Panel members have been found"),
             @ApiResponse(code=404, message = "No panel members found")
     })
-    @GetMapping(value="//panelmembers", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/panelmembers", produces= MediaType.APPLICATION_JSON_VALUE)
     public List<PanelMember> getAllPanelMembers() {
         return panelMemberService.getAllPanelMembers();
     }
@@ -66,7 +66,7 @@ public class PanelMemberController {
             @ApiResponse(code=201, message="Panel Member deleted"),
             @ApiResponse(code=404, message = "No such panel member found")
     })
-    @DeleteMapping(value="/panelmember/delete/{Name}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/panelmember/{Name}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PanelMember>> deletePanelMember(@PathVariable ("Name") String employeeName)throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException {
         return new ResponseEntity<List<PanelMember>>(panelMemberService.deletePanelMember(employeeName), HttpStatus.OK);
     }
