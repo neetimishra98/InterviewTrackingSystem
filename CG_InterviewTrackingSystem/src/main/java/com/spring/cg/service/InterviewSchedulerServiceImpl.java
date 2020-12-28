@@ -2,10 +2,8 @@ package com.spring.cg.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.entity.PanelMemberEntity;
@@ -35,7 +33,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	//for creating interviewscheduler
 	
 	@Override
-	public InterviewScheduler createNewInterviewSchedule(int candidateid, int panelid,
+	public InterviewScheduler createNewTechInterviewSchedule(int candidateid, int panelid,
 			InterviewScheduler interviewscheduler) throws CandidateNotFoundException {
 
 		Optional<PanelMemberEntity> panelMemberEntityOp = Optional.ofNullable(panelMemberRepo.findById(panelid));
@@ -46,10 +44,10 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			CandidateEntity candidateEntity = candidateEntityOp.get();
 			PanelMemberEntity panelMemberEntity=panelMemberEntityOp.get();
 			InterviewSchedulerEntity ise = 
-					InterviewSchedulerUtil.convertInterviewSchedulerIntoInterviewSchedulerEntityForScheduleInterview(interviewscheduler, candidateEntity, panelMemberEntity);
+					InterviewSchedulerUtil.convertTechInterviewSchedulerIntoTechInterviewSchedulerEntityForScheduleInterview(interviewscheduler, candidateEntity, panelMemberEntity);
 			InterviewSchedulerEntity interviewschedulerEntity =interviewSchedulerRepo.save(ise);
 		
-			return InterviewSchedulerUtil.convertInterviewSchedulerEntityIntoInterviewSchedulerForScheduleInterview(interviewschedulerEntity);
+			return InterviewSchedulerUtil.convertTechInterviewSchedulerEntityIntoTechInterviewSchedulerForScheduleInterview(interviewschedulerEntity);
 		}
 		else {
 			throw new CandidateNotFoundException("No such candidate with candidateID "+candidateid);
@@ -71,9 +69,6 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		if(interviewschedulerEntityOp.isPresent())
 		{
 			InterviewSchedulerEntity interviewschedulerEntity = interviewschedulerEntityOp.get();
-			interviewschedulerEntity.setDate(interviewscheduler.getDate());
-			interviewschedulerEntity.setStart_time(interviewscheduler.getStart_time());
-			interviewschedulerEntity.setEnd_time(interviewscheduler.getEnd_time());
 			interviewschedulerEntity.setTechrating(interviewscheduler.getTechrating());
 			interviewschedulerEntity.setFinalstatus(interviewscheduler.getFinalstatus());
 			
@@ -85,34 +80,19 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	}
 	
 	@Override
-	public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
+	public boolean deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
 		
 		Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
 		InterviewScheduler interviewscheduler = null;
 		if(opinterviewschedulerEntity.isPresent())
 		{	
 			interviewSchedulerRepo.deleteById(interviewid);
-			return interviewscheduler;
+			return true;
 		}
 		else
 		{
 			throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 		}
-	}
-	
-	
-	//to view interview members for tech
-	@Override
-	public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException{
-		List<InterviewSchedulerEntity> interviewSchedulerEntity=interviewSchedulerRepo.findAll();
-		List<InterviewScheduler> membersList=new ArrayList<InterviewScheduler>();
-		
-		for(InterviewSchedulerEntity membersEntity: interviewSchedulerEntity) {
-			membersList.add(new InterviewScheduler(membersEntity.getInterviewid(),
-					membersEntity.getTechrating(), membersEntity.getLocation(),
-					membersEntity.getFinalstatus()));
-		}
-		return membersList;
 	}
 	
 	
@@ -129,38 +109,9 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
 		if(interviewSchedulerEntity.getTechrating()==0) {
 			interviewSchedulerEntity.setTechrating((int)techrating);
-			interviewSchedulerEntity.setFinalstatus("Techcomplete");
+			interviewSchedulerEntity.setFinalstatus("Tech_complete");
 		}
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);
     }	
-	
-	
-	
-	
-	//to view interview members
-	@Override
-	public List<Candidate> viewInterviewMembers() {
-		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
-		List<Candidate> candidates = new ArrayList<Candidate>();
-		for(CandidateEntity candidateEntity: candidateEntityList) {
-			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
-		}
-		return candidates;
-	}
-	
-	@Override
-	public List<Candidate> viewInterviewMembersbyHr() {
-		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
-		List<Candidate> candidates = new ArrayList<Candidate>();
-		for(CandidateEntity candidateEntity: candidateEntityList) {
-			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
-		}
-		return candidates;
 	}
 
-
-
-	
-}
