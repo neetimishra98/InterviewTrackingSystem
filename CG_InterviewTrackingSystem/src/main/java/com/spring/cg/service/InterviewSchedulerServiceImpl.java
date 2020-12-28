@@ -61,39 +61,44 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		return InterviewSchedulerUtil.convertInterviewSchedulerEntityListIntoInterviewSchedulerList(interviewschedulerRepo.findAll());
 	}
 */
-	@Override
-	public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException {
-	
-		Optional<InterviewSchedulerEntity> interviewschedulerEntityOp = interviewSchedulerRepo.findById(interviewid);
+	 // update schedule interview
+		@Override
+		public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException {
 		
-		if(interviewschedulerEntityOp.isPresent())
-		{
-			InterviewSchedulerEntity interviewschedulerEntity = interviewschedulerEntityOp.get();
-			interviewschedulerEntity.setTechrating(interviewscheduler.getTechrating());
-			interviewschedulerEntity.setFinalstatus(interviewscheduler.getFinalstatus());
+			Optional<InterviewSchedulerEntity> interviewschedulerEntityOp = interviewSchedulerRepo.findById(interviewid);
 			
-			interviewschedulerEntity = interviewSchedulerRepo.save(interviewschedulerEntity);
-			return InterviewSchedulerUtil.convertInterviewSchedulerEntityIntoInterviewScheduler(interviewschedulerEntity);
+			if(interviewschedulerEntityOp.isPresent())
+			{
+				InterviewSchedulerEntity interviewschedulerEntity = interviewschedulerEntityOp.get();
+				interviewschedulerEntity.setTechrating(interviewscheduler.getTechrating());
+				interviewschedulerEntity.setFinalstatus(interviewscheduler.getFinalstatus());
+				interviewschedulerEntity.setDate(interviewscheduler.getDate());
+				interviewschedulerEntity.setStart_time(interviewscheduler.getStart_time());
+				interviewschedulerEntity.setEnd_time(interviewscheduler.getEnd_time());
+				
+				interviewschedulerEntity = interviewSchedulerRepo.save(interviewschedulerEntity);
+				return InterviewSchedulerUtil.convertInterviewSchedulerEntityIntoInterviewScheduler(interviewschedulerEntity);
+			}
+			else
+				throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 		}
-		else
-			throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
-	}
 	
-	@Override
-	public boolean deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
-		
-		Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
-		InterviewScheduler interviewscheduler = null;
-		if(opinterviewschedulerEntity.isPresent())
-		{	
-			interviewSchedulerRepo.deleteById(interviewid);
-			return true;
+		// cancel interview schedule
+		@Override
+		public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
+			
+			Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
+			InterviewScheduler interviewscheduler = null;
+			if(opinterviewschedulerEntity.isPresent())
+			{	
+				interviewSchedulerRepo.deleteById(interviewid);
+				return interviewscheduler;
+			}
+			else
+			{
+				throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
+			}
 		}
-		else
-		{
-			throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
-		}
-	}
 	
 	
 	
