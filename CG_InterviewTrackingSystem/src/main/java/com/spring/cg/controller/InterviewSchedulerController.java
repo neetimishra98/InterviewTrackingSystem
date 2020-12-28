@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewNotFoundException;
@@ -96,18 +97,31 @@ public class InterviewSchedulerController {
 				}
 	  
 	  
-	  //view all interview members for tech
+	//view all interview members for tech
 	  @ApiOperation(value="Returns InterviewScheduler List for Tech")
 		@ApiResponses(value= {
 				@ApiResponse(code=200, message="List viewed successfully for Tech"),
 				@ApiResponse(code=404, message = "No member found")
 		})
-		@GetMapping(value="/interviewscheduler/viewallinterviewmembers/fortech/", produces=MediaType.APPLICATION_JSON_VALUE)
+		@GetMapping(value="/interviewscheduler/allinterviewmembers/fortech/", produces=MediaType.APPLICATION_JSON_VALUE)
 		public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException{
-		  	return interviewSchedulerService.viewAllInterviewMembersForTech(int interviewid);
+		  	return interviewSchedulerService.viewAllInterviewMembersForTech();
 		}
 	  
 	
+	  
+	//view Interview members for tech using interview id
+			@ApiOperation(value="Returns all InterviewMembers")
+			@ApiResponses(value= {
+					@ApiResponse(code=200, message="Candidate with given interviewid displayed successfully"),
+					@ApiResponse(code=404, message = "No such candidate found")
+			})
+			@GetMapping(value = "/interviewscheduler/tech/interviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+			public CandidateEntity viewInterviewMembersForTech(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException {
+				return interviewSchedulerService.viewInterviewMembersForTech(interviewid);
+			}
+	  
+			
 	
 	//Gives TechRating to the candidate if TechRating is null
 	@ApiOperation(value="Returns InterviewSchedulerEntity after giving TechRating")
@@ -136,28 +150,8 @@ public class InterviewSchedulerController {
 	}
 	*/
 	
-	
-	//to view interview members
-	@ApiOperation(value="Returns all InterviewMembers")
-	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New candidate created"),
-			@ApiResponse(code=404, message = "No such candidate found")
-	})
-	@GetMapping(value = "/interviewscheduler/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Candidate> viewInterviewMembers() {
-		return candidateService.viewAllCandidates();
-	}
-	
-	//to view interview members
-	@ApiOperation(value="Returns all InterviewMembers")
-	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New candidate created"),
-			@ApiResponse(code=404, message = "No such candidate found")
-	})
-	@GetMapping(value = "/interviewscheduler/Hr/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Candidate> viewInterviewMembersbyHr() {
-		return candidateService.viewAllCandidates();
-	}
+
+
 
 	
 }
