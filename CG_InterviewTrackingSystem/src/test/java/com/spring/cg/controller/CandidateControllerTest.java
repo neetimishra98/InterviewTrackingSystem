@@ -32,7 +32,6 @@ public class CandidateControllerTest {
 	private CandidateService candidateService;
 	
 	
-	
 	// Test Case for adding Candidate Details
 /*	@Test
 	public void testAddCandidateSuccess()
@@ -250,7 +249,7 @@ public class CandidateControllerTest {
 	public void testFindCandidateById() {
 		logger.info("[START] testFindCandidateById()");
 		RestTemplate restTemplate = new RestTemplate();
-		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/12345678", Candidate.class);
+		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/12345678", Candidate.class);
 		assertNotNull(candidate);
 		logger.info("[END] testFindCandidateById()");
 	}
@@ -260,7 +259,7 @@ public class CandidateControllerTest {
 	public void testViewCandidateByIdHr() {
 		logger.info("[START] testViewCandidateByIdHr()");
 		RestTemplate restTemplate = new RestTemplate();
-		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/12345678", Candidate.class);
+		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/12345678", Candidate.class);
 		assertEquals(candidate.getCandidateid(), 12345678);
 		logger.info("[END] testViewCandidateByIdHr()");
 	}
@@ -285,7 +284,7 @@ public class CandidateControllerTest {
 	public void testViewCandidateByNameHr() {
 		logger.info("[START] testViewCandidateByNameHr()");
 		RestTemplate restTemplate = new RestTemplate();
-		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/sean", Candidate.class);
+		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/sean", Candidate.class);
 		assertEquals(candidate.getCandidateid(), "sean");
 		logger.info("[END] testViewCandidateByNameHr()");
 	}
@@ -296,7 +295,7 @@ public class CandidateControllerTest {
 		logger.info("[START] testViewCandidateByNameInvalid()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/tom", Candidate.class);
+			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/tom", Candidate.class);
 		}
 		catch(Exception e){
 			candidateInvalid = null;
@@ -313,7 +312,7 @@ public class CandidateControllerTest {
 		logger.info("[START] testViewCandidateByNameBlank()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/search/hr/", Candidate.class);
+			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/", Candidate.class);
 		}
 		catch(Exception e){
 			candidateInvalid = null;

@@ -166,4 +166,29 @@ public class CandidateController {
 		return candidateService.getAllSecondarySkills();
 	}
 
+	
+	//SEARCH CANDIDATE BY USING CANDIDATE ID AND CANDIDATE NAME FOR HR
+		@ApiOperation(value="Searches candidate in the tables")
+		@ApiResponses(value= {
+				@ApiResponse(code=201, message="Found the candidate in schema"),
+				@ApiResponse(code=404, message = "No such candidate found")
+		})
+		@GetMapping(value="/candidate/hr/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
+			public ResponseEntity<Map<Candidate, String>> viewCandidateForHR(@PathVariable ("id") String candidateId)throws CandidateNotFoundException {
+			return new ResponseEntity<Map<Candidate, String>>(candidateService.viewCandidateForHR(candidateId), HttpStatus.OK);
+
+		}
+
+		//SEARCH CANDIDATE BY USING CANDIDATE ID AND CANDIDATE NAME FOR TECH
+				@ApiOperation(value="Searches candidate in the tables")
+				@ApiResponses(value= {
+						@ApiResponse(code=201, message="Found the candidate in schema"),
+						@ApiResponse(code=404, message = "No such candidate found")
+				})
+				@GetMapping(value="/candidate/hr/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
+					public ResponseEntity<Map<Candidate, String>> viewCandidateForTech(@PathVariable ("id") String candidateId)throws CandidateNotFoundException {
+					return new ResponseEntity<Map<Candidate, String>>(candidateService.viewCandidateForTech(candidateId), HttpStatus.OK);
+
+				}
+		
 }

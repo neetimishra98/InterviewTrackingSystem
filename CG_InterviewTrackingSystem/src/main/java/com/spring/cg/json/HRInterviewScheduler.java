@@ -90,6 +90,15 @@ public class HRInterviewScheduler {
 	
 		this.hrrating = hrrating;
 	}
+	public HRInterviewScheduler(int interviewid, int hrrating, String location, String finalstatus
+			) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		this.location = location;
+		this.finalstatus = finalstatus;
+	
+	}
 
 
 

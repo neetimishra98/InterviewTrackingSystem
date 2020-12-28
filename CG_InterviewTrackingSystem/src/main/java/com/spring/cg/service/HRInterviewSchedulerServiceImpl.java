@@ -1,5 +1,6 @@
 package com.spring.cg.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,6 +94,41 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 					throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 			}
 			
+			// return the whole list of interviewMembers
+			public List<HRInterviewScheduler> getAllInterviewMembershr(){
+		        List<HRInterviewSchedulerEntity> hrinterviewSchedulerEntity =  hrinterviewSchedulerRepo.findAll();
+		        List<HRInterviewScheduler> memberList = new ArrayList<HRInterviewScheduler>();
+		        
+		        for(HRInterviewSchedulerEntity memberEntit :hrinterviewSchedulerEntity) {
+		memberList.add(new HRInterviewScheduler(memberEntit.getInterviewid(),
+				memberEntit.getHrrating(),
+				memberEntit.getLocation(),memberEntit.getFinalstatus()));
+		       }
+		    return memberList;
+		    }
+		
+			//For giving Hrrating
+				@Override
+				public HRInterviewSchedulerEntity giveHrRating(int interviewid) {
+					HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
+						if(hrinterviewSchedulerEntity.getHrrating()==0) {
+							double Hrrating=0;
+							int min=0;
+							int max=10;
+								 Hrrating=Math.random()*(max-min+1)+min;	
+							hrinterviewSchedulerEntity.setHrrating((int)Hrrating);
+							}
+						return hrinterviewSchedulerRepo.save(hrinterviewSchedulerEntity); 
+					}
+				
+//To View Interview Members For Hr
+		@Override
+		public CandidateEntity viewInterviewMembersbyHr(int interviewid) {
+		HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
+		CandidateEntity candidateEntity = hrinterviewSchedulerEntity.getCandidate();
+		return candidateEntity;			
+	
+}	
 			
 			//to cancel the schedule interview
 				@Override
@@ -112,20 +148,5 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 				}
 				
 				
-				@Override
-				public HRInterviewSchedulerEntity giveHRRating(int interviewid) {
-					
-					double techrating=0;
-					int min=0;
-					int max=10;
-						 techrating=Math.random()*(max-min+1)+min;
-					
-					HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
-					if(hrinterviewSchedulerEntity.getHrrating()==0) {
-						hrinterviewSchedulerEntity.setHrrating((int)techrating);
-						hrinterviewSchedulerEntity.setFinalstatus("Tech_complete");
-					}
-					return hrinterviewSchedulerRepo.save(hrinterviewSchedulerEntity);
-			    }	
-	}
+}
 	
