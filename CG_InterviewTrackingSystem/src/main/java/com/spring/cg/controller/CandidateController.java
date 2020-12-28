@@ -191,7 +191,4 @@ public class CandidateController {
 
 				}
 		
-		
-=======
->>>>>>> branch 'master' of https://github.com/neetimishra98/InterviewTrackingSystem
 }
