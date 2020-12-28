@@ -12,4 +12,5 @@ public interface HRInterviewSchedulerRepo extends JpaRepository<HRInterviewSched
 	public HRInterviewSchedulerEntity findByInterviewid(int interviewid);
 
 	public HRInterviewSchedulerEntity findByCandidate(CandidateEntity candidateEntity);
+
 }

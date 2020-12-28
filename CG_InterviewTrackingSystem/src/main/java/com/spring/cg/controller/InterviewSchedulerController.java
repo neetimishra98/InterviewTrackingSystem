@@ -104,7 +104,7 @@ public class InterviewSchedulerController {
 		})
 		@GetMapping(value="/interviewscheduler/viewallinterviewmembers/fortech/", produces=MediaType.APPLICATION_JSON_VALUE)
 		public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException{
-		  	return interviewSchedulerService.viewAllInterviewMembersForTech();
+		  	return interviewSchedulerService.viewAllInterviewMembersForTech(int interviewid);
 		}
 	  
 	

@@ -3,9 +3,8 @@ package com.spring.cg.controller;
 import java.util.List;
 
 import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +23,6 @@ import com.spring.cg.exception.InterviewNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.json.HRInterviewScheduler;
-import com.spring.cg.json.InterviewScheduler;
 import com.spring.cg.service.HRInterviewSchedulerService;
 
 import io.swagger.annotations.Api;
@@ -37,8 +35,6 @@ import io.swagger.annotations.ApiResponses;
 
 @Api(value = "HRInterviewScheduler related REST APIs")
 public class HRInterviewSchedulerController {
-	
-	private static Logger logger = LoggerFactory.getLogger(HRInterviewSchedulerController.class);
 
 	@Autowired
 	private HRInterviewSchedulerService hrinterviewSchedulerService;
@@ -53,7 +49,7 @@ public class HRInterviewSchedulerController {
 			throws PanelMemberNotFoundException {
 		return hrinterviewSchedulerService.createNewHRInterviewSchedule(candidateid, panelid, hrinterviewscheduler);
 	}
-	
+
 	//Update Interview Schedule
 	@ApiOperation(value="Updates Interview Schedule details")
 	@ApiResponses(value= {
@@ -70,8 +66,9 @@ public class HRInterviewSchedulerController {
 			logger.error(interviewSchedulerNotFoundException.getLocalizedMessage());
 			return null;
 		}
+
+		return hrinterviewSchedulerService.updateInterviewSchedule(interviewid, hrinterviewscheduler);	
 	}
-	
 	//Cancel Interview Schedule
 	  @ApiOperation(value="Cancels Interview Schedule")
 	  @ApiResponses(value= {
@@ -81,14 +78,9 @@ public class HRInterviewSchedulerController {
 			@DeleteMapping(value="//hrinterviewschedulerdel/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
 			public HRInterviewScheduler cancelInterviewScheduleById(@PathVariable int interviewid)throws InterviewSchedulerNotFoundException
 			{
-				try {
-					logger.info("Enter HRInterviewSchedulerController:: method=cancelScheduleInterview");
-					return hrinterviewSchedulerService.deleteById(interviewid);
-				}catch(InterviewSchedulerNotFoundException interviewSchedulerNotFoundException) {
-					logger.error(interviewSchedulerNotFoundException.getLocalizedMessage());
-					return null;
-					}
+				return hrinterviewSchedulerService.deleteById(interviewid);
 				}
+
 
 		 //RETURNS ALL IntERVIEW MEMBERS FROM THE DATABASE
 	    @ApiOperation(value="Returns all  interviewmembers")
@@ -120,7 +112,8 @@ public class HRInterviewSchedulerController {
 					@ApiResponse(code=404, message = "No such candidate found")
 			})
 			@GetMapping(value = "/interviewscheduler/hr/viewinterviewmembersforhr/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
-			public CandidateEntity viewInterviewMembersForHr(@PathVariable("interviewid")int interviewid) {
+			public CandidateEntity viewInterviewMembersForHr(@PathVariable("interviewid")int interviewid)throws InterviewNotFoundException {
 				return hrinterviewSchedulerService.viewInterviewMembersbyHr(interviewid);
 			}		
-}
+	  }
+	
