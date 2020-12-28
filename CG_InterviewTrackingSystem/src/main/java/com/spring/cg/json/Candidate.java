@@ -5,12 +5,13 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+
+
 import io.swagger.annotations.ApiModelProperty;
 
 public class Candidate {
-	          
-	@Min(value=10000000)
-	@Max(value=99999999)
+	   
+	
 	@ApiModelProperty(value="Candidate ID")
 	private int candidateid;
 	
@@ -26,24 +27,19 @@ public class Candidate {
 	
 	@NotNull
 	@NotBlank
-	@ApiModelProperty(value="Candidate Designation")
-	private String designation;
+	@ApiModelProperty(value="Candidate Qualification")
+	private String qualification;
 	
 	@NotNull
 	@NotBlank
-	@ApiModelProperty(value="Candidate Qualification")
-	private String qualification;
+	@ApiModelProperty(value="Candidate Designation")
+	private String designation;
 	
 	@Min(value=0)
 	@Max(value=10)
 	@ApiModelProperty(value="Candidate Experience")
 	private int experience;
 
-	@Min(value=2)
-	@Max(value=10)
-	@ApiModelProperty(value="Candidate NoticePeriod")
-	private int noticeperiod;
-	
 	@NotNull
 	@NotBlank
 	@ApiModelProperty(value="Candidate PrimarySkills")
@@ -53,6 +49,11 @@ public class Candidate {
 	@NotBlank
 	@ApiModelProperty(value="Candidate SecondarySkills")
 	private String secondaryskills;
+	
+	@Min(value=2)
+	@Max(value=10)
+	@ApiModelProperty(value="Candidate NoticePeriod")
+	private int noticeperiod;
 	
 	public Candidate() {
 		super();

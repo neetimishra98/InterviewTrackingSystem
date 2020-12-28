@@ -38,34 +38,134 @@ public class CandidateController {
 	@Autowired
 	private CandidateService candidateService;
 	
-	//ADDS A CANDIDATE
-	@ApiOperation(value="Adds Candidate")
+	
+	@ApiOperation(value="Adds new Candidate")
+	@ApiResponses(value= {
+			@ApiResponse(code=201, message="New candidate added"),
+			@ApiResponse(code=404, message="No such candidate is added")
+	})
 	@PostMapping(value ="/candidate" ,produces = MediaType.APPLICATION_JSON_VALUE,consumes =MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Candidate> createCandidate(@Valid @RequestBody Candidate candidate) {
-		return new ResponseEntity<Candidate>(candidateService.createCandidate(candidate), HttpStatus.OK);
+	public Candidate addCandidate(@Valid @RequestBody Candidate candidate) {
+		return candidateService.addCandidate(candidate);
 	}
 	
-	//LIST ALL CANDIDATES
-	@ApiOperation(value="Returns all Candidate")
+	
+	@ApiOperation(value="Views all Candidate")
 	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New candidate created"),
 			@ApiResponse(code=404, message = "No such candidate found")
 	})
 	@GetMapping(value = "/candidate",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Candidate> getAllCandidates() {
-		return candidateService.getAllCandidates();
+	public List<Candidate> viewAllCandidates() {
+		return candidateService.viewAllCandidates();
 	}
 	
-	//VIEW A CANDIDATE
-	@ApiOperation(value="Returns Specific Candidate")
+	
+	@ApiOperation(value="Views Specific Candidate by Id")
 	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New candidate created"),
 			@ApiResponse(code=404, message = "No such candidate found")
 	})
 	@GetMapping(value ="/candidate/{candidateid}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public Candidate getCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException{
-		return candidateService.getCandidateById(candidateid);
+	public Candidate viewCandidateById(@PathVariable int candidateid) throws CandidateNotFoundException{
+		return candidateService.viewCandidateById(candidateid);
 	}
+	
+	@ApiOperation(value="Views Candidate by Name")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidatenm/{candidatename}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Candidate> viewCandidateByName(@PathVariable String candidatename) throws CandidateNotFoundException{
+		return candidateService.viewCandidateByName(candidatename);
+	}
+	
+	@ApiOperation(value="Views Candidate by Location")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidateloc/{location}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Candidate> viewCandidateByLocation(@PathVariable String location) throws CandidateNotFoundException{
+		return candidateService.viewCandidateByLocation(location);
+	}
+	
+	@ApiOperation(value="Views Candidate by Qualification")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidateqal/{qualification}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Candidate> viewCandidateByQualification(@PathVariable String qualification) throws CandidateNotFoundException{
+		return candidateService.viewCandidateByQualification(qualification);
+	}
+	
+	@ApiOperation(value="Views Candidate by Designation")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidatedes/{designation}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Candidate> viewCandidateByDesignation(@PathVariable String designation) throws CandidateNotFoundException{
+		return candidateService.viewCandidateByDesignation(designation);
+	}
+	
+	@ApiOperation(value="Views Candidate by PrimarySkills")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidateps/{primaryskills}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Candidate> viewCandidateByPrimarySkills(@PathVariable String primaryskills) throws CandidateNotFoundException{
+		return candidateService.viewCandidateByPrimarySkills(primaryskills);
+	}
+	
+
+	@ApiOperation(value="Returns all Location")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such location found")
+	})
+	@GetMapping(value = "/candidateloc",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Location> getAllLocations() {
+		return candidateService.getAllLocations();
+	}
+	
+	@ApiOperation(value="Returns all Qualification")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such qualificaton found")
+	})
+	@GetMapping(value = "/candidatequal",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Qualification> getAllQualifications() {
+		return candidateService.getAllQualifications();
+	}
+	
+	@ApiOperation(value="Returns all Designation")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such designation found")
+	})
+	@GetMapping(value = "/candidatedes",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Designation> getAllDesignations() {
+		return candidateService.getAllDesignations();
+	}
+	
+	@ApiOperation(value="Returns all PrimarySkills")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such primaryskill found")
+	})
+	@GetMapping(value = "/candidateps",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<PrimarySkills> getAllPrimarySkills() {
+		return candidateService.getAllPrimarySkills();
+	}
+
+	@ApiOperation(value="Returns all SecondarySkills")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such secondaryskill found")
+	})
+	@GetMapping(value = "/candidatess",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<SecondarySkills> getAllSecondarySkills() {
+		return candidateService.getAllSecondarySkills();
+	}
+
+
+
+
+
+
+
 	
 	//VIEW A CANDIDATE WITH STATUS FOR HR 
 	@ApiOperation(value="Returns specific Candidate")
