@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewNotFoundException;
@@ -140,27 +141,17 @@ public class InterviewSchedulerController {
 	*/
 	
 	
-	//to view interview members
-	@ApiOperation(value="Returns all InterviewMembers")
-	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New candidate created"),
-			@ApiResponse(code=404, message = "No such candidate found")
-	})
-	@GetMapping(value = "/interviewscheduler/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Candidate> viewInterviewMembers() {
-		return candidateService.viewAllCandidates();
-	}
-	
-	//to view interview members
-	@ApiOperation(value="Returns all InterviewMembers")
-	@ApiResponses(value= {
-			@ApiResponse(code=201, message="New candidate created"),
-			@ApiResponse(code=404, message = "No such candidate found")
-	})
-	@GetMapping(value = "/interviewscheduler/Hr/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Candidate> viewInterviewMembersbyHr() {
-		return candidateService.viewAllCandidates();
-	}
+	//view Interview members for tech using interviewid
+		@ApiOperation(value="Returns all InterviewMembers")
+		@ApiResponses(value= {
+				@ApiResponse(code=200, message="Candidate with given interviewid displayed successfully"),
+				@ApiResponse(code=404, message = "No such candidate found")
+		})
+		@GetMapping(value = "/interviewscheduler/tech/viewinterviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+		public CandidateEntity viewInterviewMembersForTech(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException {
+			return interviewSchedulerService.viewInterviewMembersForTech(interviewid);
+		}
+
 
 	
 }

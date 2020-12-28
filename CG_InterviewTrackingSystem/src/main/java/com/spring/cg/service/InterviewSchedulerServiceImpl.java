@@ -130,31 +130,14 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
     }	
 	
 	
-	
-	
-	//to view interview members
-	@Override
-	public List<Candidate> viewInterviewMembers() {
-		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
-		List<Candidate> candidates = new ArrayList<Candidate>();
-		for(CandidateEntity candidateEntity: candidateEntityList) {
-			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
+	//to view Interview Members for tech
+		@Override
+		public CandidateEntity viewInterviewMembersForTech(int interviewid) throws InterviewSchedulerNotFoundException {
+			InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+			CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
+			return candidateEntity;
+			
 		}
-		return candidates;
-	}
-	
-	@Override
-	public List<Candidate> viewInterviewMembersbyHr() {
-		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
-		List<Candidate> candidates = new ArrayList<Candidate>();
-		for(CandidateEntity candidateEntity: candidateEntityList) {
-			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
-		}
-		return candidates;
-	}
-
 
 
 	
