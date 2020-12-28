@@ -16,7 +16,8 @@ class PanelMemberControllerTest {
 	
 	@Autowired
 	private PanelMemberService panelMemberService;
-	
+	private static Logger logger = LogManager.getLogger(PanelMemberControllerTest.class);
+
 	//TEST CASE TO FIND PANEL MEMBER BY GIVING CORRECT PANEL ID - PASS
 		@Test
 		public void testFindPanelMemberById() {
@@ -68,6 +69,7 @@ class PanelMemberControllerTest {
 	//PANEL MEMBER WITH VALID EMPLOYEE FOREIGN KEY
 	@Test
 	public void testAddPanelMemberValid() {
+		logger.info("[START] testAddPanelMemberValid()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember(10501505, "Pune", "HR", null);
@@ -75,14 +77,19 @@ class PanelMemberControllerTest {
 		}
 		catch(Exception e){
 				panelMemberInvalid = null;
+				logger.error("testAddPanelMemberValid()");
 		}
 		finally{
 			assertEquals(panelMemberInvalid.getPanelid(), 10501505);
 		}
+		logger.info("[END] testAddPanelMemberValid()");
+
 	}
 	//PANEL MEMBER BLANK WITH VALID EMPLOYEE FOREIGN KEY
 	@Test
 	public void testAddPanelMemberBlank() {
+
+		logger.info("[START] testAddPanelMemberBlank()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember();
@@ -90,14 +97,18 @@ class PanelMemberControllerTest {
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
+			logger.error("testAddPanelMemberBlank()");
 		}
 		finally{
 			assertNull(panelMemberInvalid, "No panel member could be added/found");
 		}
+
+		logger.info("[END] testAddPanelMemberBlank()");
 	}
 	@Test
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
 	public void testAddPanelMemberBlankEmployee() {
+		logger.info("[START] testAddPanelMemberBlankEmployee()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember();
@@ -105,14 +116,17 @@ class PanelMemberControllerTest {
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
+			logger.error("testAddPanelMemberBlankEmployee()");
 		}
 		finally{
 			assertNull(panelMemberInvalid, "No panel member could be added/found");
 		}
+		logger.info("[END] testAddPanelMemberBlankEmployee()");
 	}
 	@Test
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
 	public void testAddPanelMemberInvalidConstructor() {
+		logger.info("[START] testAddPanelMemberInvalidConstructor()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember(150000000, "Pune", "HR", null);
@@ -120,14 +134,18 @@ class PanelMemberControllerTest {
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
+			logger.error("testAddPanelMemberInvalidConstructor()");
 		}
 		finally{
 			assertNull(panelMemberInvalid, "No panel member could be added/found");
 		}
+		logger.info("[END] testAddPanelMemberInvalidConstructor()");
+
 	}
 	@Test
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
 	public void testAddPanelMemberInvalidEmployee() {
+		logger.info("[START] testAddPanelMemberInvalidEmployee()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember(150000000, "Pune", "HR", null);
@@ -135,11 +153,14 @@ class PanelMemberControllerTest {
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
+			logger.error("testAddPanelMemberInvalidEmployee()");
 		}
 		finally{
 			assertNull(panelMemberInvalid, "No panel member could be added/found");
 		}
+		logger.info("[END] testAddPanelMemberInvalidEmployee()");
 	}
+	
 	
 	
 }
