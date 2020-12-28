@@ -143,19 +143,14 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			interviewSchedulerEntity.setFinalstatus("Techcomplete");
 		}
 		return interviewSchedulerRepo.save(interviewSchedulerEntity);
-<<<<<<< HEAD
+
     }
 
 
 		
 
-	}
-=======
-    }	
-
-		
 }
 
 
->>>>>>> d5d7b1de1205ae1691090d85b24f43195edd280e
+		
 

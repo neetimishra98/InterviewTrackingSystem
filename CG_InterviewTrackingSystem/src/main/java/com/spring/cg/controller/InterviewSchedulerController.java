@@ -103,9 +103,9 @@ public class InterviewSchedulerController {
 				@ApiResponse(code=200, message="List viewed successfully for Tech"),
 				@ApiResponse(code=404, message = "No member found")
 		})
-		@GetMapping(value="/interviewscheduler/viewallinterviewmembers/fortech/", produces=MediaType.APPLICATION_JSON_VALUE)
+		@GetMapping(value="/interviewscheduler/allinterviewmembers/fortech/", produces=MediaType.APPLICATION_JSON_VALUE)
 		public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException{
-		  	return interviewSchedulerService.viewAllInterviewMembersForTech(int interviewid);
+		  	return interviewSchedulerService.viewAllInterviewMembersForTech();
 		}
 	  
 	
@@ -116,7 +116,7 @@ public class InterviewSchedulerController {
 					@ApiResponse(code=200, message="Candidate with given interviewid displayed successfully"),
 					@ApiResponse(code=404, message = "No such candidate found")
 			})
-			@GetMapping(value = "/interviewscheduler/tech/viewinterviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+			@GetMapping(value = "/interviewscheduler/tech/interviewmembersfortech/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
 			public CandidateEntity viewInterviewMembersForTech(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException {
 				return interviewSchedulerService.viewInterviewMembersForTech(interviewid);
 			}

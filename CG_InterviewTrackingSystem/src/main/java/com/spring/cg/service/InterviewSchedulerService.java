@@ -29,7 +29,6 @@ public interface InterviewSchedulerService {
 	public InterviewScheduler createNewTechInterviewSchedule(int candidateid, int panelid, InterviewScheduler interviewscheduler)
 			throws CandidateNotFoundException;
 
-<<<<<<< HEAD
 	//to view all interview members for tech
 	public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException;
 	
@@ -40,6 +39,4 @@ public interface InterviewSchedulerService {
 	public InterviewSchedulerEntity giveTechRating(int interviewid);
 
 	
-=======
->>>>>>> d5d7b1de1205ae1691090d85b24f43195edd280e
 }
