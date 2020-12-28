@@ -50,7 +50,7 @@ public class PanelMemberControllerTest {
 		logger.info("[END] testFindPanelMemberByIdPass()");
 	}
 	
-	//TEST CASE TO FIND PANEL MEMBER BY USING NEGATIVE PANEL ID - Fail
+	//TEST CASE TO FIND PANEL MEMBER BY USING NEGATIVE PANEL ID - FAIL
 	@Test
 	public void testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException(){
 		logger.info("[START] testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException()");
@@ -63,7 +63,7 @@ public class PanelMemberControllerTest {
 		logger.info("[END] testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException()");	
 	}
 	
-	//TEST CASE TO FIND PANEL MEMBER BY USING WRONG PANEL ID SIZE - Fail
+	//TEST CASE TO FIND PANEL MEMBER BY USING WRONG PANEL ID SIZE - FAIL
 		@Test
 		public void testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException(){
 			logger.info("[START] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()");				
@@ -83,6 +83,7 @@ public class PanelMemberControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			panelMemberInvalid = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/", PanelMember.class);
+			logger.error("testFindPanelMemberByBlank()");
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
@@ -92,6 +93,7 @@ public class PanelMemberControllerTest {
 		}
 		logger.info("[END] testFindPanelMemberByBlank()");
 	}
+	
 	
 	
 	//ADD PANEL MEMBER TEST CASES
