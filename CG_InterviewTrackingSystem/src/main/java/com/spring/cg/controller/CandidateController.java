@@ -185,7 +185,7 @@ public class CandidateController {
 						@ApiResponse(code=201, message="Found the candidate in schema"),
 						@ApiResponse(code=404, message = "No such candidate found")
 				})
-				@GetMapping(value="/candidate/hr/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
+				@GetMapping(value="/candidate/search/techpanel/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
 					public ResponseEntity<Map<Candidate, String>> viewCandidateForTech(@PathVariable ("id") String candidateId)throws CandidateNotFoundException {
 					return new ResponseEntity<Map<Candidate, String>>(candidateService.viewCandidateForTech(candidateId), HttpStatus.OK);
 
