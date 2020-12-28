@@ -89,7 +89,7 @@ public class PanelMemberControllerTest {
 			panelMemberInvalid = null;
 		}
 		finally{
-			assertNotNull(panelMemberInvalid, "<<BLANK>> Was Not Found");
+			assertNull(panelMemberInvalid, "<<BLANK>> Was Not Found");
 		}
 		logger.info("[END] testFindPanelMemberByBlank()");
 	}

@@ -307,14 +307,17 @@ public class CandidateControllerTest {
 
 			//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - FAIL
 			@Test
-			public void testViewCandidateByNameHRFail(){	
+			public void testViewCandidateByNameHRFail() {
 				logger.info("[START] testViewCandidateByNameHRFail()");
-				RestTemplate restTemplate = new RestTemplate();	
-				assertThrows(CandidateNotFoundException.class,
-				()->{
-						candidateService.viewCandidateForHR("Neha");
-					}	
-				);		
+				RestTemplate restTemplate = new RestTemplate();
+				try {
+					candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/tom", Candidate.class);
+				} catch (Exception e) {
+					candidateInvalid = null;
+					logger.error("testViewCandidateByNameHRFail()");
+				} finally {
+					assertNull(candidateInvalid, "Tom Was Not Found");
+				}
 				logger.info("[END] testViewCandidateByNameHRFail()");
 			}
 				
@@ -331,7 +334,7 @@ public class CandidateControllerTest {
 				candidateInvalid = null;
 			}
 			finally{
-				assertNotNull(candidateInvalid, "<<BLANK>> Was Not Found");
+				assertNull(candidateInvalid, "<<BLANK>> Was Not Found");
 			}
 			logger.info("[END] testViewCandidateByBlank()");
 		}
