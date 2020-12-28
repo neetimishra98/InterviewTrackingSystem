@@ -79,7 +79,7 @@ public class PanelMemberController {
   			@ApiResponse(code=201, message="Panel Member updated")
 
 	})
-	@GetMapping(value="/panelmember/surrendertech/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/panelmember/tech/search/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public PanelMember updatePanelTech(@PathVariable("id")int panelId) throws PanelMemberNotFoundException{
 		return panelMemberService.updatePanelTech(panelId);
 	}
