@@ -1,6 +1,5 @@
 package com.spring.cg.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +8,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.cg.json.Candidate;
-import com.spring.cg.json.Employee;
-import com.spring.cg.repo.CandidateRepo;
-import com.spring.cg.repo.InterviewSchedulerRepo;
 import com.spring.cg.entity.CandidateEntity;
-import com.spring.cg.entity.EmployeeEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
-import com.spring.cg.exception.EmployeeNotFoundException;
+import com.spring.cg.json.Candidate;
+import com.spring.cg.json.Designation;
+import com.spring.cg.json.Location;
+import com.spring.cg.json.PrimarySkills;
+import com.spring.cg.json.Qualification;
+import com.spring.cg.json.SecondarySkills;
+import com.spring.cg.repo.CandidateRepo;
+import com.spring.cg.repo.DesignationRepo;
+import com.spring.cg.repo.InterviewSchedulerRepo;
+import com.spring.cg.repo.LocationRepo;
+import com.spring.cg.repo.PrimarySkillsRepo;
+import com.spring.cg.repo.QualificationRepo;
+import com.spring.cg.repo.SecondarySkillsRepo;
+import com.spring.cg.util.CandidateUtil;
 
 
 @Service

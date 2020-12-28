@@ -144,7 +144,7 @@ public class InterviewSchedulerController {
 	})
 	@GetMapping(value = "/interviewscheduler/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Candidate> viewInterviewMembers() {
-		return candidateService.getAllCandidates();
+		return candidateService.viewAllCandidates();
 	}
 	
 	//to view interview members
@@ -155,7 +155,7 @@ public class InterviewSchedulerController {
 	})
 	@GetMapping(value = "/interviewscheduler/Hr/viewallmembers",produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Candidate> viewInterviewMembersbyHr() {
-		return candidateService.getAllCandidates();
+		return candidateService.viewAllCandidates();
 	}
 
 	

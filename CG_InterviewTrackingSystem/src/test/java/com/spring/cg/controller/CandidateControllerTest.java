@@ -2,10 +2,21 @@ package com.spring.cg.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.logging.LogManager;
+
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.json.Candidate;
+import com.spring.cg.repo.CandidateRepo;
+import com.spring.cg.service.CandidateService;
+import com.sun.istack.logging.Logger;
 
 @SpringBootTest
 public class CandidateControllerTest {

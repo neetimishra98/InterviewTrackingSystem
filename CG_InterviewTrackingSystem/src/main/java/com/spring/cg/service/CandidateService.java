@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.cg.exception.CandidateNotFoundException;
-import com.spring.cg.exception.EmployeeNotFoundException;
 import com.spring.cg.json.Candidate;
+import com.spring.cg.json.Designation;
+import com.spring.cg.json.Location;
+import com.spring.cg.json.PrimarySkills;
+import com.spring.cg.json.Qualification;
+import com.spring.cg.json.SecondarySkills;
 
 
 public interface CandidateService {

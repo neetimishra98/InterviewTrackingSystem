@@ -163,12 +163,6 @@ public class CandidateController {
 		return candidateService.getAllSecondarySkills();
 	}
 
-
-
-
-
-
-
 	
 	//SEARCH CANDIDATE BY USING CANDIDATE ID AND CANDIDATE NAME FOR HR
 		@ApiOperation(value="Searches candidate in the tables")

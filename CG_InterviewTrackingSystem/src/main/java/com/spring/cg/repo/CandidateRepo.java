@@ -1,8 +1,9 @@
 package com.spring.cg.repo;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.exception.CandidateNotFoundException;

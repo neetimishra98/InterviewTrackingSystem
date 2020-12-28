@@ -1,18 +1,12 @@
 package com.spring.cg.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.spring.cg.json.Candidate;
-import com.spring.cg.json.Employee;
 import com.spring.cg.json.InterviewScheduler;
-import com.spring.cg.json.PanelMember;
 
 class InterviewSchedulerControllerTest {
 	public Candidate candidateInvalid;
