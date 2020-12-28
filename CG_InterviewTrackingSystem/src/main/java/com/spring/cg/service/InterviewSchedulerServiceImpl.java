@@ -1,17 +1,21 @@
 package com.spring.cg.service;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
+import com.spring.cg.entity.PanelMemberEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
+import com.spring.cg.json.Candidate;
 import com.spring.cg.json.InterviewScheduler;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.repo.InterviewSchedulerRepo;
+import com.spring.cg.repo.PanelMemberRepo;
 import com.spring.cg.util.InterviewSchedulerUtil;
+
 
 @Service
 public class InterviewSchedulerServiceImpl implements InterviewSchedulerService {
@@ -21,14 +25,42 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	
 	@Autowired
 	private CandidateRepo candidateRepo;
+	
 
- /*	
+	@Autowired
+	private PanelMemberRepo panelMemberRepo;
+	
+	//for creating interviewscheduler
+	
+	@Override
+	public InterviewScheduler createNewInterviewSchedule(int candidateid, int panelid,
+			InterviewScheduler interviewscheduler) throws CandidateNotFoundException {
+
+		Optional<PanelMemberEntity> panelMemberEntityOp = Optional.ofNullable(panelMemberRepo.findById(panelid));
+		Optional<CandidateEntity> candidateEntityOp = candidateRepo.findById(candidateid);
+		
+		if(candidateEntityOp.isPresent())
+		{
+			CandidateEntity candidateEntity = candidateEntityOp.get();
+			PanelMemberEntity panelMemberEntity=panelMemberEntityOp.get();
+			InterviewSchedulerEntity ise = 
+					InterviewSchedulerUtil.convertInterviewSchedulerIntoInterviewSchedulerEntityForScheduleInterview(interviewscheduler, candidateEntity, panelMemberEntity);
+			InterviewSchedulerEntity interviewschedulerEntity =interviewSchedulerRepo.save(ise);
+		
+			return InterviewSchedulerUtil.convertInterviewSchedulerEntityIntoInterviewSchedulerForScheduleInterview(interviewschedulerEntity);
+		}
+		else {
+			throw new CandidateNotFoundException("No such candidate with candidateID "+candidateid);
+		}
+	}
+	
+ /*	444
 	@Override
 	public List<InterviewScheduler> getAllInterviewSchedule() {
 		
 		return InterviewSchedulerUtil.convertInterviewSchedulerEntityListIntoInterviewSchedulerList(interviewschedulerRepo.findAll());
 	}
-*/	
+*/
 	@Override
 	public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException {
 	
@@ -47,94 +79,91 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		else
 			throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 	}
-	//for creating interviewscheduler
 	
 	@Override
-	public InterviewScheduler createNewInterviewSchedule(int candidateid, InterviewScheduler interviewscheduler)throws CandidateNotFoundException {
-		
-		Optional<CandidateEntity> candidateEntityOp = candidateRepo.findById(candidateid);
-		
-		if(candidateEntityOp.isPresent())
-		{
-			CandidateEntity candidateEntity = candidateEntityOp.get();
-			InterviewSchedulerEntity ise = InterviewSchedulerUtil.convertInterviewSchedulerIntoInterviewSchedulerEntityForScheduleInterview(interviewscheduler, candidateEntity) ;
-			InterviewSchedulerEntity interviewschedulerEntity =interviewSchedulerRepo.save(ise);
-		
-			return InterviewSchedulerUtil.convertInterviewSchedulerEntityIntoInterviewSchedulerForScheduleInterview(interviewschedulerEntity);
-		}
-		else {
-			throw new CandidateNotFoundException("No such candidate with candidateID "+candidateid);
-		}
-	}	
-	@Override
-	public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
+	public boolean deleteById(int interviewid)throws InterviewSchedulerNotFoundException {
 		
 		Optional<InterviewSchedulerEntity> opinterviewschedulerEntity = interviewSchedulerRepo.findById(interviewid);
 		InterviewScheduler interviewscheduler = null;
 		if(opinterviewschedulerEntity.isPresent())
 		{	
 			interviewSchedulerRepo.deleteById(interviewid);
-			return interviewscheduler;
+			return true;
 		}
 		else
 		{
 			throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 		}
 	}
+	
+	
+	
 	//for giving techrating
 	@Override
-	public InterviewSchedulerEntity giveTechRating(String interviewid) {
-
-		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByfinalstatus(interviewid);
-		if(interviewSchedulerEntity != null) {
-			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
-		}
-		else{
-			interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(Integer.valueOf(interviewid));
-			//System.out.println("Entered the else loop...");
-			if(interviewSchedulerEntity.getTechrating()==0) {
-				double Techrating=0;
-				int min=0;
-				int max=10;
-					 Techrating=Math.random()*(max-min+1)+min;	
-				interviewSchedulerEntity.setTechrating((int)Techrating);
-				}
-			return interviewSchedulerRepo.save(interviewSchedulerEntity);
-		}	
-	}
-	//For giving Hrrating
-	@Override
-	public InterviewSchedulerEntity giveHrRating(String interviewid) {
-
-		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByfinalstatus(interviewid);
-		if(interviewSchedulerEntity != null) {
-			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
-		}
-		else{
-			interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(Integer.valueOf(interviewid));
-			//System.out.println("Entered the else loop...");
-			if(interviewSchedulerEntity.getHrrating()==0) {
-				double Hrrating=0;
-				int min=0;
-				int max=10;
-					 Hrrating=Math.random()*(max-min+1)+min;	
-				interviewSchedulerEntity.setHrrating((int)Hrrating);
-				}
-			return interviewSchedulerRepo.save(interviewSchedulerEntity); 
-		}
-	}
-	//To View Interview Members For Hr
-		@Override
-		public CandidateEntity viewInterviewMembersForHr(int interviewid) {
-			InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
-			CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
-			return candidateEntity;			
-		}
-	//to view Interview Members for tech
-	@Override
-	public CandidateEntity viewInterviewMembersForTech(int interviewid) {
+	public InterviewSchedulerEntity giveTechRating(int interviewid) {
+		
+		double techrating=0;
+		int min=0;
+		int max=10;
+			 techrating=Math.random()*(max-min+1)+min;
+		
 		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
-		CandidateEntity candidateEntity=interviewSchedulerEntity.getCandidate();
-		return candidateEntity;		
+		if(interviewSchedulerEntity.getTechrating()==0) {
+			interviewSchedulerEntity.setTechrating((int)techrating);
+			interviewSchedulerEntity.setFinalstatus("Tech_complete");
+		}
+		return interviewSchedulerRepo.save(interviewSchedulerEntity);
+    }	
+	
+	
+	//for giving hrrating
+	@Override
+	public InterviewSchedulerEntity giveHrRating(int interviewid) {
+		
+		double Hrrating=0;
+		int min=0;
+		int max=10;
+			 Hrrating=Math.random()*(max-min+1)+min;
+		
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+		if(interviewSchedulerEntity.getHrrating()==0) {
+			interviewSchedulerEntity.setHrrating((int) Hrrating);
+			interviewSchedulerEntity.setFinalstatus("Hr_complete");
+		}
+		return interviewSchedulerRepo.save(interviewSchedulerEntity);   
+    }	
+	
+	
+	//to view interview members
+	@Override
+	public List<Candidate> viewInterviewMembers() {
+		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
+		List<Candidate> candidates = new ArrayList<Candidate>();
+		for(CandidateEntity candidateEntity: candidateEntityList) {
+			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
+		}
+		return candidates;
 	}
+	
+	@Override
+	public List<Candidate> viewInterviewMembersbyHr() {
+		List<CandidateEntity> candidateEntityList = candidateRepo.findAll();
+		List<Candidate> candidates = new ArrayList<Candidate>();
+		for(CandidateEntity candidateEntity: candidateEntityList) {
+			candidates.add(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()));
+		}
+		return candidates;
+	}
+
+	@Override
+	public InterviewScheduler createNewInterviewSchedule(int candidateid, InterviewScheduler interviewscheduler)
+			throws CandidateNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 }
