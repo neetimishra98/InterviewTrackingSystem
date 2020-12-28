@@ -28,13 +28,13 @@ public class PanelMemberController {
     @Autowired
     private PanelMemberService panelMemberService;
 
-    //RETURNS ALL PANEL MEMBERS FROM THE DATABASE
+   //RETURNS ALL PANEL MEMBERS FROM THE DATABASE
     @ApiOperation(value="Returns all panel members")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="Panel members have been found"),
             @ApiResponse(code=404, message = "No panel members found")
     })
-    @GetMapping(value="/panelmember/list", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="//panelmembers", produces= MediaType.APPLICATION_JSON_VALUE)
     public List<PanelMember> getAllPanelMembers() {
         return panelMemberService.getAllPanelMembers();
     }
@@ -49,13 +49,13 @@ public class PanelMemberController {
     public PanelMember getAllPanelMembers(@PathVariable("pid") int panelId) throws PanelMemberNotFoundException {
         return panelMemberService.findPanelMember(panelId);
     }
-    // RETURNS PANEL MEMBER CREATED IN DATABASE
+     // RETURNS PANEL MEMBER CREATED IN DATABASE
     @ApiOperation(value="Adds a panel member")
     @ApiResponses(value= {
             @ApiResponse(code=201, message="New panel members created"),
             @ApiResponse(code=404, message = "No panel member found")
     })
-    @PostMapping(value="/panelmember/add/{EmployeeName}", produces= MediaType.APPLICATION_JSON_VALUE, consumes= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/panelmember/{EmployeeName}", produces= MediaType.APPLICATION_JSON_VALUE, consumes= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PanelMember> addPanelMember(@Valid @RequestBody PanelMember panelMember, @PathVariable("EmployeeName") String employeeName) throws EmployeeNotFoundException {
         return new ResponseEntity<PanelMember>(panelMemberService.addPanelMember(panelMember, employeeName), HttpStatus.OK);
     }

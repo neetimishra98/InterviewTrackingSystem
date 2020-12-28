@@ -41,7 +41,7 @@ class PanelMemberControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember(10501505, "Pune", "HR", null);
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Charles", request, PanelMember.class);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/Charles", request, PanelMember.class);
 		}
 		catch(Exception e){
 				panelMemberInvalid = null;
@@ -56,7 +56,7 @@ class PanelMemberControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember();
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Charles", request, PanelMember.class);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/Charles", request, PanelMember.class);
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
@@ -71,7 +71,7 @@ class PanelMemberControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember();
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/", request, PanelMember.class);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/", request, PanelMember.class);
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
@@ -86,7 +86,7 @@ class PanelMemberControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember(150000000, "Pune", "HR", null);
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Charles", request, PanelMember.class);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/Charles", request, PanelMember.class);
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;
@@ -101,7 +101,7 @@ class PanelMemberControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			PanelMember request = new PanelMember(150000000, "Pune", "HR", null);
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/add/Andruw", request, PanelMember.class);
+			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/Andruw", request, PanelMember.class);
 		}
 		catch(Exception e){
 			panelMemberInvalid = null;

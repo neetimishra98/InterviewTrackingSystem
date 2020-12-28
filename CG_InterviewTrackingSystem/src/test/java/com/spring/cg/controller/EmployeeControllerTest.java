@@ -13,14 +13,14 @@ class EmployeeControllerTest {
 	public void testFindEmployeeById() {
 		//Employee With The ID 45011005 Exists, valid Testcase
 		RestTemplate restTemplate = new RestTemplate();
-		Employee employee =restTemplate.getForObject("http://localhost:8080/cgits/employee/search/45011005", Employee.class);
+		Employee employee =restTemplate.getForObject("http://localhost:8080/cgits/employee/45011005", Employee.class);
 		assertEquals(employee.getEmployeeid(), 45011005);
 	}
 	@Test
 	public void testFindEmployeeByName() {
 		//Employee With The Name Nitin Exists, valid Testcase
 		RestTemplate restTemplate = new RestTemplate();
-		Employee employee =restTemplate.getForObject("http://localhost:8080/cgits/employee/search/Nitin", Employee.class);
+		Employee employee =restTemplate.getForObject("http://localhost:8080/cgits/employee/Nitin", Employee.class);
 		assertEquals(employee.getName(), "Nitin");
 	}
 	@Test
@@ -28,7 +28,7 @@ class EmployeeControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		//Employee With The Name Chales Exists. Mistyped Charl : Invalid Testcase
 		try {
-			employeeInvalid = restTemplate.getForObject("http://localhost:8080/cgits/employee/search/Charl", Employee.class);
+			employeeInvalid = restTemplate.getForObject("http://localhost:8080/cgits/employee/Charl", Employee.class);
 		} catch (Exception e) {
 			employeeInvalid = null;
 		} finally {
@@ -40,7 +40,7 @@ class EmployeeControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		//Employee With The <<Blank>> Path Variable as URL to localhost : Invalid Testcase
 		try {
-			employeeInvalid = restTemplate.getForObject("http://localhost:8080/cgits/employee/search/", Employee.class);
+			employeeInvalid = restTemplate.getForObject("http://localhost:8080/cgits/employee/", Employee.class);
 		}
 		catch(Exception e){
 			employeeInvalid = null;
@@ -54,7 +54,7 @@ class EmployeeControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		//Employee With The Name Chales Exists. Mistyped Charl : Invalid Testcase
 		try {
-			employeeInvalid = restTemplate.getForObject("http://localhost:8080/interviews/employee/search/Charles", Employee.class);
+			employeeInvalid = restTemplate.getForObject("http://localhost:8080/interviews/employee/Charles", Employee.class);
 		}
 		catch(Exception e){
 			employeeInvalid = null;
