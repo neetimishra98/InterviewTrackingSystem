@@ -209,9 +209,9 @@ public class PanelMemberControllerTest {
 			logger.info("[START] testDeletePanelMemberByNameFail1()");
 			//VALIDATING PANEL MEMBER USING EMPLOYEE NAME WITH INVALID NAME.INVALID TEST CASE.
 			RestTemplate restTemplate = new RestTemplate();
-			assertThrows(Exception.class,
+			assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 					()->{
-						panelMemberService.deletePanelMemberByName("Neh");
+						restTemplate.delete("http://localhost:8080/cgits/panelmember/{Name}","Neh");
 					});	
 			logger.error("No Employee Found as Neh.");
 			logger.info("[END] testDeletePanelMemberByNameFail1()");
@@ -223,9 +223,9 @@ public class PanelMemberControllerTest {
 			logger.info("[START] testDeletePanelMemberByNameFail2()");
 			//VALIDATING PANEL MEMBER USING EMPLOYEE NAME USING NO VALUES.INVALID TEST CASE.
 			RestTemplate restTemplate = new RestTemplate();
-			assertThrows(Exception.class,
+			assertThrows(org.springframework.web.client.HttpClientErrorException.NotFound.class,
 					()->{
-						panelMemberService.deletePanelMemberByName(" ");
+						restTemplate.delete("http://localhost:8080/cgits/panelmember/");
 					});
 			logger.error("<<Blank>> - No Input Given.");
 			logger.info("[END] testDeletePanelMemberByNameFail2()");
@@ -235,11 +235,11 @@ public class PanelMemberControllerTest {
 		@Test()
 		public void testDeletePanelMemberByNameFail3() {
 			logger.info("[START] testDeletePanelMemberByNameFail3()");
-			//VALIDATING PANEL MEMBER USING EMPLOYEE NAME USING INVALID Values.INVALID TEST CASE.
+			//VALIDATING PANEL MEMBER USING EMPLOYEE NAME USING INVALID NUMERIC VALUES.INVALID TEST CASE.
 			RestTemplate restTemplate = new RestTemplate();
-			assertThrows(Exception.class,
+			assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 					()->{
-						panelMemberService.deletePanelMemberByName("123");
+						restTemplate.delete("http://localhost:8080/cgits/panelmember/{Name}","123");
 					});	
 			
 			logger.error("EmployeeName can not have numeric values.Please Enter Characters.");
@@ -250,16 +250,17 @@ public class PanelMemberControllerTest {
 		@Test()
 		public void testDeletePanelMemberByNameFail4() {
 			logger.info("[START] testDeletePanelMemberByNameFail4()");
-			//VALIDATING PANEL MEMBER USING EMPLOYEE NAME USING INVALID CHARACTER IN NAME.INVALID TEST CASE.
+			//VALIDATING PANEL MEMBER USING EMPLOYEE NAME USING INVALID CHARACTERS IN NAME.INVALID TEST CASE.
 			RestTemplate restTemplate = new RestTemplate();
-			assertThrows(Exception.class,
+			assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 					()->{
-						panelMemberService.deletePanelMemberByName("@Yash");
+						restTemplate.delete("http://localhost:8080/cgits/panelmember/{Name}","@Yash");
 					});	
 			
 			logger.error("EmployeeName can not have Special Characters.");
 			logger.info("[END] testDeletePanelMemberByNameFail4()");
 			}
+		
 		
 		//VIEW ALL PANEL MEMBERS TEST CASES
 		//TESTCASE_1
