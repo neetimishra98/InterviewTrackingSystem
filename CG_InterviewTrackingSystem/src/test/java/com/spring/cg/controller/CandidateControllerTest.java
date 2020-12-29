@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-@SpringBootTest
+
 public class CandidateControllerTest {
 	
 	private static Logger logger = LogManager.getLogger(CandidateControllerTest.class);
@@ -35,27 +35,93 @@ public class CandidateControllerTest {
 	private CandidateService candidateService;
 	
 	
-	// Test Case for adding Candidate Details
+	
+	
+	// Test Case for adding Candidate Details -PASS
 /*	@Test
 	public void testAddCandidateSuccess()
 	{
 		logger.info("[START] testAddCandidate()");
 		RestTemplate restTemplate = new RestTemplate();
-		Candidate candidate = new Candidate("Shivani", "Pune", "BE Electronics", "Junior Analyst", 3, "C", "C++", 2);
+		Candidate candidate = new Candidate("Pooja", "Ahemdabad", "BE Electronics", "Junior Analyst", 3, "C", "C++", 2);
 		ResponseEntity<Candidate> responseEntityCandidate = restTemplate.postForEntity("http://localhost:9090/cgits/candidate", candidate, Candidate.class);
-		
-		
 		assertNotNull(responseEntityCandidate.getBody());
 		assertNotNull(responseEntityCandidate.getBody().getCandidatename());
-		
-		//assertEquals(responseEntityCandidate.getBody().getCandidatename(),candidate.getCandidatename());
 		logger.info("Candidate details added successfully!");
 		logger.info("[END] testAddCandidate()");
 	}
 */
 	
 	
-	//Test Case for viewing Candidate Details
+	//Test Case for adding Candidate Details with blank values  -FAIL
+	@Test
+	public void testAddCandidateWithBlankValues() {
+		logger.info("[START] testAddCandidateWithBlankValues()");
+		RestTemplate restTemplate = new RestTemplate();
+		Exception exception = assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
+		()->{
+			Candidate candidate = new Candidate("", "", "", "", 3, "", "", 2);
+			candidateInvalid = restTemplate.postForObject("http://localhost:9090/cgits/candidate", candidate, Candidate.class);
+		});
+			logger.error(exception);
+			logger.error("Please fill out all the fields. All fields are mandatory.");
+			logger.info("[END] testAddCandidateWithBlankValues()");
+	}
+	
+	
+	
+	
+	//Test Case for adding Candidate Details with null values  -FAIL
+	@Test
+	public void testAddCandidateWithNullValues() {
+		logger.info("[START] testAddCandidateWithNullValues()");
+		RestTemplate restTemplate = new RestTemplate();
+		Exception exception = assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
+		()->{
+			Candidate candidate = new Candidate(null, null, null, null, 3, null, null, 2);
+			candidateInvalid = restTemplate.postForObject("http://localhost:9090/cgits/candidate", candidate, Candidate.class);
+		});
+			logger.error(exception);
+			logger.error("Fields cannot be Null.");
+			logger.info("[END] testAddCandidateWithNullValues()");
+	}
+	
+	
+	
+	//Test Case for adding Candidate Details with negative experience -FAIL
+	@Test
+	public void testAddCandidateWithNegativeExperience() {
+		logger.info("[START] testAddCandidateWithNegativeExperience()");
+		RestTemplate restTemplate = new RestTemplate();
+		Exception exception = assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
+		()->{
+			Candidate candidate = new Candidate("Monali", "Indore", "BE Mechanical", "Junior Analyst", -3, "C", "C++", 2);
+			candidateInvalid = restTemplate.postForObject("http://localhost:9090/cgits/candidate", candidate, Candidate.class);
+		});
+			logger.error(exception);
+			logger.error("Experience cannot be negative.");
+			logger.info("[END] testAddCandidateWithNegativeExperience()");
+	}
+	
+	
+	
+	//Test Case for adding Candidate Details with negative notice period  -FAIL
+	@Test
+	public void testAddCandidateWithNegativeNoticePeriod() {
+		logger.info("[START] testAddCandidateWithNegativeNoticePeriod()");
+		RestTemplate restTemplate = new RestTemplate();
+		Exception exception = assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
+		()->{
+			Candidate candidate = new Candidate("Monali", "Indore", "BE Mechanical", "Junior Analyst", 3, "C", "C++", -2);
+			candidateInvalid = restTemplate.postForObject("http://localhost:9090/cgits/candidate", candidate, Candidate.class);
+		});
+			logger.error(exception);
+			logger.error("Notice Period cannot be negative.");
+			logger.info("[END] testAddCandidateWithNegativeNoticePeriod()");
+	}
+	
+	
+	//Test Case for viewing Candidate Details -PASS
 	@Test
 	public void testViewAllCandidates(){
 		
@@ -68,7 +134,7 @@ public class CandidateControllerTest {
 	}
 	
 	
-	//Test Case for viewing Candidate details by specific Id - Success
+	//Test Case for viewing Candidate details by specific Id - PASS
 	@Test
 	public void testViewCandidateById(){
 		
@@ -76,28 +142,32 @@ public class CandidateControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Candidate> responseEntity = restTemplate.getForEntity("http://localhost:9090/cgits/candidate/48", Candidate.class);
 		assertNotNull(responseEntity);
+		logger.info(responseEntity);
+		logger.info("Data fetched successfully for candidateId : 48");
 		logger.info("[END] testViewCandidateByIdPass()");
 	
 	}
 	
 	
-	//Test Case for viewing Candidate details by specific Id - Fail
+	
+	//Test Case for viewing Candidate details by specific Id - FAIL
 	@Test
-	public void testViewCandidateByIdFail_CandidateNotFoundException(){
+	public void testViewCandidateByIdFail(){
 		
 		logger.info("[START] testViewCandidateByIdFail()");
 		RestTemplate restTemplate = new RestTemplate();
 		
-		assertThrows(CandidateNotFoundException.class,
+		assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 		()->{
-			candidateService.viewCandidateById(-2);
-		}	
-	);
+			 restTemplate.getForEntity("http://localhost:9090/cgits/candidate/-2", Candidate.class);
+		});
+		
+		logger.error("Data for candidateId : -2  does not exists, candidateId cannot be negative.");
 		logger.info("[END] testViewCandidateByIdFail()");
-}
+    }
 	
 	
-	//Test Case for viewing Candidate details by Name - Success
+	//Test Case for viewing Candidate details by Name - PASS
 	@Test
 	public void testViewCandidateByNamePass(){
 		
@@ -105,29 +175,30 @@ public class CandidateControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Candidate[]> responseEntity = restTemplate.getForEntity("http://localhost:9090/cgits/candidatenm/Shivani", Candidate[].class);
 		assertNotNull(responseEntity);
+		logger.info("Data fetched successfully for candidateName : Shivani");
 		logger.info("[END] testViewCandidateByNamePass");
 	
 	}
 	
  
-	//Test Case for viewing Candidate details by Name - Fail
+	//Test Case for viewing Candidate details by Name - FAIL
 	@Test
 	public void testViewCandidateByNameFail(){
 		
 		logger.info("[START] testViewCandidateByNameFail()");
 		RestTemplate restTemplate = new RestTemplate();
 		
-		assertThrows(CandidateNotFoundException.class,
+		assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 		()->{
-			candidateService.viewCandidateByName("Neha");
-		}	
-	);
+			restTemplate.getForEntity("http://localhost:9090/cgits/candidatenm/Neha", Candidate[].class);
+		});
 		
+		logger.error("Data for candidateName : Neha  does not exists.");
 		logger.info("[END] testViewCandidateByIdFail()");
 	}
 	
 	
-	//Test Case for viewing Candidate details by Location - Success
+	//Test Case for viewing Candidate details by Location - PASS
 	@Test
 	public void testViewCandidateByLocationPass(){
 			
@@ -135,29 +206,30 @@ public class CandidateControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Candidate[]> responseEntity = restTemplate.getForEntity("http://localhost:9090/cgits/candidateloc/Pune", Candidate[].class);
 		assertNotNull(responseEntity);
+		logger.info("Data fetched successfully for location : Pune");
 		logger.info("[END] testViewCandidateByLocationPass");
 		
 	}
 		
 	 
-	//Test Case for viewing Candidate details by Location - Fail
+	//Test Case for viewing Candidate details by Location - FAIL
 	@Test
 	public void testViewCandidateByLocationFail(){
 			
 		logger.info("[START] testViewCandidateByLocationFail()");
 		RestTemplate restTemplate = new RestTemplate();
 			
-		assertThrows(CandidateNotFoundException.class,
+		assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 		()->{
-				candidateService.viewCandidateByLocation("Ahemadnagar");
-			}	
-	);
-			
+			restTemplate.getForEntity("http://localhost:9090/cgits/candidateloc/Ahemadnagar", Candidate[].class);
+		});
+		
+		logger.error("Data for location : Ahemadnagar  does not exists.");	
 		logger.info("[END] testViewCandidateByLocationFail()");
 	}
 	
 	
-	//Test Case for viewing Candidate details by Qualification - Success
+	//Test Case for viewing Candidate details by Qualification - PASS
 	@Test
 	public void testViewCandidateByQualificationPass(){
 					
@@ -165,59 +237,63 @@ public class CandidateControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Candidate[]> responseEntity = restTemplate.getForEntity("http://localhost:9090/cgits/candidateqal/BE Information Technology", Candidate[].class);
 		assertNotNull(responseEntity);
+		logger.info("Data fetched successfully for Qualification : BE Information Technology");
 		logger.info("[END] testViewCandidateByQualificationPass");
 				
 	}
 				
 			 
-	//Test Case for viewing Candidate details by Qualification - Fail
+	//Test Case for viewing Candidate details by Qualification - FAIL
 	@Test
 	public void testViewCandidateByQualificationFail(){
 					
 		logger.info("[START] testViewCandidateByQualificationFail()");
 		RestTemplate restTemplate = new RestTemplate();
 					
-		assertThrows(CandidateNotFoundException.class,
+		assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 		()->{
-				candidateService.viewCandidateByQualification("BE Mechanical");
-			}	
-		);
+			 restTemplate.getForEntity("http://localhost:9090/cgits/candidateqal/BE Mechanical", Candidate[].class);
+		});
 					
+		logger.error("Data for Qualification : BE Mechanical  does not exists.");	
 		logger.info("[END] testViewCandidateByQualificationFail()");
 	}
 				
 		
-	//Test Case for viewing Candidate details by Designation - Success
+	//Test Case for viewing Candidate details by Designation - PASS
 	@Test
 	public void testViewCandidateByDesignationPass(){
 							
-		//logger.info("[START] testViewCandidateByQualificationPass");
+		logger.info("[START] testViewCandidateByDesignationPass");
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Candidate[]> responseEntity = restTemplate.getForEntity("http://localhost:9090/cgits/candidatedes/Senior Analyst", Candidate[].class);
 		assertNotNull(responseEntity);
-		//logger.info("[END] testViewCandidateByDesignationPass");
+		logger.info("Data fetched successfully for Designation : Senior Analyst");
+		logger.info("[END] testViewCandidateByDesignationPass");
 						
 	}
 						
 					 
-	//Test Case for viewing Candidate details by Designation - Fail
+	//Test Case for viewing Candidate details by Designation - FAIL
 	@Test
 	public void testViewCandidateByDesignationFail(){
 							
 		logger.info("[START] testViewCandidateByQualificationFail()");
 		RestTemplate restTemplate = new RestTemplate();
 							
-		assertThrows(CandidateNotFoundException.class,
+		assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
 		()->{
-				candidateService.viewCandidateByDesignation("Analyst A4");
-			}	
-		);
-							
+			 restTemplate.getForEntity("http://localhost:9090/cgits/candidatedes/Analyst A4", Candidate[].class);
+		});
+			
+		logger.error("Data for Designation : Analyst A4  does not exists.");	
 		logger.info("[END] testViewCandidateByDesignationFail()");
 	}
+	
+	
 		
 				
-	//Test Case for viewing Candidate details by PrimarySkills - Success
+	//Test Case for viewing Candidate details by PrimarySkills - PASS
 	@Test
 	public void testViewCandidateByPrimarySkillsPass(){
 							
@@ -225,117 +301,124 @@ public class CandidateControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Candidate[]> responseEntity = restTemplate.getForEntity("http://localhost:9090/cgits/candidateps/Java", Candidate[].class);
 		assertNotNull(responseEntity);
+		logger.info("Data fetched successfully for Primaryskill : Java");
 		logger.info("[END] testViewCandidateByPrimarySkillsPass");
 						
 	}
 						
 					 
-	//Test Case for viewing Candidate details by PrimarySkills - Fail
+	//Test Case for viewing Candidate details by PrimarySkills - FAIL
 	@Test
 	public void testViewCandidateByPrimarySkillsFail(){
 							
 		logger.info("[START] testViewCandidateByPrimarySkillsFail()");
 		RestTemplate restTemplate = new RestTemplate();
 							
-		assertThrows(CandidateNotFoundException.class,
-			()->{
-					candidateService.viewCandidateByPrimarySkills("Perl");
-				}	
-			);
-							
+		assertThrows(org.springframework.web.client.HttpClientErrorException.BadRequest.class,
+		()->{
+			 restTemplate.getForEntity("http://localhost:9090/cgits/candidateps/Perl", Candidate[].class);
+		});
+				
+		logger.error("Data for PrimarySkill : Perl  does not exists.");	
 		logger.info("[END] testViewCandidateByPrimarySkillsFail()");
 	}	
+				
 			
 
 	//TEST CASE TO VIEW A CANDIDATE FOR HR BY GIVING CORRECT PANEL ID - PASS
-			@Test
-			public void testCandidateById() {
-				logger.info("[START] testCandidateById()");
-				RestTemplate restTemplate = new RestTemplate();
-				Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/12345678", Candidate.class);
-				assertNotNull(candidate);
-				logger.info("[END] testCandidateById()");
-			}
+	@Test
+	public void testCandidateById() {
+		logger.info("[START] testCandidateById()");
+		RestTemplate restTemplate = new RestTemplate();
+		Candidate candidate=restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/12345678", Candidate.class);
+		assertNotNull(candidate);
+		logger.info("[END] testCandidateById()");
+	}
 				
-			//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE ID - PASS
-			@Test
-			public void testFindCandidateByIdHr() {
-				logger.info("[START] testFindCandidateByIdHr()");
-				RestTemplate restTemplate = new RestTemplate();
-				ResponseEntity<Candidate> responseEntity = restTemplate.getForEntity("http://localhost:9091/cgits/candidate/hr/12345678", Candidate.class);
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE ID - PASS
+	@Test
+	public void testFindCandidateByIdHr() {
+		logger.info("[START] testFindCandidateByIdHr()");
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Candidate> responseEntity = restTemplate.getForEntity("http://localhost:9091/cgits/candidate/hr/12345678", Candidate.class);
+	
+		assertNotNull(responseEntity);
+		logger.info("Data fetched successfully for 12345678");
+		logger.info("[END] testFindCandidateByIdHr()");
+	}			
 			
-				assertNotNull(responseEntity);
-				logger.info("[END] testFindCandidateByIdHr()");
-			}
-			
-			//TEST CASE TO VIEW A CANDIDATE FOR HR USING NEGATIVE CANDIDATE ID - FAIL
-			@Test
-			public void testViewCandidateByIdForHRFail_CandidateNotFoundException(){
-				    logger.info("[START] testViewCandidateByIdForHRFail()");		
-					RestTemplate restTemplate = new RestTemplate();
-					assertThrows(CandidateNotFoundException.class,
-					()->{
-							candidateService.viewCandidateForHR("-1111");
-					}	
-				);
-					logger.info("[END] testViewCandidateByIdForHRFail()");
-			}
-			
-			//TEST CASE TO VIEW A CANDIDATE FOR HR USING WRONG CANDIDATE ID SIZE - FAIL
-				@Test
-				public void testViewCandidateByIdForHRSize_CandidateNotFoundException(){
-					    logger.info("[START] testViewCandidateByIdForHRFail()");		
-						RestTemplate restTemplate = new RestTemplate();
-						assertThrows(CandidateNotFoundException.class,
-						()->{
-								candidateService.viewCandidateForHR("1111");
-						}	
-					);
-						logger.info("[END] testViewCandidateByIdForHRFail()");
-				}
-
-			//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - PASS
-			@Test
-			public void testFindCandidateByName() {
-				logger.info("[START] testFindCandidateByName()");
-				RestTemplate restTemplate = new RestTemplate();
-				ResponseEntity<Candidate> responseEntity = restTemplate.getForEntity("http://localhost:9091/cgits/candidate/hr/sean", Candidate.class);
-					
-				assertNotNull(responseEntity);
-				logger.info("[END] testFindCandidateByName()");
-			}
-
-			//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - FAIL
-			@Test
-			public void testViewCandidateByNameHRFail() {
-				logger.info("[START] testViewCandidateByNameHRFail()");
-				RestTemplate restTemplate = new RestTemplate();
-				try {
-					candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/tom", Candidate.class);
-				} catch (Exception e) {
-					candidateInvalid = null;
-					logger.error("testViewCandidateByNameHRFail()");
-				} finally {
-					assertNull(candidateInvalid, "Tom Was Not Found");
-				}
-				logger.info("[END] testViewCandidateByNameHRFail()");
-			}
-				
-				
-		//TEST CASE TO VIEW A CANDIDATE FOR HR USING <<BLANK>> PATH VARIABLE - FAIL
-		@Test
-		public void testViewCandidateByBlank() {
-			logger.info("[START] testViewCandidateByNameBlank()");
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING NEGATIVE CANDIDATE ID - FAIL
+	@Test
+	public void testViewCandidateByIdForHRFail_CandidateNotFoundException(){
+		    logger.info("[START] testViewCandidateByIdForHRFail()");		
 			RestTemplate restTemplate = new RestTemplate();
-			try {
-				candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/", Candidate.class);
-			}
-			catch(Exception e){
-				candidateInvalid = null;
-			}
-			finally{
-				assertNull(candidateInvalid, "<<BLANK>> Was Not Found");
-			}
-			logger.info("[END] testViewCandidateByBlank()");
+			assertThrows(CandidateNotFoundException.class,
+			()->{
+					candidateService.viewCandidateForHR("-1111");
+			}	
+		);
+			logger.info("Data for candidateid: -1111 does not exists.");
+			logger.info("[END] testViewCandidateByIdForHRFail()");
+	}			
+			
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING WRONG CANDIDATE ID SIZE - FAIL
+	@Test
+	public void testViewCandidateByIdForHRSize_CandidateNotFoundException(){
+		    logger.info("[START] testViewCandidateByIdForHRFail()");		
+			RestTemplate restTemplate = new RestTemplate();
+			assertThrows(CandidateNotFoundException.class,
+			()->{
+					candidateService.viewCandidateForHR("1111");
+			}	
+		);
+			logger.info("Data for candidateid: 1111 does not exists.");
+			logger.info("[END] testViewCandidateByIdForHRFail()");
+	}			
+
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - PASS
+	@Test
+	public void testFindCandidateByName() {
+		logger.info("[START] testFindCandidateByName()");
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Candidate> responseEntity = restTemplate.getForEntity("http://localhost:9091/cgits/candidate/hr/sean", Candidate.class);
+			
+		assertNotNull(responseEntity);
+		logger.info("Data fetched successfully for sean");
+		logger.info("[END] testFindCandidateByName()");
+	}			
+
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - FAIL
+	@Test
+	public void testViewCandidateByNameHRFail() {
+		logger.info("[START] testViewCandidateByNameHRFail()");
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/tom", Candidate.class);
+		} catch (Exception e) {
+			candidateInvalid = null;
+			logger.error("testViewCandidateByNameHRFail()");
+		} finally {
+			assertNull(candidateInvalid, "Tom Was Not Found");
 		}
+		logger.info("Please enter correct candidate name");
+		logger.info("[END] testViewCandidateByNameHRFail()");
+	}			
+				
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING <<BLANK>> PATH VARIABLE - FAIL
+	@Test
+	public void testViewCandidateByBlank() {
+		logger.info("[START] testViewCandidateByNameBlank()");
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/", Candidate.class);
+		}
+		catch(Exception e){
+			candidateInvalid = null;
+		}
+		finally{
+			assertNull(candidateInvalid, "<<BLANK>> Was Not Found");
+		}
+		logger.info("[END] testViewCandidateByBlank()");
+	}			
+			
 }

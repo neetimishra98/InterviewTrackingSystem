@@ -47,6 +47,7 @@ public class PanelMemberControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<PanelMember> responseEntity = restTemplate.getForEntity("http://localhost:9091/cgits/panelmember/hr/11000000", PanelMember.class);
 		assertNotNull(responseEntity);
+		logger.info("Surrendered successfully!");
 		logger.info("[END] testFindPanelMemberByIdPass()");
 	}
 	
@@ -60,21 +61,23 @@ public class PanelMemberControllerTest {
 				panelMemberService.surrenderAsHRPanel(-1111);
 			}	
 		);
+		logger.info("Please enter correct Panel Id");
 		logger.info("[END] testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException()");	
 	}
 	
 	//TEST CASE TO FIND PANEL MEMBER BY USING WRONG PANEL ID SIZE - FAIL
-		@Test
-		public void testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException(){
-			logger.info("[START] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()");				
-			RestTemplate restTemplate = new RestTemplate();						
-			assertThrows(PanelMemberNotFoundException.class,
-			()->{
-					panelMemberService.surrenderAsHRPanel(1111);
-				}	
-			);
-			logger.info("[END] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()");
-		}
+	@Test
+	public void testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException(){
+		logger.info("[START] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()");				
+		RestTemplate restTemplate = new RestTemplate();						
+		assertThrows(PanelMemberNotFoundException.class,
+		()->{
+				panelMemberService.surrenderAsHRPanel(1111);
+			}	
+		);
+		logger.info("Please enter correct Panel Id");
+		logger.info("[END] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()");
+	}	
 		
     //TEST CASE TO FIND PANEL MEMBER BY GIVING BLANK PANEL ID - FAIL
 	@Test
@@ -82,7 +85,7 @@ public class PanelMemberControllerTest {
 		logger.info("[START] testFindPanelMemberByBlank()");
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			panelMemberInvalid = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/", PanelMember.class);
+			panelMemberInvalid = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/hr/", PanelMember.class);
 			logger.error("testFindPanelMemberByBlank()");
 		}
 		catch(Exception e){
@@ -94,84 +97,17 @@ public class PanelMemberControllerTest {
 		logger.info("[END] testFindPanelMemberByBlank()");
 	}
 	
-	
-	
-	//ADD PANEL MEMBER TEST CASES
-	//PANEL MEMBER WITH VALID EMPLOYEE FOREIGN KEY
+	//TEST CASE TO CHECK IF PANEL MEMBER ALREADY SURRENDERED OR NOT - FAIL
 	@Test
-	public void testAddPanelMemberValid() {
-		logger.info("[START] testAddPanelMemberValid()");
+	public void testPanelMemberSurrendered() {
+		logger.info("[START] testPanelMemberSurrendered()");
 		RestTemplate restTemplate = new RestTemplate();
-		try {
-			PanelMember request = new PanelMember(10501505, "Pune", "HR", null);
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/Charles", request, PanelMember.class);
-		}
-		catch(Exception e){
-				panelMemberInvalid = null;
-				logger.error("testAddPanelMemberValid()");
-		}
-		finally{
-			assertEquals(panelMemberInvalid.getPanelid(), 10501505);
-		}
-		logger.info("[END] testAddPanelMemberValid()");
+		PanelMember panelMember = restTemplate.getForObject("http://localhost:9091/cgits/panelmember/hr/11000000", PanelMember.class);
+		assertEquals(panelMember.getType(), null);
+		logger.info("Panel Member is already surrendered!");
+		logger.info("[END] testPanelMemberSurrendered() - Already surrendered");
 
-	}
-	//PANEL MEMBER BLANK WITH VALID EMPLOYEE FOREIGN KEY
-	@Test
-	public void testAddPanelMemberBlank() {
-
-		logger.info("[START] testAddPanelMemberBlank()");
-		RestTemplate restTemplate = new RestTemplate();
-		try {
-			PanelMember request = new PanelMember();
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/Charles", request, PanelMember.class);
-		}
-		catch(Exception e){
-			panelMemberInvalid = null;
-			logger.error("testAddPanelMemberBlank()");
-		}
-		finally{
-			assertNull(panelMemberInvalid, "No panel member could be added/found");
-		}
-
-		logger.info("[END] testAddPanelMemberBlank()");
-	}
-	@Test
-	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
-	public void testAddPanelMemberBlankEmployee() {
-		logger.info("[START] testAddPanelMemberBlankEmployee()");
-		RestTemplate restTemplate = new RestTemplate();
-		try {
-			PanelMember request = new PanelMember();
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/", request, PanelMember.class);
-		}
-		catch(Exception e){
-			panelMemberInvalid = null;
-			logger.error("testAddPanelMemberBlankEmployee()");
-		}
-		finally{
-			assertNull(panelMemberInvalid, "No panel member could be added/found");
-		}
-		logger.info("[END] testAddPanelMemberBlankEmployee()");
-	}
-	@Test
-	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
-	public void testAddPanelMemberInvalidConstructor() {
-		logger.info("[START] testAddPanelMemberInvalidConstructor()");
-		RestTemplate restTemplate = new RestTemplate();
-		try {
-			PanelMember request = new PanelMember(150000000, "Pune", "HR", null);
-			panelMemberInvalid = restTemplate.postForObject("http://localhost:8080/cgits/panelmember/Charles", request, PanelMember.class);
-		}
-		catch(Exception e){
-			panelMemberInvalid = null;
-			logger.error("testAddPanelMemberInvalidConstructor()");
-		}
-		finally{
-			assertNull(panelMemberInvalid, "No panel member could be added/found");
-		}
-		logger.info("[END] testAddPanelMemberInvalidConstructor()");
-
+<<<<<<< HEAD
 	}
 	@Test
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
@@ -298,4 +234,7 @@ public class PanelMemberControllerTest {
 	
 	
 	
+=======
+	}	
+>>>>>>> 784ebc682aee8b10a2065ba9ac0c526ff3255214
 }
