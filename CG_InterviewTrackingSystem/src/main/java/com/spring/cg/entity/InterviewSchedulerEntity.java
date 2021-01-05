@@ -1,6 +1,8 @@
 package com.spring.cg.entity;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +36,7 @@ public class InterviewSchedulerEntity {
  private String location;
  
  @Column(name="date")
- private Date date;
+ private LocalDate date;
  
  @Column(name="start_time")
  private String start_time;
@@ -104,7 +106,7 @@ public class InterviewSchedulerEntity {
  }
 
  public InterviewSchedulerEntity(int interviewid, int techrating, String location, String finalstatus,
-		Date date, String start_time, String end_time, CandidateEntity candidate, PanelMemberEntity panelid) {
+		LocalDate date, String start_time, String end_time, CandidateEntity candidate, PanelMemberEntity panelid) {
 	super();
 	this.interviewid = interviewid;
 	this.techrating = techrating;
@@ -117,7 +119,7 @@ public class InterviewSchedulerEntity {
 	this.candidate = candidate;
 	this.panelid = panelid;
  }
-public InterviewSchedulerEntity(int techrating,String location, String finalstatus, Date date,
+public InterviewSchedulerEntity(int techrating,String location, String finalstatus, LocalDate date,
 		String start_time, String end_time, CandidateEntity candidate) {
 	super();
 	this.techrating = techrating;
@@ -130,7 +132,7 @@ public InterviewSchedulerEntity(int techrating,String location, String finalstat
 	this.candidate = candidate;
 }
 public InterviewSchedulerEntity(int interviewid, CandidateEntity candidate, PanelMemberEntity panelid,
-		String location, Date date, String start_time, String end_time, int techrating, String finalstatus) {
+		String location, LocalDate date, String start_time, String end_time, int techrating, String finalstatus) {
 	super();
 	this.interviewid = interviewid;
 	this.candidate = candidate;
@@ -145,7 +147,7 @@ public InterviewSchedulerEntity(int interviewid, CandidateEntity candidate, Pane
 }
 
 public InterviewSchedulerEntity(int interviewid, int techrating,String location, String finalstatus,
-		Date date, String start_time, String end_time, CandidateEntity candidate) {
+		LocalDate date, String start_time, String end_time, CandidateEntity candidate) {
 	super();
 	this.interviewid = interviewid;
 	this.techrating = techrating;
@@ -191,11 +193,11 @@ public void setPanel(PanelMemberEntity panel) {
   this.candidate = candidate;
  }
 
-public Date getDate() {
+public LocalDate getDate() {
 	return date;
 }
 
-public void setDate(Date date) {
+public void setDate(LocalDate date) {
 	this.date = date;
 }
 

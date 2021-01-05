@@ -1,5 +1,6 @@
 package com.spring.cg.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -33,7 +34,7 @@ public class HRInterviewSchedulerEntity {
 	private String location;
 
 	@Column(name = "date")
-	private Date date;
+	private LocalDate date;
 
 	@Column(name = "start_time")
 	private String start_time;
@@ -120,7 +121,7 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, int hrrating, String location, String finalstatus,
-			Date date, String start_time, String end_time, CandidateEntity candidateid, PanelMemberEntity panelid) {
+			LocalDate date, String start_time, String end_time, CandidateEntity candidateid, PanelMemberEntity panelid) {
 		super();
 		this.interviewid = interviewid;
 		
@@ -134,7 +135,7 @@ public class HRInterviewSchedulerEntity {
 		this.panelid = panelid;
 	}
 
-	public HRInterviewSchedulerEntity(int hrrating, String location, String finalstatus, Date date,
+	public HRInterviewSchedulerEntity(int hrrating, String location, String finalstatus, LocalDate date,
 			String start_time, String end_time, CandidateEntity candidateid) {
 		super();
 		
@@ -148,7 +149,7 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, CandidateEntity candidateid, PanelMemberEntity panelid,
-			String location, Date date, String start_time, String end_time, int techrating, int hrrating,
+			String location, LocalDate date, String start_time, String end_time, int techrating, int hrrating,
 			String finalstatus) {
 		super();
 		this.interviewid = interviewid;
@@ -164,7 +165,7 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, int hrrating, String location, String finalstatus,
-			Date date, String start_time, String end_time, CandidateEntity candidateid) {
+			LocalDate date, String start_time, String end_time, CandidateEntity candidateid) {
 		super();
 		this.interviewid = interviewid;
 		
@@ -178,7 +179,7 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, CandidateEntity candidateid, PanelMemberEntity panelid,
-			String location, Date date, String start_time, String end_time, int hrrating, String finalstatus) {
+			String location, LocalDate date, String start_time, String end_time, int hrrating, String finalstatus) {
 		super();
 		this.interviewid = interviewid;
 		this.candidateid = candidateid;
@@ -229,12 +230,12 @@ public class HRInterviewSchedulerEntity {
 		this.candidateid = candidate;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(LocalDate localDate) {
+		this.date = localDate;
 	}
 
 	public String getStart_time() {

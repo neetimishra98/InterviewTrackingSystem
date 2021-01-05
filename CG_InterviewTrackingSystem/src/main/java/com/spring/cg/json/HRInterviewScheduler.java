@@ -1,5 +1,6 @@
 package com.spring.cg.json;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.validation.constraints.Max;
@@ -31,7 +32,7 @@ public class HRInterviewScheduler {
 	@NotBlank
 	@ApiModelProperty(value = "Interview date", required = true, dataType = "org.joda.time.LocalDate")
 
-	private Date date;
+	private LocalDate date;
 
 	@NotNull
 	@NotBlank
@@ -62,7 +63,7 @@ public class HRInterviewScheduler {
 		this.interviewid = interviewid;
 	}
 
-	public HRInterviewScheduler(int interviewid, Candidate candidateid, PanelMember panelid, String location, Date date,
+	public HRInterviewScheduler(int interviewid, Candidate candidateid, PanelMember panelid, String location, LocalDate date,
 			String start_time, String end_time, int hrrating, String finalstatus) {
 		super();
 		this.interviewid = interviewid;
@@ -73,7 +74,6 @@ public class HRInterviewScheduler {
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.hrrating = hrrating;
-		this.finalstatus = finalstatus;
 	}
 
 	public HRInterviewScheduler( int hrrating, String location, String finalstatus) {
@@ -89,15 +89,6 @@ public class HRInterviewScheduler {
 		this.interviewid = interviewid;
 	
 		this.hrrating = hrrating;
-	}
-	public HRInterviewScheduler(int interviewid, int hrrating, String location, String finalstatus
-			) {
-		super();
-		this.interviewid = interviewid;
-		this.hrrating = hrrating;
-		this.location = location;
-		this.finalstatus = finalstatus;
-	
 	}
 
 
@@ -134,11 +125,11 @@ public class HRInterviewScheduler {
 		return finalstatus;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
