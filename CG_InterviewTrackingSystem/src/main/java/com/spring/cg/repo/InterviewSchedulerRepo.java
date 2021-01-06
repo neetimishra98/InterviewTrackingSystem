@@ -9,6 +9,7 @@ public interface InterviewSchedulerRepo extends JpaRepository<InterviewScheduler
 	
 	public InterviewSchedulerEntity findByInterviewid(int interviewid);
 
-	public Object findByCandidate(CandidateEntity candidateEntity);
+	public InterviewSchedulerEntity findByfinalstatus(String finalstatus);
+	public InterviewSchedulerEntity findByCandidate(CandidateEntity candidateEntity);
 
 }

@@ -17,6 +17,7 @@ import com.spring.cg.json.Qualification;
 import com.spring.cg.json.SecondarySkills;
 import com.spring.cg.repo.CandidateRepo;
 import com.spring.cg.repo.DesignationRepo;
+import com.spring.cg.repo.HRInterviewSchedulerRepo;
 import com.spring.cg.repo.InterviewSchedulerRepo;
 import com.spring.cg.repo.LocationRepo;
 import com.spring.cg.repo.PrimarySkillsRepo;
