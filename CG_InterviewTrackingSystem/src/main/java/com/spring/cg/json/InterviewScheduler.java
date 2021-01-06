@@ -227,6 +227,19 @@ public InterviewScheduler(Candidate candidate, PanelMember panelid,
 }
 
 
+public InterviewScheduler(int interviewid, int techrating,String location, String finalstatus,
+		LocalDate date, String start_time, String end_time) {
+	super();
+	this.interviewid = interviewid;
+	this.techrating = techrating;
+	
+	this.location = location;
+	this.finalstatus = finalstatus;
+	this.date = date;
+	this.start_time = start_time;
+	this.end_time = end_time;
+	
+}
 
 
 

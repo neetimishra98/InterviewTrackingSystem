@@ -25,17 +25,21 @@ public interface InterviewSchedulerService {
 	//public InterviewScheduler createNewTechInterviewSchedule(int candidateid, int panelid, InterviewScheduler interviewscheduler)
 			//throws CandidateNotFoundException;
 
-	//to view all interview members for tech
-	public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException;
 	
 	
-	//to view candidate information using interview id for tech
-	public CandidateEntity viewInterviewMembersForTech(int interviewid) throws InterviewSchedulerNotFoundException;
-	
-	//to view candidate information using interview id for hr
-	public CandidateEntity viewInterviewMembersForHr(int interviewid) throws InterviewSchedulerNotFoundException;
+		//to view candidate information using interview id for hr
+	//public CandidateEntity viewInterviewMembersForHr(int interviewid) throws InterviewSchedulerNotFoundException;
 
-	//to give tech rating to a candidate
-	public InterviewSchedulerEntity giveTechRating(int interviewid);
 	
+	
+	
+	//to view all interview members for tech
+		public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException;
+		
+		//to view candidate information using interview id for tech
+		public CandidateEntity viewInterviewMembersForTech(int interviewid) throws InterviewSchedulerNotFoundException;
+		
+		//to give tech rating to a candidate
+		public InterviewSchedulerEntity giveTechRating(int interviewid) throws InterviewSchedulerNotFoundException;
+
 }
