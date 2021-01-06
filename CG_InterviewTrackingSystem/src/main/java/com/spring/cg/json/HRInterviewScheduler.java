@@ -1,12 +1,14 @@
 package com.spring.cg.json;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.spring.cg.entity.CandidateEntity;
+import com.spring.cg.entity.PanelMemberEntity;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -18,10 +20,10 @@ public class HRInterviewScheduler {
 	private int interviewid;
 
 	@ApiModelProperty(value = "Interview Candidate")
-	private Candidate candidateid;
+	private CandidateEntity candidateid;
 
 	@ApiModelProperty(value = "Interview Panel")
-	private PanelMember panelid;
+	private PanelMemberEntity panelid;
 
 	@NotNull
 	@NotBlank
@@ -32,7 +34,7 @@ public class HRInterviewScheduler {
 	@NotBlank
 	@ApiModelProperty(value = "Interview date", required = true, dataType = "org.joda.time.LocalDate")
 
-	private LocalDate date;
+	private Date date;
 
 	@NotNull
 	@NotBlank
@@ -54,16 +56,13 @@ public class HRInterviewScheduler {
 	@ApiModelProperty(value = "Interview FinalStatus")
 	private String finalstatus;
 
-	public HRInterviewScheduler() {
-		super();
-	}
 
 	public HRInterviewScheduler(int interviewid) {
 		super();
 		this.interviewid = interviewid;
 	}
 
-	public HRInterviewScheduler(int interviewid, Candidate candidateid, PanelMember panelid, String location, LocalDate date,
+	public HRInterviewScheduler(int interviewid, CandidateEntity candidateid, PanelMemberEntity panelid, String location, Date date,
 			String start_time, String end_time, int hrrating, String finalstatus) {
 		super();
 		this.interviewid = interviewid;
@@ -74,9 +73,40 @@ public class HRInterviewScheduler {
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.hrrating = hrrating;
+		this.finalstatus = finalstatus;
 	}
-
-	public HRInterviewScheduler( int hrrating, String location, String finalstatus) {
+	
+	public HRInterviewScheduler(int interviewid, int hrrating,String location, String finalstatus,
+			Date date, String start_time, String end_time) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		
+		this.location = location;
+		this.finalstatus = finalstatus;
+		this.date = date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		
+	}
+	
+	public HRInterviewScheduler(int interviewid, int hrrating,String location, String finalstatus,
+			Date date, String start_time, String end_time,CandidateEntity candidateid, PanelMemberEntity panelid) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		
+		this.location = location;
+		this.finalstatus = finalstatus;
+		this.date = date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.candidateid=candidateid;
+		this.panelid = panelid;
+		
+		
+	}
+	 public HRInterviewScheduler( int hrrating, String location, String finalstatus) {
 		super();
 		
 		this.hrrating = hrrating;
@@ -90,11 +120,18 @@ public class HRInterviewScheduler {
 	
 		this.hrrating = hrrating;
 	}
-
-
+	public HRInterviewScheduler(int interviewid, int hrrating, String location, String finalstatus
+			) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		this.location = location;
+		this.finalstatus = finalstatus;
+	
+	}
 
 	public HRInterviewScheduler(int interviewid, int hrrating, String location, String finalstatus,
-			Candidate candidateid) {
+			CandidateEntity candidateid) {
 		super();
 		this.interviewid = interviewid;
 		this.hrrating = hrrating;
@@ -103,7 +140,7 @@ public class HRInterviewScheduler {
 		this.candidateid = candidateid;
 	}
 
-	public HRInterviewScheduler(Candidate candidateid) {
+	public HRInterviewScheduler(CandidateEntity candidateid) {
 		this.candidateid = candidateid;
 	}
 
@@ -125,11 +162,11 @@ public class HRInterviewScheduler {
 		return finalstatus;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -165,19 +202,19 @@ public class HRInterviewScheduler {
 		this.finalstatus = finalstatus;
 	}
 
-	public Candidate getCandidateid() {
+	public CandidateEntity getCandidateid() {
 		return candidateid;
 	}
 
-	public void setCandidateid(Candidate candidateid) {
+	public void setCandidateid(CandidateEntity candidateid) {
 		this.candidateid = candidateid;
 	}
 
-	public PanelMember getPanelid() {
+	public PanelMemberEntity getPanelid() {
 		return panelid;
 	}
 
-	public void setPanelid(PanelMember panelid) {
+	public void setPanelid(PanelMemberEntity panelid) {
 		this.panelid = panelid;
 	}
 

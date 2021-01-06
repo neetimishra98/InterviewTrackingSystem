@@ -4,14 +4,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.HRInterviewSchedulerEntity;
+import com.spring.cg.exception.InterviewSchedulerNotFoundException;
 
 
 public interface HRInterviewSchedulerRepo extends JpaRepository<HRInterviewSchedulerEntity, Integer>{
 
-	HRInterviewSchedulerEntity findByInterviewid(int interviewid);
 	
-	public HRInterviewSchedulerEntity findByfinalstatus(String finalstatus);
-	public HRInterviewSchedulerEntity findByCandidate(CandidateEntity candidateEntity);
+	public HRInterviewSchedulerEntity findByInterviewid(int interviewid) throws InterviewSchedulerNotFoundException;
 
+	public HRInterviewSchedulerEntity findByCandidate(CandidateEntity candidateEntity);
 
 }

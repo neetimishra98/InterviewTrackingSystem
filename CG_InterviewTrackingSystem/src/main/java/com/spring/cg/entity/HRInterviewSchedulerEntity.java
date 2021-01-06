@@ -1,6 +1,5 @@
 package com.spring.cg.entity;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -13,10 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.spring.cg.json.Candidate;
+import com.spring.cg.json.PanelMember;
+
 @Entity
 @Table(name = "hr")
 public class HRInterviewSchedulerEntity {
-
 	@Id
 	@GeneratedValue
 	@Column(name = "interviewid")
@@ -34,7 +35,7 @@ public class HRInterviewSchedulerEntity {
 	private String location;
 
 	@Column(name = "date")
-	private LocalDate date;
+	private Date date;
 
 	@Column(name = "start_time")
 	private String start_time;
@@ -85,13 +86,26 @@ public class HRInterviewSchedulerEntity {
 	public HRInterviewSchedulerEntity(int interviewid, int hrrating, String location, String finalstatus,
 			CandidateEntity candidateid, PanelMemberEntity panelid) {
 		super();
-		this.interviewid = interviewid;
-		
+		this.interviewid = interviewid;	
 		this.hrrating = hrrating;
 		this.location = location;
 		this.finalstatus = finalstatus;
 		this.candidateid = candidateid;
 		this.panelid = panelid;
+	}
+	
+	public HRInterviewSchedulerEntity(int interviewid, int hrrating,String location, String finalstatus,
+			Date date, String start_time, String end_time) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		
+		this.location = location;
+		this.finalstatus = finalstatus;
+		this.date = date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		
 	}
 
 	public CandidateEntity getCandidateid() {
@@ -121,10 +135,9 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, int hrrating, String location, String finalstatus,
-			LocalDate date, String start_time, String end_time, CandidateEntity candidateid, PanelMemberEntity panelid) {
+			Date date, String start_time, String end_time, CandidateEntity candidateid, PanelMemberEntity panelid) {
 		super();
 		this.interviewid = interviewid;
-		
 		this.hrrating = hrrating;
 		this.location = location;
 		this.finalstatus = finalstatus;
@@ -134,8 +147,11 @@ public class HRInterviewSchedulerEntity {
 		this.candidateid = candidateid;
 		this.panelid = panelid;
 	}
+	
+		
 
-	public HRInterviewSchedulerEntity(int hrrating, String location, String finalstatus, LocalDate date,
+
+	public HRInterviewSchedulerEntity(int hrrating, String location, String finalstatus, Date date,
 			String start_time, String end_time, CandidateEntity candidateid) {
 		super();
 		
@@ -149,7 +165,7 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, CandidateEntity candidateid, PanelMemberEntity panelid,
-			String location, LocalDate date, String start_time, String end_time, int techrating, int hrrating,
+			String location, Date date, String start_time, String end_time, int techrating, int hrrating,
 			String finalstatus) {
 		super();
 		this.interviewid = interviewid;
@@ -165,7 +181,7 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, int hrrating, String location, String finalstatus,
-			LocalDate date, String start_time, String end_time, CandidateEntity candidateid) {
+			Date date, String start_time, String end_time, CandidateEntity candidateid) {
 		super();
 		this.interviewid = interviewid;
 		
@@ -179,7 +195,7 @@ public class HRInterviewSchedulerEntity {
 	}
 
 	public HRInterviewSchedulerEntity(int interviewid, CandidateEntity candidateid, PanelMemberEntity panelid,
-			String location, LocalDate date, String start_time, String end_time, int hrrating, String finalstatus) {
+			String location, Date date, String start_time, String end_time, int hrrating, String finalstatus) {
 		super();
 		this.interviewid = interviewid;
 		this.candidateid = candidateid;
@@ -230,12 +246,12 @@ public class HRInterviewSchedulerEntity {
 		this.candidateid = candidate;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate localDate) {
-		this.date = localDate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getStart_time() {
