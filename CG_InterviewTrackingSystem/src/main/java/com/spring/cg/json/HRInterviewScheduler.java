@@ -62,12 +62,12 @@ public class HRInterviewScheduler {
 		this.interviewid = interviewid;
 	}
 
-	public HRInterviewScheduler(int interviewid, CandidateEntity candidateid, PanelMemberEntity panelid, String location, Date date,
+	public HRInterviewScheduler(int interviewid, CandidateEntity candidate, PanelMemberEntity panelMember, String location, Date date,
 			String start_time, String end_time, int hrrating, String finalstatus) {
 		super();
 		this.interviewid = interviewid;
-		this.candidateid = candidateid;
-		this.panelid = panelid;
+		this.candidateid = candidate;
+		this.panelid = panelMember;
 		this.location = location;
 		this.date = date;
 		this.start_time = start_time;
@@ -144,6 +144,11 @@ public class HRInterviewScheduler {
 		this.candidateid = candidateid;
 	}
 
+
+	public HRInterviewScheduler(int interviewid2, Candidate candidate, PanelMember panelMember, String location2,
+			Date date2, String start_time2, String end_time2, int hrrating2, String finalstatus2) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getInterviewid() {
 		return interviewid;

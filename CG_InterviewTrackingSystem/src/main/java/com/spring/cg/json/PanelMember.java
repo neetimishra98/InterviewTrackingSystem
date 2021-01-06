@@ -27,7 +27,8 @@ public class PanelMember {
 	@ApiModelProperty(value="Employee ID")
 	private EmployeeEntity employeeEntity;
 
-
+	@ApiModelProperty(value="Employee ID")
+	private Employee employee;
 	public PanelMember() {
 		super();
 	}
@@ -40,6 +41,13 @@ public class PanelMember {
 		this.employeeEntity = employeeEntity;
 	}
 
+
+	public PanelMember(int panelid, String location, String type, Employee employee) {
+		this.panelid = panelid;
+		this.location = location;
+		this.type = type;
+		this.employee = employee;
+	}
 
 	@Override
 	public String toString() {
