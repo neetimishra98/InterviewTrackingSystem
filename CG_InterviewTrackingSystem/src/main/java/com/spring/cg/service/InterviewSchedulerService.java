@@ -14,9 +14,9 @@ public interface InterviewSchedulerService {
 	//public List<InterviewScheduler> getAllInterviewSchedule();
 	
 
-	//public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException;
+	public InterviewScheduler updateInterviewSchedule(int interviewid, InterviewScheduler interviewscheduler)throws InterviewSchedulerNotFoundException;
 	
-	//public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException;
+	public InterviewScheduler deleteById(int interviewid)throws InterviewSchedulerNotFoundException;
 	
 	//schedule by rutuja
 	//public InterviewScheduler createNewInterviewSchedule(int candidateid, int panelid, InterviewScheduler interviewscheduler)

@@ -56,7 +56,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	public List<InterviewScheduler> getAllInterviewSchedule() {
 		
 		return InterviewSchedulerUtil.convertInterviewSchedulerEntityListIntoInterviewSchedulerList(interviewschedulerRepo.findAll());
-	}
+	}*/
      
 	 // update schedule interview
 		@Override
@@ -95,7 +95,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 			{
 				throw new InterviewSchedulerNotFoundException("No such candidate with InterviewID "+interviewid);
 			}
-		}*/
+		}
 		
 	
 	

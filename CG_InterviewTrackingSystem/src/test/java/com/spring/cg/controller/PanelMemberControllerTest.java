@@ -108,7 +108,7 @@ public class PanelMemberControllerTest {
 		logger.info("[END] testPanelMemberSurrendered() - Already surrendered");
 
 	}
-	@Test
+	/*@Test
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
 	public void testAddPanelMemberInvalidEmployee() {
 		logger.info("[START] testAddPanelMemberInvalidEmployee()");
@@ -229,7 +229,7 @@ public class PanelMemberControllerTest {
 			}
 			logger.info("[END] testGetAllPanelMembersFail()");
 			
-		}
+		}*/
 	
 	
 }
