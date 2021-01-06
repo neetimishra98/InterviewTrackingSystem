@@ -325,7 +325,7 @@ public class CandidateControllerTest {
 				
 			
 
-	//TEST CASE TO VIEW A CANDIDATE FOR HR BY GIVING CORRECT PANEL ID - PASS
+	//TEST CASE TO VIEW A CANDIDATE FOR HR BY GIVING CORRECT ID - PASS
 	@Test
 	public void testCandidateById() {
 		logger.info("[START] testCandidateById()");
