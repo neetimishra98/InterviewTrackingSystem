@@ -232,5 +232,105 @@ public class PanelMemberControllerTest {
 			logger.info("[END] testGetAllPanelMembersFail()");
 		}
 	
+		//Tech Panel Service to surrender
+		//TEST CASE TO SURRENDER TECH PANEL USING PANEL ID - PASS
+		@Test
+		public void testFindPanelByIdTech() {
+			logger.info("[START] testFindPanelByIdTech()");
+			RestTemplate restTemplate = new RestTemplate();
+			ResponseEntity<PanelMember> responseEntity = restTemplate.getForEntity("http://localhost:8080/cgits/panelmember/tech/search/44444444", PanelMember.class);
+		
+			assertNotNull(responseEntity);
+			logger.debug(responseEntity);
+			logger.info("PanelID 44444441 Found and surrendered successfully.");
+			logger.info(responseEntity);
+			logger.info("[END] testFindPanelByIdTech()");
+		}
+		
+			//TEST CASE TO VIEW A CANDIDATE FOR TECH USING <<BLANK>> PATH VARIABLE - FAIL
+			@Test
+			public void testTechSurrenderByBlank() {
+				logger.info("[START] testTechSurrenderByBlank()");
+				RestTemplate restTemplate = new RestTemplate();
+				try {
+					panelMemberInvalid = restTemplate.getForObject("http://localhost:8080/cgits/panelmember/tech/search/", PanelMember.class);
+				}
+				catch(Exception e){
+					panelMemberInvalid = null;
+				}
+				finally{
+					assertNull(panelMemberInvalid, "<<BLANK>> Was Not Found");
+				}
+				logger.info("PanelID was blank. Enter valid ID");
+				logger.info("[END] testTechSurrenderByBlank()");
+			}
+			
+			//TEST CASE TO CHECK IF PANEL MEMBER ALREADY SURRENDERED OR NOT - FAIL
+			@Test
+			public void testTechPanelMemberSurrendered() {
+				logger.info("[START] testPanelMemberSurrendered()");
+				RestTemplate restTemplate = new RestTemplate();
+				PanelMember panelMember = restTemplate.getForObject("http://localhost:8080/cgits/panelmember/tech/search/44444443", PanelMember.class);
+				assertEquals(panelMember.getType(), null);
+				logger.debug(panelMember);
+				logger.info("PanelID 44444443 already surrendered" + panelMember);
+				logger.info("[END] testPanelMemberSurrendered()");
+
+			}
+			
+						
+					//TEST CASE TO VIEW A CANDIDATE FOR TECH USING ZERO PATH VARIABLE - FAIL
+					@Test
+					public void testSurrenderByIdForTechZero() {
+						logger.info("[START] testSurrenderByIdForTechZero()");
+						RestTemplate restTemplate = new RestTemplate();
+						try {
+							panelMemberInvalid = restTemplate.getForObject("http://localhost:8080/cgits/panelmember/tech/search/00000000", PanelMember.class);
+						}
+						catch(Exception e){
+							panelMemberInvalid = null;
+						}
+						finally{
+							assertNull(panelMemberInvalid, "00000000 Was Not Found");
+						}
+						logger.info("PanelID 0000000 is Invalid. Enter valid ID");
+						logger.info("[END] testSurrenderByIdForTechZero()");
+					}
+					
+					//TEST CASE TO VIEW A CANDIDATE FOR TECH USING NEGATIVE PATH VARIABLE - FAIL
+					@Test
+					public void testSurrenderByIdForTechNegative() {
+						logger.info("[START] testSurrenderByIdForTechNegative()");
+						RestTemplate restTemplate = new RestTemplate();
+						try {
+							panelMemberInvalid = restTemplate.getForObject("http://localhost:8080/cgits/panelmember/tech/search/-12345678", PanelMember.class);
+						}
+						catch(Exception e){
+							panelMemberInvalid = null;
+						}
+						finally{
+							assertNull(panelMemberInvalid, "-12345678 Was Not Found");
+						}
+						logger.info("PanelID -12345678 is Invalid. Enter valid ID");
+						logger.info("[END] testSurrenderByIdForTechNegative()");
+					}
+					
+					//TEST CASE TO VIEW A CANDIDATE FOR TECH USING SIZE PATH VARIABLE - FAIL
+					@Test
+					public void testSurrenderByIdForTechSizeFail() {
+						logger.info("[START] testSurrenderByIdForTechSizeFail()");
+						RestTemplate restTemplate = new RestTemplate();
+						try {
+							panelMemberInvalid = restTemplate.getForObject("http://localhost:8080/cgits/panelmember/tech/search/-1234", PanelMember.class);
+						}
+						catch(Exception e){
+							panelMemberInvalid = null;
+						}
+						finally{
+							assertNull(panelMemberInvalid, "1234 Was Not Found");
+						}
+						logger.info("PanelID 1234 is Invalid. Enter valid ID");
+						logger.info("[END] testSurrenderByIdForTechSizeFail()");
+					}
 
 }
