@@ -39,7 +39,7 @@ class HRInterviewSchedulerControllerTest {
 		private HRInterviewSchedulerService hrinterviewschedulerservice;
 		private static Logger logger = LogManager.getLogger(HRInterviewSchedulerControllerTest.class);
 		
-		
+		/*
 		//TEST CASE TO VIEW LIST Of All INTERVIEW MEMBERS 
 		// VALID TESTCASE
 		@Test
@@ -63,7 +63,7 @@ class HRInterviewSchedulerControllerTest {
 					logger.info("[END] testviewInterviewMembersForHr()");
 					}
 				
-				/*		
+	
 				//Test Case for viewing InterviewMembers By details by specific Id - FAIL
 				@Test
 				public void  testgiveHrRatingForNegativeId() {
@@ -78,7 +78,7 @@ class HRInterviewSchedulerControllerTest {
 					
 					logger.error("Data for interviewId : -30001008  does not exists, interviewidId cannot be negative.");
 					logger.info("[END] testgiveHrRatingForNegativeId()");
-			    }*/
+			    }
 
 				
 				
@@ -183,6 +183,7 @@ class HRInterviewSchedulerControllerTest {
 				assertNotNull(candidateInvalid, "<<BLANK>> Was Not Found");
 			}
 		}
+		*/
 	}
 
 

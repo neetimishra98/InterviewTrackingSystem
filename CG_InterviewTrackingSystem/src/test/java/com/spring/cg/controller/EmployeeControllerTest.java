@@ -10,7 +10,7 @@ import com.spring.cg.json.Employee;
 
 class EmployeeControllerTest {
 	private static Logger logger = LogManager.getLogger(EmployeeControllerTest.class);
-
+/*
 	public Employee employeeInvalid;
 	@Test
 	public void testFindEmployeeById() {
@@ -78,5 +78,5 @@ class EmployeeControllerTest {
 			assertNull(employeeInvalid, "Charles Was Not Found");
 		}
 		logger.info("[END] testFindEmployeeByInvalidURL()");
-	}
+	}*/
 }

@@ -50,7 +50,7 @@ public class PanelMemberControllerTest {
 		logger.info("Surrendered successfully!");
 		logger.info("[END] testFindPanelMemberByIdPass()");
 	}
-	
+	/*
 	//TEST CASE TO FIND PANEL MEMBER BY USING NEGATIVE PANEL ID - FAIL
 	@Test
 	public void testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException(){
@@ -77,7 +77,7 @@ public class PanelMemberControllerTest {
 		);
 		logger.info("Please enter correct Panel Id");
 		logger.info("[END] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()");
-	}	
+	}	*/
 		
     //TEST CASE TO FIND PANEL MEMBER BY GIVING BLANK PANEL ID - FAIL
 	@Test
@@ -109,8 +109,8 @@ public class PanelMemberControllerTest {
 	}
 	
 	
-	/*@Test
->>>>>>> 4aedf3c058fae8417c68ee2dbd434f8c3be8bda1
+	/*
+	@Test
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
 	public void testAddPanelMemberInvalidEmployee() {
 		logger.info("[START] testAddPanelMemberInvalidEmployee()");
@@ -128,7 +128,7 @@ public class PanelMemberControllerTest {
 		}
 		logger.info("[END] testAddPanelMemberInvalidEmployee()");
 	}
-	*/
+	
 	//DELETE PANEL MEMBER TEST CASES
 		//TESTCASE_1
 		@Test
@@ -232,5 +232,5 @@ public class PanelMemberControllerTest {
 			logger.info("[END] testGetAllPanelMembersFail()");
 		}
 	
-
+	*/
 }
