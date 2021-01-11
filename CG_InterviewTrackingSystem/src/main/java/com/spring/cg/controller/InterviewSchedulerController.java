@@ -51,10 +51,10 @@ public class InterviewSchedulerController {
 	@Autowired
 	private CandidateService candidateService;
 	
-<<<<<<< HEAD
+
 	
-		@ApiOperation(value="Schedules new Interview")
-=======
+		//@ApiOperation(value="Schedules new Interview")
+
 
 	/*	@ApiOperation(value="Schedules new Interview")
 >>>>>>> 4aedf3c058fae8417c68ee2dbd434f8c3be8bda1
