@@ -4,8 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-
+import javax.validation.constraints.Pattern;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,6 +16,7 @@ public class Candidate {
 	
 	@NotNull
 	@NotBlank
+	@Pattern(regexp = "[a-zA-Z][a-zA-Z ]{3,}")
 	@ApiModelProperty(value="Candidate Name")
 	private String candidatename;
 	
