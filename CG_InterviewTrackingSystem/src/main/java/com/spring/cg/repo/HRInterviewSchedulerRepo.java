@@ -12,6 +12,6 @@ public interface HRInterviewSchedulerRepo extends JpaRepository<HRInterviewSched
 	
 	public HRInterviewSchedulerEntity findByInterviewid(int interviewid) throws InterviewSchedulerNotFoundException;
 
-	public HRInterviewSchedulerEntity findByCandidate(CandidateEntity candidateEntity);
+	//public HRInterviewSchedulerEntity findByCandidate(CandidateEntity candidateEntity);
 
 }
