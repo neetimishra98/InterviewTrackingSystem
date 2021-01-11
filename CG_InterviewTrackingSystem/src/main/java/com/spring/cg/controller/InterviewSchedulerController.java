@@ -22,6 +22,7 @@ import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
+import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.json.Candidate;
 import com.spring.cg.json.InterviewScheduler;
 import com.spring.cg.service.CandidateService;
@@ -150,6 +151,18 @@ public class InterviewSchedulerController {
 	public InterviewSchedulerEntity giveTechRating(@Valid @PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException{
 		return interviewSchedulerService.giveTechRating(interviewid);
 	}
-	
+	 //SHARE AND SCHEDULE FOR TECHNICAL INTERVIEW
+    @ApiOperation(value = "Schedules new Interview for tech")
+    @ApiResponses(value = { @ApiResponse(code = 201, message = "New Interview is Scheduled"),
+     @ApiResponse(code = 404, message = "No such Interview is Schedule") })
+ 
+    @PostMapping(value = "/interviewscheduler/{candidateid}/{panelid}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+ 
+     public InterviewScheduler createNewTechInterviewSchedule(@PathVariable int candidateid, @PathVariable int panelid,
+   @RequestBody InterviewScheduler interviewscheduler)
+   throws PanelMemberNotFoundException, CandidateNotFoundException 
+    {   
+   return interviewSchedulerService.createNewTechInterviewSchedule(candidateid, panelid, interviewscheduler);  
+     }
 	
 }

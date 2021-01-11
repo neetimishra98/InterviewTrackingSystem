@@ -34,44 +34,7 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 	@Autowired
 	private PanelMemberRepo panelMemberRepo;
 
-	@Override
-	public HRInterviewScheduler createNewHRInterviewSchedule(int candidateid, int panelid,
-			HRInterviewScheduler hrinterviewscheduler) throws PanelMemberNotFoundException {
-		Optional<CandidateEntity> candidateEntityOp = candidateRepo.findById(candidateid);
-
-		Optional<PanelMemberEntity> panelMemberEntityOp = Optional.of(panelMemberRepo.findById(panelid));
-		List<InterviewSchedulerEntity> interviewschedulerOp = interviewSchedulerRepo.findAll();
-
-		CandidateEntity candidateEntity = candidateEntityOp.get();
-
-		PanelMemberEntity panelMemberEntity = panelMemberEntityOp.get();
-
-		for (InterviewSchedulerEntity ise : interviewschedulerOp) {
-			// CandidateEntity id = ise.getCandidateid();
-		//1	System.out.println(candidateid ==ise.getCandidate().getCandidateid());
-			
-			if (candidateid ==ise.getCandidate().getCandidateid()) {
-			
-				InterviewSchedulerEntity ie = ise;
-      //2          System.out.println(ie);
-				if (panelMemberEntityOp.isPresent() && ie.getTechrating() > 0)
-					{
-						HRInterviewSchedulerEntity ise1 = HRInterviewSchedulerUtil
-								.convertHRInterviewSchedulerIntoHRInterviewSchedulerEntityForScheduleInterview(
-										hrinterviewscheduler, candidateEntity, panelMemberEntity);
-						System.out.println(ise);
-						HRInterviewSchedulerEntity hrinterviewschedulerEntity = hrinterviewSchedulerRepo.save(ise1);
-						return HRInterviewSchedulerUtil
-								.convertHRInterviewSchedulerEntityIntoHRInterviewSchedulerForScheduleInterview(
-										hrinterviewschedulerEntity);
-					}
-				else {
-					throw new PanelMemberNotFoundException("No such panel member with panelid " + panelid);
-				}
-		    } 
-		}
-		return null;
-	}
+	
 	//to update the schedule hr interview
 			@Override
 			public HRInterviewScheduler updateInterviewSchedule(int interviewid, HRInterviewScheduler hrinterviewscheduler)throws InterviewSchedulerNotFoundException {
@@ -155,6 +118,17 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 					}
 				}
 				
-				
+				//SHARE CANDIDATE AND SCHEDULE INTERVIEW WITH HR
+				  @Override
+				  public HRInterviewScheduler createNewHRInterviewSchedule(int candidateid, int panelid,
+				      HRInterviewScheduler hrinterviewscheduler) throws PanelMemberNotFoundException {
+				    Optional<CandidateEntity> candidateEntityOp = candidateRepo.findById(candidateid);
+
+				    Optional<PanelMemberEntity> panelMemberEntityOp = Optional.of(panelMemberRepo.findById(panelid));
+				    List<InterviewSchedulerEntity> interviewschedulerOp = interviewSchedulerRepo.findAll();
+
+				    CandidateEntity candidateEntity = candidateEntityOp.get();
+					return hrinterviewscheduler;
+}
 }
 	

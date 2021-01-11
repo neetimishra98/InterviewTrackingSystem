@@ -116,7 +116,16 @@ public class HRInterviewSchedulerController {
 			public HRInterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException{
 				return hrinterviewSchedulerService.giveHrRating(interviewid);
 			}
-			
-
+			/*
+			//SCHARE AND SCHEDULE FOR HR INTERVIEW 
+			  @ApiOperation(value = "Schedules new Interview for hr")
+			  @ApiResponses(value = { @ApiResponse(code = 201, message = "New Interview is Scheduled"),
+			      @ApiResponse(code = 404, message = "No such Interview is Schedule") })
+			  @PostMapping(value = "/hrinterviewscheduler/{candidateid}/{panelid}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+			  public HRInterviewScheduler createNewHRInterviewSchedule1(@PathVariable int candidateid, @PathVariable int panelid,
+			      @RequestBody HRInterviewScheduler hrinterviewscheduler)
+			      throws PanelMemberNotFoundException {
+			    return hrinterviewSchedulerService.createNewHRInterviewSchedule(candidateid, panelid, hrinterviewscheduler);
+			  }*/
 	  }
 	

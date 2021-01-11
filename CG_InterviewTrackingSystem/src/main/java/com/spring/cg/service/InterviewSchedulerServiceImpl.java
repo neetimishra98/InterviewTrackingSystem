@@ -32,6 +32,29 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 	
 	//for creating interviewscheduler
 	
+	// SHARE CANDIDATE SCHEDULE TECH INTERVIEW
+	  @Override
+	  public InterviewScheduler createNewTechInterviewSchedule(int candidateid, int panelid,
+	      InterviewScheduler interviewscheduler) throws CandidateNotFoundException {
+
+	    Optional<PanelMemberEntity> panelMemberEntityOp = Optional.ofNullable(panelMemberRepo.findById(panelid));
+	    Optional<CandidateEntity> candidateEntityOp = candidateRepo.findById(candidateid);
+	    
+	    if(candidateEntityOp.isPresent())
+	    {
+	      CandidateEntity candidateEntity = candidateEntityOp.get();
+	      PanelMemberEntity panelMemberEntity=panelMemberEntityOp.get();
+	      InterviewSchedulerEntity ise = 
+	          InterviewSchedulerUtil.convertTechInterviewSchedulerIntoTechInterviewSchedulerEntityForScheduleInterview(interviewscheduler, candidateEntity, panelMemberEntity);
+	      InterviewSchedulerEntity interviewschedulerEntity =interviewSchedulerRepo.save(ise);
+	    
+	      return InterviewSchedulerUtil.convertTechInterviewSchedulerEntityIntoTechInterviewSchedulerForScheduleInterview(interviewschedulerEntity);
+	    }
+	    else {
+	      throw new CandidateNotFoundException("No such candidate with candidateID "+candidateid);
+	    }
+	  }
+	  
 	/*@Override
 	public InterviewScheduler createNewTechInterviewSchedule(int candidateid, int panelid,
 			InterviewScheduler interviewscheduler) throws CandidateNotFoundException {
@@ -153,11 +176,7 @@ public class InterviewSchedulerServiceImpl implements InterviewSchedulerService 
 		else {
 			throw new InterviewSchedulerNotFoundException("interviewid :" +interviewid);
 		}
+		
+		
 	}
-
-
-	
-
-
-
 }

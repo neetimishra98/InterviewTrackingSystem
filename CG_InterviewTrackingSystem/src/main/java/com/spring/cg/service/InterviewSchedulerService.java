@@ -7,6 +7,7 @@ import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
+import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.json.InterviewScheduler;
 
 public interface InterviewSchedulerService {
@@ -31,7 +32,8 @@ public interface InterviewSchedulerService {
 	//public CandidateEntity viewInterviewMembersForHr(int interviewid) throws InterviewSchedulerNotFoundException;
 
 	
-	
+	public InterviewScheduler createNewTechInterviewSchedule(int candidateid, int panelid,
+		      InterviewScheduler interviewscheduler)throws PanelMemberNotFoundException, CandidateNotFoundException;
 	
 	//to view all interview members for tech
 		public List<InterviewScheduler> viewAllInterviewMembersForTech() throws InterviewSchedulerNotFoundException;
