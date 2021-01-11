@@ -47,7 +47,7 @@ public class InterviewSchedulerController {
 	@Autowired
 	private CandidateService candidateService;
 	
-
+	
 		@ApiOperation(value="Schedules new Interview")
 		@ApiResponses(value= {
 				@ApiResponse(code=201, message="New Interview is Scheduled"),
@@ -57,7 +57,6 @@ public class InterviewSchedulerController {
 		public InterviewScheduler createNewInterviewSchedule(@PathVariable int candidateid, @RequestBody InterviewScheduler interviewscheduler)throws CandidateNotFoundException {
 			return interviewSchedulerService.createNewInterviewSchedule(candidateid, interviewscheduler);
 		}	
-		
 		
 		
 		//Update Interview Schedule
