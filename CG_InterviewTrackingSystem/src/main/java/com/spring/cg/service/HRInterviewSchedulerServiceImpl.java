@@ -11,6 +11,7 @@ import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.HRInterviewSchedulerEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.entity.PanelMemberEntity;
+import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.json.HRInterviewScheduler;
@@ -24,7 +25,6 @@ import com.spring.cg.util.HRInterviewSchedulerUtil;
 public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerService {
 	@Autowired
 	InterviewSchedulerRepo interviewSchedulerRepo;
-
 	@Autowired
 	HRInterviewSchedulerRepo hrinterviewSchedulerRepo;
 
@@ -103,33 +103,41 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 		        for(HRInterviewSchedulerEntity memberEntit :hrinterviewSchedulerEntity) {
 		memberList.add(new HRInterviewScheduler(memberEntit.getInterviewid(),
 				memberEntit.getHrrating(),
-				memberEntit.getLocation(),memberEntit.getFinalstatus()));
+				memberEntit.getLocation(),memberEntit.getFinalstatus(),memberEntit.getDate(),memberEntit.getStart_time(),memberEntit.getEnd_time(),memberEntit.getCandidateid(),memberEntit.getPanelid()));
 		       }
 		    return memberList;
 		    }
-		
+	
+			
 			//For giving Hrrating
 				@Override
-				public HRInterviewSchedulerEntity giveHrRating(int interviewid) {
-					HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
-						if(hrinterviewSchedulerEntity.getHrrating()==0) {
-							double Hrrating=0;
+				public HRInterviewSchedulerEntity giveHrRating(int interviewid) throws InterviewSchedulerNotFoundException {
+	     Optional<HRInterviewSchedulerEntity> opinterviewEntity = hrinterviewSchedulerRepo.findById(interviewid);
+	            if( opinterviewEntity.isPresent()) {
+					double Hrrating=0;
 							int min=0;
 							int max=10;
 								 Hrrating=Math.random()*(max-min+1)+min;	
+			HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
+								 if(hrinterviewSchedulerEntity.getHrrating()==0) {
 							hrinterviewSchedulerEntity.setHrrating((int)Hrrating);
+							hrinterviewSchedulerEntity.setFinalstatus("hrcomplete");
 							}
 						return hrinterviewSchedulerRepo.save(hrinterviewSchedulerEntity); 
 					}
-				
+	            else {
+	            	throw new InterviewSchedulerNotFoundException("interviewid : " + interviewid);
+	            }
+				}
+			
 //To View Interview Members For Hr
 		@Override
 		public CandidateEntity viewInterviewMembersbyHr(int interviewid) {
-		HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
-		CandidateEntity candidateEntity = hrinterviewSchedulerEntity.getCandidate();
+		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
+		CandidateEntity candidateEntity = interviewSchedulerEntity.getCandidate();
 		return candidateEntity;			
 	
-}	
+}
 			
 			//to cancel the schedule interview
 				@Override

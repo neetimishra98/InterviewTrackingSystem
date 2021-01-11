@@ -12,10 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.spring.cg.json.Candidate;
+import com.spring.cg.json.PanelMember;
+
 @Entity
 @Table(name = "hr")
 public class HRInterviewSchedulerEntity {
-
 	@Id
 	@GeneratedValue
 	@Column(name = "interviewid")
@@ -84,13 +86,26 @@ public class HRInterviewSchedulerEntity {
 	public HRInterviewSchedulerEntity(int interviewid, int hrrating, String location, String finalstatus,
 			CandidateEntity candidateid, PanelMemberEntity panelid) {
 		super();
-		this.interviewid = interviewid;
-		
+		this.interviewid = interviewid;	
 		this.hrrating = hrrating;
 		this.location = location;
 		this.finalstatus = finalstatus;
 		this.candidateid = candidateid;
 		this.panelid = panelid;
+	}
+	
+	public HRInterviewSchedulerEntity(int interviewid, int hrrating,String location, String finalstatus,
+			Date date, String start_time, String end_time) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		
+		this.location = location;
+		this.finalstatus = finalstatus;
+		this.date = date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		
 	}
 
 	public CandidateEntity getCandidateid() {
@@ -123,7 +138,6 @@ public class HRInterviewSchedulerEntity {
 			Date date, String start_time, String end_time, CandidateEntity candidateid, PanelMemberEntity panelid) {
 		super();
 		this.interviewid = interviewid;
-		
 		this.hrrating = hrrating;
 		this.location = location;
 		this.finalstatus = finalstatus;
@@ -133,6 +147,9 @@ public class HRInterviewSchedulerEntity {
 		this.candidateid = candidateid;
 		this.panelid = panelid;
 	}
+	
+		
+
 
 	public HRInterviewSchedulerEntity(int hrrating, String location, String finalstatus, Date date,
 			String start_time, String end_time, CandidateEntity candidateid) {

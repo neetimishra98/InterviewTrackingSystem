@@ -3,10 +3,8 @@ package com.spring.cg.controller;
 import java.util.List;
 
 import javax.validation.Valid;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,10 +37,12 @@ import io.swagger.annotations.ApiResponses;
 @Api(value = "HRInterviewScheduler related REST APIs")
 public class HRInterviewSchedulerController {
 	
-	private static Logger logger = LogManager.getLogger(HRInterviewSchedulerController.class);
+	private static Logger logger = LoggerFactory.getLogger(HRInterviewSchedulerController.class);
 
 	@Autowired
 	private HRInterviewSchedulerService hrinterviewSchedulerService;
+	
+
 
 	
 	@ApiOperation(value = "Schedules new Interview for hr")
@@ -54,7 +54,6 @@ public class HRInterviewSchedulerController {
 			throws PanelMemberNotFoundException {
 		return hrinterviewSchedulerService.createNewHRInterviewSchedule(candidateid, panelid, hrinterviewscheduler);
 	}
-	
 
 	//Update Interview Schedule
 		@ApiOperation(value="Updates Interview Schedule details")
@@ -101,7 +100,7 @@ public class HRInterviewSchedulerController {
 	            @ApiResponse(code=201, message="Interview members have been found"),
 	            @ApiResponse(code=404, message = "No interview members found")
 	    })
-	    @GetMapping(value="/interviewmembers/list", produces= MediaType.APPLICATION_JSON_VALUE)
+	    @GetMapping(value="/interviewmembers", produces= MediaType.APPLICATION_JSON_VALUE)
 	    public List<HRInterviewScheduler> getAllInterviewMembers() {
 	        return hrinterviewSchedulerService.getAllInterviewMembershr();
 	    }
@@ -113,20 +112,11 @@ public class HRInterviewSchedulerController {
 					@ApiResponse(code=200, message="HrRating given successfully"),
 					@ApiResponse(code=404, message = "No such candidate found with given interviewid")
 			})
-			@GetMapping(value="/interviewscheduler/hr/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
-			public HRInterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewNotFoundException{
+			@GetMapping(value="/interviewscheduler/{interviewid}", produces=MediaType.APPLICATION_JSON_VALUE)
+			public HRInterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException{
 				return hrinterviewSchedulerService.giveHrRating(interviewid);
 			}
 			
-			//to view interview members for Hr using interviewid
-			@ApiOperation(value="Returns all InterviewMembers")
-			@ApiResponses(value= {
-					@ApiResponse(code=201, message="New candidate created"),
-					@ApiResponse(code=404, message = "No such candidate found")
-			})
-			@GetMapping(value = "/interviewscheduler/hr/viewinterviewmembersforhr/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
-			public CandidateEntity viewInterviewMembersForHr(@PathVariable("interviewid")int interviewid)throws InterviewNotFoundException {
-				return hrinterviewSchedulerService.viewInterviewMembersbyHr(interviewid);
-			}		
+
 	  }
 	

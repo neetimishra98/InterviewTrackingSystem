@@ -3,6 +3,8 @@ package com.spring.cg.json;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -32,7 +34,7 @@ public class InterviewScheduler {
  @NotNull
  @NotBlank
  @ApiModelProperty(value="Interview date")
- private Date date;
+ private LocalDate date;
 
  @NotNull
  @NotBlank
@@ -54,24 +56,7 @@ public class InterviewScheduler {
  @ApiModelProperty(value="Interview FinalStatus")
  private String finalstatus;
  
- 
- 
- public InterviewScheduler(int interviewid, Candidate candidate, PanelMember panelid,
-		 String location, Date date,String start_time,
-		 String end_time,int hrrating,
-		 String finalstatus,int techrating) {
-	super();
-	this.interviewid = interviewid;
-	this.candidate = candidate;
-	this.panelid = panelid;
-	this.location = location;
-	this.date = date;
-	this.start_time = start_time;
-	this.end_time = end_time;
-	this.techrating = techrating;
-	
-	this.finalstatus = finalstatus;
-}
+
 
 public InterviewScheduler() {
   super();
@@ -135,11 +120,11 @@ public int getInterviewid() {
   return finalstatus;
  } 
 
- public Date getDate() {
+ public LocalDate getDate() {
 	return date;
 }
 
-public void setDate(Date date) {
+public void setDate(LocalDate date) {
 	this.date = date;
 }
 
@@ -200,7 +185,7 @@ public String toString() {
 }
 
 public InterviewScheduler(int interviewid, Candidate candidate, PanelMember panelid,
-		String location,Date date,String start_time,
+		String location,LocalDate date,String start_time,
 		 String end_time, int techrating,String finalstatus) {
 	super();
 	this.interviewid = interviewid;
@@ -213,4 +198,61 @@ public InterviewScheduler(int interviewid, Candidate candidate, PanelMember pane
 	this.techrating = techrating;
 	this.finalstatus = finalstatus;
 }
+
+public InterviewScheduler(Candidate candidate, PanelMember panelid,
+		LocalDate date, String location,String start_time,
+		 String end_time, int techrating,String finalstatus) {
+	super();
+	this.candidate = candidate;
+	this.panelid = panelid;
+	this.location = location;
+	this.date = date;
+	this.start_time = start_time;
+	this.end_time = end_time;
+	this.techrating = techrating;
+	this.finalstatus = finalstatus;
+}
+
+public InterviewScheduler(Candidate candidate, PanelMember panelid,
+		String location,String start_time,
+		 String end_time, int techrating,String finalstatus) {
+	super();
+	this.candidate = candidate;
+	this.panelid = panelid;
+	this.location = location;
+	this.start_time = start_time;
+	this.end_time = end_time;
+	this.techrating = techrating;
+	this.finalstatus = finalstatus;
+}
+
+
+public InterviewScheduler(int interviewid, int techrating,String location, String finalstatus,
+		LocalDate date, String start_time, String end_time) {
+	super();
+	this.interviewid = interviewid;
+	this.techrating = techrating;
+	
+	this.location = location;
+	this.finalstatus = finalstatus;
+	this.date = date;
+	this.start_time = start_time;
+	this.end_time = end_time;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

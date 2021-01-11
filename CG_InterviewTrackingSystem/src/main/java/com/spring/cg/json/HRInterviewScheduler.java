@@ -7,6 +7,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.spring.cg.entity.CandidateEntity;
+import com.spring.cg.entity.PanelMemberEntity;
+
 import io.swagger.annotations.ApiModelProperty;
 
 public class HRInterviewScheduler {
@@ -17,10 +20,10 @@ public class HRInterviewScheduler {
 	private int interviewid;
 
 	@ApiModelProperty(value = "Interview Candidate")
-	private Candidate candidateid;
+	private CandidateEntity candidateid;
 
 	@ApiModelProperty(value = "Interview Panel")
-	private PanelMember panelid;
+	private PanelMemberEntity panelid;
 
 	@NotNull
 	@NotBlank
@@ -53,21 +56,18 @@ public class HRInterviewScheduler {
 	@ApiModelProperty(value = "Interview FinalStatus")
 	private String finalstatus;
 
-	public HRInterviewScheduler() {
-		super();
-	}
 
 	public HRInterviewScheduler(int interviewid) {
 		super();
 		this.interviewid = interviewid;
 	}
 
-	public HRInterviewScheduler(int interviewid, Candidate candidateid, PanelMember panelid, String location, Date date,
+	public HRInterviewScheduler(int interviewid, CandidateEntity candidate, PanelMemberEntity panelMember, String location, Date date,
 			String start_time, String end_time, int hrrating, String finalstatus) {
 		super();
 		this.interviewid = interviewid;
-		this.candidateid = candidateid;
-		this.panelid = panelid;
+		this.candidateid = candidate;
+		this.panelid = panelMember;
 		this.location = location;
 		this.date = date;
 		this.start_time = start_time;
@@ -75,8 +75,38 @@ public class HRInterviewScheduler {
 		this.hrrating = hrrating;
 		this.finalstatus = finalstatus;
 	}
-
-	public HRInterviewScheduler( int hrrating, String location, String finalstatus) {
+	
+	public HRInterviewScheduler(int interviewid, int hrrating,String location, String finalstatus,
+			Date date, String start_time, String end_time) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		
+		this.location = location;
+		this.finalstatus = finalstatus;
+		this.date = date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		
+	}
+	
+	public HRInterviewScheduler(int interviewid, int hrrating,String location, String finalstatus,
+			Date date, String start_time, String end_time,CandidateEntity candidateid, PanelMemberEntity panelid) {
+		super();
+		this.interviewid = interviewid;
+		this.hrrating = hrrating;
+		
+		this.location = location;
+		this.finalstatus = finalstatus;
+		this.date = date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.candidateid=candidateid;
+		this.panelid = panelid;
+		
+		
+	}
+	 public HRInterviewScheduler( int hrrating, String location, String finalstatus) {
 		super();
 		
 		this.hrrating = hrrating;
@@ -100,10 +130,8 @@ public class HRInterviewScheduler {
 	
 	}
 
-
-
 	public HRInterviewScheduler(int interviewid, int hrrating, String location, String finalstatus,
-			Candidate candidateid) {
+			CandidateEntity candidateid) {
 		super();
 		this.interviewid = interviewid;
 		this.hrrating = hrrating;
@@ -112,10 +140,15 @@ public class HRInterviewScheduler {
 		this.candidateid = candidateid;
 	}
 
-	public HRInterviewScheduler(Candidate candidateid) {
+	public HRInterviewScheduler(CandidateEntity candidateid) {
 		this.candidateid = candidateid;
 	}
 
+
+	public HRInterviewScheduler(int interviewid2, Candidate candidate, PanelMember panelMember, String location2,
+			Date date2, String start_time2, String end_time2, int hrrating2, String finalstatus2) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getInterviewid() {
 		return interviewid;
@@ -174,19 +207,19 @@ public class HRInterviewScheduler {
 		this.finalstatus = finalstatus;
 	}
 
-	public Candidate getCandidateid() {
+	public CandidateEntity getCandidateid() {
 		return candidateid;
 	}
 
-	public void setCandidateid(Candidate candidateid) {
+	public void setCandidateid(CandidateEntity candidateid) {
 		this.candidateid = candidateid;
 	}
 
-	public PanelMember getPanelid() {
+	public PanelMemberEntity getPanelid() {
 		return panelid;
 	}
 
-	public void setPanelid(PanelMember panelid) {
+	public void setPanelid(PanelMemberEntity panelid) {
 		this.panelid = panelid;
 	}
 
