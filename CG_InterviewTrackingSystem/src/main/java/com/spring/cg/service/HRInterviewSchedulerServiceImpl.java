@@ -11,7 +11,6 @@ import com.spring.cg.entity.CandidateEntity;
 import com.spring.cg.entity.HRInterviewSchedulerEntity;
 import com.spring.cg.entity.InterviewSchedulerEntity;
 import com.spring.cg.entity.PanelMemberEntity;
-import com.spring.cg.exception.CandidateNotFoundException;
 import com.spring.cg.exception.InterviewSchedulerNotFoundException;
 import com.spring.cg.exception.PanelMemberNotFoundException;
 import com.spring.cg.json.HRInterviewScheduler;
@@ -34,7 +33,20 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 	@Autowired
 	private PanelMemberRepo panelMemberRepo;
 
-	
+	//SHARE CANDIDATE AND SCHEDULE INTERVIEW WITH HR
+	  @Override
+	  public HRInterviewScheduler createNewHRInterviewSchedule(int candidateid, int panelid,
+	      HRInterviewScheduler hrinterviewscheduler) throws PanelMemberNotFoundException {
+	    Optional<CandidateEntity> candidateEntityOp = candidateRepo.findById(candidateid);
+
+	    Optional<PanelMemberEntity> panelMemberEntityOp = Optional.of(panelMemberRepo.findById(panelid));
+	    List<InterviewSchedulerEntity> interviewschedulerOp = interviewSchedulerRepo.findAll();
+
+	    CandidateEntity candidateEntity = candidateEntityOp.get();
+		return hrinterviewscheduler;
+}
+
+
 	//to update the schedule hr interview
 			@Override
 			public HRInterviewScheduler updateInterviewSchedule(int interviewid, HRInterviewScheduler hrinterviewscheduler)throws InterviewSchedulerNotFoundException {
@@ -118,17 +130,5 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 					}
 				}
 				
-				//SHARE CANDIDATE AND SCHEDULE INTERVIEW WITH HR
-				  @Override
-				  public HRInterviewScheduler createNewHRInterviewSchedule(int candidateid, int panelid,
-				      HRInterviewScheduler hrinterviewscheduler) throws PanelMemberNotFoundException {
-				    Optional<CandidateEntity> candidateEntityOp = candidateRepo.findById(candidateid);
-
-				    Optional<PanelMemberEntity> panelMemberEntityOp = Optional.of(panelMemberRepo.findById(panelid));
-				    List<InterviewSchedulerEntity> interviewschedulerOp = interviewSchedulerRepo.findAll();
-
-				    CandidateEntity candidateEntity = candidateEntityOp.get();
-					return hrinterviewscheduler;
-}
 }
 	

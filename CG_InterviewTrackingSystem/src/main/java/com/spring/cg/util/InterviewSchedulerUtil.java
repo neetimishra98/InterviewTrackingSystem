@@ -45,7 +45,7 @@ public class InterviewSchedulerUtil {
 		return null;
 	}
 
-
+	
 	public static InterviewScheduler convertTechInterviewSchedulerEntityIntoTechInterviewSchedulerForScheduleInterview(
 			InterviewSchedulerEntity interviewschedulerEntity) {
 
@@ -69,6 +69,7 @@ public class InterviewSchedulerUtil {
 			interviewschedulerEntity.getTechrating(),
 				interviewschedulerEntity.getFinalstatus());
 	}
+	
 	//FOR SHARE AND SCHEDULING INTERVIEW
 	public static InterviewSchedulerEntity convertTechInterviewSchedulerIntoTechInterviewSchedulerEntityForScheduleInterview(
 			InterviewScheduler interviewscheduler, CandidateEntity candidateid, PanelMemberEntity panelid) {

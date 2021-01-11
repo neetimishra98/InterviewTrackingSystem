@@ -53,7 +53,12 @@ public class InterviewSchedulerController {
 	private CandidateService candidateService;
 	
 
+	
+		//@ApiOperation(value="Schedules new Interview")
+
+
 	/*	@ApiOperation(value="Schedules new Interview")
+>>>>>>> 4aedf3c058fae8417c68ee2dbd434f8c3be8bda1
 		@ApiResponses(value= {
 				@ApiResponse(code=201, message="New Interview is Scheduled"),
 				@ApiResponse(code=404, message="No such Interview is Schedule")
@@ -62,7 +67,12 @@ public class InterviewSchedulerController {
 		public InterviewScheduler createNewInterviewSchedule(@PathVariable int candidateid, @RequestBody InterviewScheduler interviewscheduler)throws CandidateNotFoundException {
 			return interviewSchedulerService.createNewInterviewSchedule(candidateid, interviewscheduler);
 		}	
+<<<<<<< HEAD
+		
+		
+=======
 	
+>>>>>>> 4aedf3c058fae8417c68ee2dbd434f8c3be8bda1
 		//Update Interview Schedule
 				@ApiOperation(value="Updates Interview Schedule details")
 				@ApiResponses(value= {

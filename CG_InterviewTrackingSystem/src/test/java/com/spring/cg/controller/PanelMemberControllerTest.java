@@ -106,9 +106,11 @@ public class PanelMemberControllerTest {
 		assertEquals(panelMember.getType(), null);
 		logger.info("Panel Member is already surrendered!");
 		logger.info("[END] testPanelMemberSurrendered() - Already surrendered");
-
 	}
+	
+	
 	/*@Test
+>>>>>>> 4aedf3c058fae8417c68ee2dbd434f8c3be8bda1
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
 	public void testAddPanelMemberInvalidEmployee() {
 		logger.info("[START] testAddPanelMemberInvalidEmployee()");
@@ -126,7 +128,7 @@ public class PanelMemberControllerTest {
 		}
 		logger.info("[END] testAddPanelMemberInvalidEmployee()");
 	}
-	
+	*/
 	//DELETE PANEL MEMBER TEST CASES
 		//TESTCASE_1
 		@Test
@@ -228,8 +230,7 @@ public class PanelMemberControllerTest {
 				assertNotNull(panelMemberInvalid, "PanelMembers Not Found");
 			}
 			logger.info("[END] testGetAllPanelMembersFail()");
-			
-		}*/
+		}
 	
-	
+
 }

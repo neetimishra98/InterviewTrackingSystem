@@ -10,6 +10,7 @@ import com.spring.cg.json.HRInterviewScheduler;
 import com.spring.cg.json.PanelMember;
 
 public class HRInterviewSchedulerUtil {
+	
 	//FOR SHARE AND SCHEDULING INTERVIEW
 		public static HRInterviewScheduler convertHRInterviewSchedulerEntityIntoHRInterviewSchedulerForScheduleInterview(
 				HRInterviewSchedulerEntity hrinterviewschedulerEntity) {
@@ -33,7 +34,9 @@ public class HRInterviewSchedulerUtil {
 					hrinterviewschedulerEntity.getStart_time(), hrinterviewschedulerEntity.getEnd_time(),
 				hrinterviewschedulerEntity.getHrrating(),
 					hrinterviewschedulerEntity.getFinalstatus());
+					
 		}
+		
 		//FOR SHARE AND SCHEDULING INTERVIEW
 		public static HRInterviewSchedulerEntity convertHRInterviewSchedulerIntoHRInterviewSchedulerEntityForScheduleInterview(
 				HRInterviewScheduler hrinterviewscheduler, CandidateEntity candidateid, PanelMemberEntity panelid) {
