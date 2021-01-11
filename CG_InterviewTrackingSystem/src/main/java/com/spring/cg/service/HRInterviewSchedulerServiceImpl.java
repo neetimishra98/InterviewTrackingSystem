@@ -104,14 +104,26 @@ public class HRInterviewSchedulerServiceImpl implements HRInterviewSchedulerServ
 	            }
 				}
 			
-//To View Interview Members For Hr
-		@Override
-		public CandidateEntity viewInterviewMembersbyHr(int interviewid) {
-		InterviewSchedulerEntity interviewSchedulerEntity = interviewSchedulerRepo.findByInterviewid(interviewid);
-		CandidateEntity candidateEntity = interviewSchedulerEntity.getCandidate();
-		return candidateEntity;			
-	
-}
+				
+				//to view candidate information using INTERVIEW ID for HR
+				@Override
+		public CandidateEntity viewInterviewMembersbyHr(int interviewid) throws InterviewSchedulerNotFoundException {
+		Optional<HRInterviewSchedulerEntity> oppInterviewEntity=hrinterviewSchedulerRepo.findById(interviewid);
+			if(oppInterviewEntity.isPresent()) {
+				HRInterviewSchedulerEntity hrinterviewSchedulerEntity = hrinterviewSchedulerRepo.findByInterviewid(interviewid);
+					CandidateEntity candidateEntity=hrinterviewSchedulerEntity.getCandidate();
+					return candidateEntity;
+					
+					}else {
+						throw new InterviewSchedulerNotFoundException("interviewid :" +interviewid);
+					}
+					
+				}	
+				
+				
+				
+				
+
 			
 			//to cancel the schedule interview
 				@Override

@@ -17,7 +17,7 @@ public interface HRInterviewSchedulerService {
 	
 	public List<HRInterviewScheduler> getAllInterviewMembershr();
 	public HRInterviewSchedulerEntity giveHrRating(int interviewid)  throws InterviewSchedulerNotFoundException;
-	public CandidateEntity viewInterviewMembersbyHr(int interviewid)   throws InterviewNotFoundException;
+	public CandidateEntity viewInterviewMembersbyHr(int interviewid)   throws InterviewSchedulerNotFoundException;
 
 
 	public HRInterviewScheduler deleteById(int interviewid) throws InterviewSchedulerNotFoundException;
