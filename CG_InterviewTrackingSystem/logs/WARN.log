@@ -72,3 +72,5 @@ org.postgresql.util.PSQLException: FATAL: password authentication failed for use
 2021-01-11 13:35:07 WARN  Request method 'GET' not supported
 2021-01-11 13:35:08 WARN  Request method 'GET' not supported
 2021-01-11 13:39:43 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-11 13:48:12 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-11 13:49:01 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning

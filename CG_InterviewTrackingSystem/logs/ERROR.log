@@ -140,3 +140,8 @@ Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo can
 2021-01-11 13:40:05 ERROR <<Blank>> - No Input Given.
 2021-01-11 13:40:05 ERROR EmployeeName can not have numeric values.Please Enter Characters.
 2021-01-11 13:40:05 ERROR EmployeeName can not have Special Characters.
+2021-01-11 13:49:11 ERROR Panel Members Not Found. Please Add Panel Members.
+2021-01-11 13:49:19 ERROR No Employee Found as Neh.
+2021-01-11 13:49:19 ERROR <<Blank>> - No Input Given.
+2021-01-11 13:49:19 ERROR EmployeeName can not have numeric values.Please Enter Characters.
+2021-01-11 13:49:19 ERROR EmployeeName can not have Special Characters.
