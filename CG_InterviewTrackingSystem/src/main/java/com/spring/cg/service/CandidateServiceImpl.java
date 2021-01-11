@@ -53,9 +53,6 @@ public class CandidateServiceImpl implements CandidateService{
 	InterviewSchedulerRepo interviewSchedulerRepo;
 	
 	@Autowired
-	HRInterviewSchedulerRepo hrInterviewSchedulerRepo;
-	
-	@Autowired
 	private LocationRepo locationRepo;
 	
 	@Autowired
@@ -261,7 +258,7 @@ public class CandidateServiceImpl implements CandidateService{
 					Map<Candidate, String> candidates = new HashMap<Candidate, String>();
 					if(candidateEntity!=null) {
 						candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-								candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), hrInterviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+								candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
 						return candidates;
 					}
 					else{
@@ -271,7 +268,7 @@ public class CandidateServiceImpl implements CandidateService{
 							throw new CandidateNotFoundException("Invalid Candidate Id");
 						}
 						candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
-								candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), hrInterviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
+								candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
 						return candidates;
 					}
 				}
