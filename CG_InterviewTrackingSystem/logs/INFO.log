@@ -1,0 +1,235 @@
+2021-01-11 13:18:18 INFO  HV000001: Hibernate Validator 6.1.6.Final
+2021-01-11 13:18:18 INFO  Starting CgInterviewTrackingSystemApplication using Java 15 on SNMishra with PID 20076 (C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem\target\classes started by ShriHari in C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem)
+2021-01-11 13:18:18 INFO  No active profile set, falling back to default profiles: default
+2021-01-11 13:18:25 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-11 13:18:26 INFO  Finished Spring Data repository scanning in 783 ms. Found 10 JPA repository interfaces.
+2021-01-11 13:18:28 INFO  Tomcat initialized with port(s): 8080 (http)
+2021-01-11 13:18:28 INFO  Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-11 13:18:28 INFO  Starting service [Tomcat]
+2021-01-11 13:18:28 INFO  Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-11 13:18:30 INFO  Initializing Spring embedded WebApplicationContext
+2021-01-11 13:18:30 INFO  Root WebApplicationContext: initialization completed in 10968 ms
+2021-01-11 13:18:31 INFO  HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-01-11 13:18:32 INFO  HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-01-11 13:18:32 INFO  HikariPool-1 - Starting...
+2021-01-11 13:18:34 INFO  Stopping service [Tomcat]
+2021-01-11 13:21:39 INFO  HV000001: Hibernate Validator 6.1.6.Final
+2021-01-11 13:21:40 INFO  Starting CgInterviewTrackingSystemApplication using Java 15 on SNMishra with PID 17216 (C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem\target\classes started by ShriHari in C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem)
+2021-01-11 13:21:40 INFO  No active profile set, falling back to default profiles: default
+2021-01-11 13:21:43 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-11 13:21:44 INFO  Finished Spring Data repository scanning in 311 ms. Found 10 JPA repository interfaces.
+2021-01-11 13:21:45 INFO  Tomcat initialized with port(s): 8080 (http)
+2021-01-11 13:21:46 INFO  Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-11 13:21:46 INFO  Starting service [Tomcat]
+2021-01-11 13:21:46 INFO  Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-11 13:21:46 INFO  Initializing Spring embedded WebApplicationContext
+2021-01-11 13:21:46 INFO  Root WebApplicationContext: initialization completed in 6498 ms
+2021-01-11 13:21:47 INFO  HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-01-11 13:21:48 INFO  HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-01-11 13:21:48 INFO  HikariPool-1 - Starting...
+2021-01-11 13:21:50 INFO  HikariPool-1 - Start completed.
+2021-01-11 13:21:50 INFO  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2021-01-11 13:22:06 INFO  HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 13:22:06 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:22:13 INFO  Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:22:15 INFO  Starting ProtocolHandler ["http-nio-8080"]
+2021-01-11 13:22:15 INFO  Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-11 13:22:15 INFO  Context refreshed
+2021-01-11 13:22:15 INFO  Found 1 custom documentation plugin(s)
+2021-01-11 13:22:15 INFO  Scanning for api listing references
+2021-01-11 13:22:17 INFO  Generating unique operation named: getAllPanelMembersUsingGET_1
+2021-01-11 13:22:17 INFO  Started CgInterviewTrackingSystemApplication in 39.44 seconds (JVM running for 43.798)
+2021-01-11 13:22:58 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-11 13:22:58 INFO  Initializing Servlet 'dispatcherServlet'
+2021-01-11 13:22:58 INFO  Completed initialization in 3 ms
+2021-01-11 13:24:11 INFO  Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.spring.cg.controller.PanelMemberControllerTest], using SpringBootContextLoader
+2021-01-11 13:24:11 INFO  Could not detect default resource locations for test class [com.spring.cg.controller.PanelMemberControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-01-11 13:24:11 INFO  Could not detect default configuration classes for test class [com.spring.cg.controller.PanelMemberControllerTest]: PanelMemberControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-01-11 13:24:12 INFO  Found @SpringBootConfiguration com.spring.cg.CgInterviewTrackingSystemApplication for test class com.spring.cg.controller.PanelMemberControllerTest
+2021-01-11 13:24:13 INFO  Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-01-11 13:24:13 INFO  Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3e6fd0b9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7fcff1b9, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@697446d4, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@76adb233, org.springframework.test.context.support.DirtiesContextTestExecutionListener@36074e47, org.springframework.test.context.transaction.TransactionalTestExecutionListener@36453307, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7dcc91fd, org.springframework.test.context.event.EventPublishingTestExecutionListener@66eb985d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6a9287b1, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@75504cef, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6c8a68c1, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@56193c7d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@28c88600, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@5f8890c2]
+2021-01-11 13:24:14 INFO  HV000001: Hibernate Validator 6.1.6.Final
+2021-01-11 13:24:14 INFO  Starting PanelMemberControllerTest using Java 15 on SNMishra with PID 664 (started by ShriHari in C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem)
+2021-01-11 13:24:14 INFO  No active profile set, falling back to default profiles: default
+2021-01-11 13:24:19 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-11 13:24:20 INFO  Finished Spring Data repository scanning in 510 ms. Found 10 JPA repository interfaces.
+2021-01-11 13:24:24 INFO  HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-01-11 13:24:25 INFO  HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-01-11 13:24:27 INFO  HikariPool-1 - Starting...
+2021-01-11 13:24:27 INFO  HikariPool-1 - Start completed.
+2021-01-11 13:24:28 INFO  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2021-01-11 13:24:34 INFO  HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 13:24:34 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:24:42 INFO  Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:24:44 INFO  Context refreshed
+2021-01-11 13:24:44 INFO  Found 1 custom documentation plugin(s)
+2021-01-11 13:24:44 INFO  Scanning for api listing references
+2021-01-11 13:24:46 INFO  Generating unique operation named: getAllPanelMembersUsingGET_1
+2021-01-11 13:24:46 INFO  Started PanelMemberControllerTest in 33.258 seconds (JVM running for 42.71)
+2021-01-11 13:24:49 INFO  [START] testPanelMemberSurrendered()
+2021-01-11 13:24:53 INFO  [START] testGetAllPanelMembersFail()
+2021-01-11 13:24:53 INFO  [START] testGetAllPanelMembersSuccess()
+2021-01-11 13:24:54 INFO  [START] testFindPanelMemberByIdPass()
+2021-01-11 13:24:56 INFO  [START] testFindPanelMemberById()
+2021-01-11 13:24:58 INFO  [START] testFindPanelMemberByBlank()
+2021-01-11 13:25:00 INFO  [END] testFindPanelMemberByBlank()
+2021-01-11 13:25:00 INFO  [START] testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException()
+2021-01-11 13:25:00 INFO  [START] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()
+2021-01-11 13:25:00 INFO  [START] testDeletePanelMemberByNameSuccess()
+2021-01-11 13:25:01 INFO  [START] testDeletePanelMemberByNameFail1()
+2021-01-11 13:25:01 INFO  [END] testDeletePanelMemberByNameFail1()
+2021-01-11 13:25:01 INFO  [START] testDeletePanelMemberByNameFail2()
+2021-01-11 13:25:01 INFO  [END] testDeletePanelMemberByNameFail2()
+2021-01-11 13:25:01 INFO  [START] testDeletePanelMemberByNameFail3()
+2021-01-11 13:25:01 INFO  [END] testDeletePanelMemberByNameFail3()
+2021-01-11 13:25:01 INFO  [START] testDeletePanelMemberByNameFail4()
+2021-01-11 13:25:01 INFO  [END] testDeletePanelMemberByNameFail4()
+2021-01-11 13:25:01 INFO  Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:25:01 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:25:01 INFO  HikariPool-1 - Shutdown initiated...
+2021-01-11 13:25:01 INFO  HikariPool-1 - Shutdown completed.
+2021-01-11 13:31:49 INFO  Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.spring.cg.controller.PanelMemberControllerTest], using SpringBootContextLoader
+2021-01-11 13:31:49 INFO  Could not detect default resource locations for test class [com.spring.cg.controller.PanelMemberControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-01-11 13:31:49 INFO  Could not detect default configuration classes for test class [com.spring.cg.controller.PanelMemberControllerTest]: PanelMemberControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-01-11 13:31:50 INFO  Found @SpringBootConfiguration com.spring.cg.CgInterviewTrackingSystemApplication for test class com.spring.cg.controller.PanelMemberControllerTest
+2021-01-11 13:31:50 INFO  Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-01-11 13:31:50 INFO  Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6974a715, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5e8a459, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@43d455c9, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4c9e9fb8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@9ec531, org.springframework.test.context.transaction.TransactionalTestExecutionListener@40147317, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@210f0cc1, org.springframework.test.context.event.EventPublishingTestExecutionListener@19542407, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6f95cd51, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@c7a977f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@55caeb35, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@6d868997, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2c383e33, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@74a195a4]
+2021-01-11 13:31:51 INFO  HV000001: Hibernate Validator 6.1.6.Final
+2021-01-11 13:31:52 INFO  Starting PanelMemberControllerTest using Java 15 on SNMishra with PID 10664 (started by ShriHari in C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem)
+2021-01-11 13:31:52 INFO  No active profile set, falling back to default profiles: default
+2021-01-11 13:31:56 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-11 13:31:56 INFO  Finished Spring Data repository scanning in 497 ms. Found 10 JPA repository interfaces.
+2021-01-11 13:32:00 INFO  HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-01-11 13:32:01 INFO  HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-01-11 13:32:02 INFO  HikariPool-1 - Starting...
+2021-01-11 13:32:02 INFO  HikariPool-1 - Start completed.
+2021-01-11 13:32:02 INFO  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2021-01-11 13:32:09 INFO  HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 13:32:09 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:32:17 INFO  Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:32:19 INFO  Context refreshed
+2021-01-11 13:32:19 INFO  Found 1 custom documentation plugin(s)
+2021-01-11 13:32:19 INFO  Scanning for api listing references
+2021-01-11 13:32:21 INFO  Generating unique operation named: getAllPanelMembersUsingGET_1
+2021-01-11 13:32:21 INFO  Started PanelMemberControllerTest in 30.304 seconds (JVM running for 35.655)
+2021-01-11 13:32:22 INFO  [START] testPanelMemberSurrendered()
+2021-01-11 13:32:24 INFO  [START] testGetAllPanelMembersFail()
+2021-01-11 13:32:24 INFO  [START] testGetAllPanelMembersSuccess()
+2021-01-11 13:32:24 INFO  [START] testFindPanelMemberByIdPass()
+2021-01-11 13:32:26 INFO  [START] testFindPanelMemberById()
+2021-01-11 13:32:28 INFO  [START] testFindPanelMemberByBlank()
+2021-01-11 13:32:31 INFO  [END] testFindPanelMemberByBlank()
+2021-01-11 13:32:31 INFO  [START] testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException()
+2021-01-11 13:32:31 INFO  [START] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()
+2021-01-11 13:32:31 INFO  [START] testDeletePanelMemberByNameSuccess()
+2021-01-11 13:32:31 INFO  [START] testDeletePanelMemberByNameFail1()
+2021-01-11 13:32:31 INFO  [END] testDeletePanelMemberByNameFail1()
+2021-01-11 13:32:31 INFO  [START] testDeletePanelMemberByNameFail2()
+2021-01-11 13:32:31 INFO  [END] testDeletePanelMemberByNameFail2()
+2021-01-11 13:32:31 INFO  [START] testDeletePanelMemberByNameFail3()
+2021-01-11 13:32:31 INFO  [END] testDeletePanelMemberByNameFail3()
+2021-01-11 13:32:31 INFO  [START] testDeletePanelMemberByNameFail4()
+2021-01-11 13:32:32 INFO  [END] testDeletePanelMemberByNameFail4()
+2021-01-11 13:32:32 INFO  Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:32:32 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:32:32 INFO  HikariPool-1 - Shutdown initiated...
+2021-01-11 13:32:32 INFO  HikariPool-1 - Shutdown completed.
+2021-01-11 13:34:25 INFO  Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.spring.cg.controller.PanelMemberControllerTest], using SpringBootContextLoader
+2021-01-11 13:34:25 INFO  Could not detect default resource locations for test class [com.spring.cg.controller.PanelMemberControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-01-11 13:34:25 INFO  Could not detect default configuration classes for test class [com.spring.cg.controller.PanelMemberControllerTest]: PanelMemberControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-01-11 13:34:26 INFO  Found @SpringBootConfiguration com.spring.cg.CgInterviewTrackingSystemApplication for test class com.spring.cg.controller.PanelMemberControllerTest
+2021-01-11 13:34:26 INFO  Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-01-11 13:34:26 INFO  Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@775594f2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5767b2af, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7b22ec89, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@790132f7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2228db21, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48b0e701, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@241a0c3a, org.springframework.test.context.event.EventPublishingTestExecutionListener@547c04c4, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@30e92cb9, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7fae4d4a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@ba1f559, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3f4f9acd, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@46baf579, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@4bf324f9]
+2021-01-11 13:34:28 INFO  HV000001: Hibernate Validator 6.1.6.Final
+2021-01-11 13:34:28 INFO  Starting PanelMemberControllerTest using Java 15 on SNMishra with PID 14836 (started by ShriHari in C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem)
+2021-01-11 13:34:28 INFO  No active profile set, falling back to default profiles: default
+2021-01-11 13:34:32 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-11 13:34:33 INFO  Finished Spring Data repository scanning in 445 ms. Found 10 JPA repository interfaces.
+2021-01-11 13:34:36 INFO  HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-01-11 13:34:37 INFO  HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-01-11 13:34:38 INFO  HikariPool-1 - Starting...
+2021-01-11 13:34:39 INFO  HikariPool-1 - Start completed.
+2021-01-11 13:34:39 INFO  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2021-01-11 13:34:44 INFO  HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 13:34:44 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:34:54 INFO  Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:34:57 INFO  Context refreshed
+2021-01-11 13:34:57 INFO  Found 1 custom documentation plugin(s)
+2021-01-11 13:34:57 INFO  Scanning for api listing references
+2021-01-11 13:35:02 INFO  Generating unique operation named: getAllPanelMembersUsingGET_1
+2021-01-11 13:35:02 INFO  Started PanelMemberControllerTest in 35.349 seconds (JVM running for 41.793)
+2021-01-11 13:35:05 INFO  [START] testPanelMemberSurrendered()
+2021-01-11 13:35:07 INFO  [START] testGetAllPanelMembersFail()
+2021-01-11 13:35:08 INFO  [START] testGetAllPanelMembersSuccess()
+2021-01-11 13:35:08 INFO  [START] testFindPanelMemberByIdPass()
+2021-01-11 13:35:10 INFO  [START] testFindPanelMemberById()
+2021-01-11 13:35:12 INFO  [START] testFindPanelMemberByBlank()
+2021-01-11 13:35:14 INFO  [END] testFindPanelMemberByBlank()
+2021-01-11 13:35:14 INFO  [START] testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException()
+2021-01-11 13:35:15 INFO  [START] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()
+2021-01-11 13:35:15 INFO  [START] testDeletePanelMemberByNameSuccess()
+2021-01-11 13:35:20 INFO  [END] testDeletePanelMemberByNameSuccess()
+2021-01-11 13:35:20 INFO  [START] testDeletePanelMemberByNameFail1()
+2021-01-11 13:35:20 INFO  [END] testDeletePanelMemberByNameFail1()
+2021-01-11 13:35:20 INFO  [START] testDeletePanelMemberByNameFail2()
+2021-01-11 13:35:20 INFO  [END] testDeletePanelMemberByNameFail2()
+2021-01-11 13:35:20 INFO  [START] testDeletePanelMemberByNameFail3()
+2021-01-11 13:35:20 INFO  [END] testDeletePanelMemberByNameFail3()
+2021-01-11 13:35:21 INFO  [START] testDeletePanelMemberByNameFail4()
+2021-01-11 13:35:21 INFO  [END] testDeletePanelMemberByNameFail4()
+2021-01-11 13:35:21 INFO  Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:35:21 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:35:21 INFO  HikariPool-1 - Shutdown initiated...
+2021-01-11 13:35:21 INFO  HikariPool-1 - Shutdown completed.
+2021-01-11 13:39:15 INFO  Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.spring.cg.controller.PanelMemberControllerTest], using SpringBootContextLoader
+2021-01-11 13:39:15 INFO  Could not detect default resource locations for test class [com.spring.cg.controller.PanelMemberControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-01-11 13:39:15 INFO  Could not detect default configuration classes for test class [com.spring.cg.controller.PanelMemberControllerTest]: PanelMemberControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-01-11 13:39:16 INFO  Found @SpringBootConfiguration com.spring.cg.CgInterviewTrackingSystemApplication for test class com.spring.cg.controller.PanelMemberControllerTest
+2021-01-11 13:39:16 INFO  Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-01-11 13:39:16 INFO  Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@705202d1, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3c443976, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3e58d65e, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3bd55d8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@63998bf4, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7e0b9178, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@61942c1, org.springframework.test.context.event.EventPublishingTestExecutionListener@6f63c44f, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@408a247c, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@62a8fd44, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2e6ba49a, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5f5b5ca4, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4ee33af7, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6b04acb2]
+2021-01-11 13:39:18 INFO  HV000001: Hibernate Validator 6.1.6.Final
+2021-01-11 13:39:18 INFO  Starting PanelMemberControllerTest using Java 15 on SNMishra with PID 6816 (started by ShriHari in C:\Users\Shrihari\Documents\Spring Sprint 2\CG_InterviewTrackingSystem)
+2021-01-11 13:39:18 INFO  No active profile set, falling back to default profiles: default
+2021-01-11 13:39:23 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-11 13:39:23 INFO  Finished Spring Data repository scanning in 682 ms. Found 10 JPA repository interfaces.
+2021-01-11 13:39:26 INFO  HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-01-11 13:39:27 INFO  HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-01-11 13:39:28 INFO  HikariPool-1 - Starting...
+2021-01-11 13:39:30 INFO  HikariPool-1 - Start completed.
+2021-01-11 13:39:30 INFO  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2021-01-11 13:39:37 INFO  HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 13:39:37 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:39:47 INFO  Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:39:49 INFO  Context refreshed
+2021-01-11 13:39:50 INFO  Found 1 custom documentation plugin(s)
+2021-01-11 13:39:50 INFO  Scanning for api listing references
+2021-01-11 13:39:52 INFO  Generating unique operation named: getAllPanelMembersUsingGET_1
+2021-01-11 13:39:53 INFO  Started PanelMemberControllerTest in 36.383 seconds (JVM running for 42.978)
+2021-01-11 13:39:55 INFO  [START] testPanelMemberSurrendered()
+2021-01-11 13:39:57 INFO  [START] testGetAllPanelMembersFail()
+2021-01-11 13:39:57 INFO  [START] testGetAllPanelMembersSuccess()
+2021-01-11 13:39:57 INFO  [START] testFindPanelMemberByIdPass()
+2021-01-11 13:40:00 INFO  [START] testFindPanelMemberById()
+2021-01-11 13:40:02 INFO  [START] testFindPanelMemberByBlank()
+2021-01-11 13:40:04 INFO  [END] testFindPanelMemberByBlank()
+2021-01-11 13:40:04 INFO  [START] testFindPanelMemberByIdForHRFail_PanelMemberNotFoundException()
+2021-01-11 13:40:04 INFO  [START] testFindPanelMemberByIdForHRSize_PanelMemberNotFoundException()
+2021-01-11 13:40:04 INFO  [START] testDeletePanelMemberByNameSuccess()
+2021-01-11 13:40:05 INFO  [END] testDeletePanelMemberByNameSuccess()
+2021-01-11 13:40:05 INFO  [START] testDeletePanelMemberByNameFail1()
+2021-01-11 13:40:05 INFO  [END] testDeletePanelMemberByNameFail1()
+2021-01-11 13:40:05 INFO  [START] testDeletePanelMemberByNameFail2()
+2021-01-11 13:40:05 INFO  [END] testDeletePanelMemberByNameFail2()
+2021-01-11 13:40:05 INFO  [START] testDeletePanelMemberByNameFail3()
+2021-01-11 13:40:05 INFO  [END] testDeletePanelMemberByNameFail3()
+2021-01-11 13:40:05 INFO  [START] testDeletePanelMemberByNameFail4()
+2021-01-11 13:40:05 INFO  [END] testDeletePanelMemberByNameFail4()
+2021-01-11 13:40:06 INFO  Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:40:06 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:40:06 INFO  HikariPool-1 - Shutdown initiated...
+2021-01-11 13:40:06 INFO  HikariPool-1 - Shutdown completed.
+2021-01-11 13:41:31 INFO  Application shutdown requested.
+2021-01-11 13:41:31 INFO  Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-11 13:41:31 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:41:31 INFO  HikariPool-1 - Shutdown initiated...
+2021-01-11 13:41:31 INFO  HikariPool-1 - Shutdown completed.

@@ -206,7 +206,7 @@ public class PanelMemberControllerTest {
 			logger.info("[START] testGetAllPanelMembersSuccess()");
 			//PANEL MEMBER DATA EXISTS. VALID TEST CASE.
 			RestTemplate restTemplate = new RestTemplate();
-			ResponseEntity<PanelMember[]> responseEntity =restTemplate.getForEntity("http://localhost:8080/cgits/panelmember/list", PanelMember[].class);
+			ResponseEntity<PanelMember[]> responseEntity =restTemplate.getForEntity("http://localhost:8080/cgits/panelmember", PanelMember[].class);
 			assertNotNull(responseEntity, "Panel Member Found Successfully");
 			logger.info("[END] testGetAllPanelMembersSuccess()");
 			
@@ -220,7 +220,7 @@ public class PanelMemberControllerTest {
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<PanelMember[]> panelMemberInvalid = null;
 			try {
-				panelMemberInvalid =restTemplate.getForEntity("http://localhost:8080/cgits/panelmember/list", PanelMember[].class);
+				panelMemberInvalid =restTemplate.getForEntity("http://localhost:8080/cgits/panelmember", PanelMember[].class);
 				
 			}catch(Exception e){
 				panelMemberInvalid = null;
