@@ -39,7 +39,7 @@ class HRInterviewSchedulerControllerTest {
 		private HRInterviewSchedulerService hrinterviewschedulerservice;
 		private static Logger logger = LogManager.getLogger(HRInterviewSchedulerControllerTest.class);
 		
-		/*
+
 		//TEST CASE TO VIEW LIST Of All INTERVIEW MEMBERS 
 		// VALID TESTCASE
 		@Test
@@ -183,7 +183,7 @@ class HRInterviewSchedulerControllerTest {
 				assertNotNull(candidateInvalid, "<<BLANK>> Was Not Found");
 			}
 		}
-		*/
+		
 	}
 
 

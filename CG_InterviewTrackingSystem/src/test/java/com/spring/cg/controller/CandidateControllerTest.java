@@ -35,8 +35,6 @@ public class CandidateControllerTest {
 	private CandidateService candidateService;
 	
 	
-	/*
-	
 	// Test Case for adding Candidate Details -PASS
 	@Test
 	public void testAddCandidateSuccess()
@@ -322,7 +320,7 @@ public class CandidateControllerTest {
 		logger.error("Data for PrimarySkill : Perl  does not exists.");	
 		logger.info("[END] testViewCandidateByPrimarySkillsFail()");
 	}	
-	*/	
+	
 	
 		//TEST CASE TO VIEW A CANDIDATE FOR HR BY GIVING CORRECT ID - PASS
 		@Test
@@ -334,7 +332,7 @@ public class CandidateControllerTest {
 			logger.info("[END] testCandidateById()");
 		}
 		
-/*		
+	
 		//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE ID - PASS
 		@Test
 		public void testFindCandidateByIdHr() {
@@ -345,7 +343,7 @@ public class CandidateControllerTest {
 			assertNotNull(responseEntity);
 			logger.info("Data fetched successfully for 12345678");
 			logger.info("[END] testFindCandidateByIdHr()");
-		}			*/
+		}			
 				
 		//TEST CASE TO VIEW A CANDIDATE FOR HR USING NEGATIVE CANDIDATE ID - FAIL
 		@Test
@@ -361,7 +359,7 @@ public class CandidateControllerTest {
 				logger.info("[END] testViewCandidateByIdForHRFail()");
 		}			
 				
-		/*
+		
 		//TEST CASE TO VIEW A CANDIDATE FOR HR USING WRONG CANDIDATE ID SIZE - FAIL
 		@Test
 		public void testViewCandidateByIdForHRSize_CandidateNotFoundException(){
@@ -374,7 +372,7 @@ public class CandidateControllerTest {
 			);
 				logger.info("Data for candidateid: 1111 does not exists.");
 				logger.info("[END] testViewCandidateByIdForHRFail()");
-		}			*/
+		}			
 
 		//TEST CASE TO VIEW A CANDIDATE FOR HR USING CANDIDATE NAME - PASS
 		@Test

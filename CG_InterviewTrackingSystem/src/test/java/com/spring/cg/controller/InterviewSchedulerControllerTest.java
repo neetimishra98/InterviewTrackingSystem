@@ -29,7 +29,7 @@ class InterviewSchedulerControllerTest {
 		public Candidate candidateInvalid;
 		
 		public InterviewScheduler interviewschedulerInvalid;
-/*
+
 		//TEST CASE TO VIEW ALL INTERVIEW MEMBERS
 		@Test
 		public void testViewAllInterviewMembersForTech(){
@@ -190,7 +190,6 @@ class InterviewSchedulerControllerTest {
 						logger.info("[END] giveTechRatingFieldForSpecialCharacter()");
 						
 					}	
-					
-		*/			
+							
 					
 	}
