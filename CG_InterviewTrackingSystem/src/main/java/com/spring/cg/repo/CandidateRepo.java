@@ -31,6 +31,23 @@ public interface CandidateRepo extends JpaRepository<CandidateEntity, Integer>  
 	
 	@Query("SELECT ce FROM CandidateEntity ce WHERE UPPER(ce.primaryskills) = UPPER(?1)")
 	 public List<CandidateEntity> findByPrimarySkillsIgnoreCase(String primaryskills);
-
+	
+	
+	
+	@Query("SELECT DISTINCT ce.candidatename FROM CandidateEntity ce")
+	public List<String> findDistinctName();
+	
+	@Query("SELECT DISTINCT ce.location FROM CandidateEntity ce")
+	public List<String> findDistinctLocation();
+	
+	@Query("SELECT DISTINCT ce.qualification FROM CandidateEntity ce")
+	public List<String> findDistinctQualification();
+	
+	@Query("SELECT DISTINCT ce.designation FROM CandidateEntity ce")
+	public List<String> findDistinctDesignation();
+	
+	@Query("SELECT DISTINCT ce.primaryskills FROM CandidateEntity ce")
+	public List<String> findDistinctPrimarySkill();
+	
 }
 

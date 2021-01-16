@@ -23,6 +23,11 @@ public interface CandidateService {
 	public List<Candidate> viewCandidateByDesignation(String designation) throws CandidateNotFoundException;
 	public List<Candidate> viewCandidateByPrimarySkills(String primaryskills) throws CandidateNotFoundException;
 	
+	public List<String> getDistinctCandidateName();
+	public List<String> getLocationsFromTable();
+	public List<String> getQualificationsFromTable();
+	public List<String> getDesignationsFromTable();
+	public List<String> getPrimarySkillsFromTable();
 	
 	
 	
