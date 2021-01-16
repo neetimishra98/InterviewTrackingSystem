@@ -87,6 +87,10 @@ public class Candidate {
 	}
 	
 	
+	public Candidate(String candidatename) {
+		this.candidatename = candidatename;
+	}
+
 	@Override
 	public String toString() {
 		return "Candidate [candidateid=" + candidateid + ", candidatename=" + candidatename + ", location=" + location
