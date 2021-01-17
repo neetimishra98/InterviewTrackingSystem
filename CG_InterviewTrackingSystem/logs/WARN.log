@@ -98,3 +98,16 @@ org.postgresql.util.PSQLException: FATAL: password authentication failed for use
 2021-01-15 09:34:39 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2021-01-15 21:15:17 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h57m44s396ms933µs900ns).
 2021-01-15 21:15:35 WARN  The server has decided to close this client connection.
+2021-01-16 10:08:34 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-16 12:09:02 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s135ms991µs800ns).
+2021-01-16 14:17:06 WARN  The server has decided to close this client connection.
+2021-01-16 16:43:33 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h14m6s191ms334µs).
+2021-01-16 18:14:32 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-16 18:36:59 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s420ms788µs200ns).
+2021-01-16 18:46:25 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-16 21:54:31 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h23s656ms750µs200ns).
+2021-01-16 23:24:48 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h30m16s588ms900µs300ns).
+2021-01-17 01:55:11 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s103ms568µs700ns).
+2021-01-17 01:56:07 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=55s747ms219µs600ns).
+2021-01-17 05:38:06 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h27s670ms113µs800ns).
+2021-01-17 11:16:13 WARN  HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h37m50s214ms944µs600ns).

@@ -13,7 +13,8 @@ public interface EmployeeRepo extends JpaRepository<EmployeeEntity, Integer>{
     public EmployeeEntity findByEmployeeid(int employeeId) throws EmployeeNotFoundException;
     @Query( "select e from EmployeeEntity e")
     public List<EmployeeEntity> getAllEmployee();
-    public EmployeeEntity findByNameContaining(String employeeName) throws EmployeeNotFoundException;
+    public EmployeeEntity findByName(String employeeName) throws EmployeeNotFoundException;
     public List<EmployeeEntity> deleteByEmployeeid(int employeeId);
+    public EmployeeEntity findByNameContaining(String employeeName) throws EmployeeNotFoundException;
 
 }
