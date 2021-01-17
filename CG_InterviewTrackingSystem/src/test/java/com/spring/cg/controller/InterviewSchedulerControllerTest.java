@@ -190,7 +190,6 @@ class InterviewSchedulerControllerTest {
 						logger.info("[END] giveTechRatingFieldForSpecialCharacter()");
 						
 					}	
-					
-					
+							
 					
 	}

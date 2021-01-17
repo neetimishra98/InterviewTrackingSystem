@@ -281,6 +281,7 @@ public class CandidateServiceImpl implements CandidateService{
 	}
 
 	//VIEW CANDIDATE FOR HR USING CANDIDATE ID AND CANDIDATE NAME
+	/*
 	@Override
 	public Map<Candidate, String> viewCandidateForHR(String candidateId) throws CandidateNotFoundException {
 		CandidateEntity candidateEntity = candidateRepo.findByCandidatename(candidateId);
@@ -299,14 +300,34 @@ public class CandidateServiceImpl implements CandidateService{
 				candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod()), interviewSchedulerRepo.findByCandidate(candidateEntity).getFinalstatus());
 			return candidates;
 		}
+	}*/
+	
+	public Candidate viewCandidateForHRPanel(String candidateName) throws CandidateNotFoundException{
+
+		CandidateEntity candidateEntity = candidateRepo.findByCandidatenameContaining(candidateName);
+		if(candidateEntity!=null) {
+			Candidate candidate = new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod());
+			return candidate;
+		}
+		else{
+			candidateEntity = candidateRepo.findByCandidateid(Integer.valueOf(candidateName));
+			System.out.println("Entered the else loop...");
+			if(candidateEntity==null) {
+				throw new CandidateNotFoundException("Invalid Candidate Id");
+			}
+			Candidate candidate = new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
+					candidateEntity.getExperience(),candidateEntity.getPrimaryskills(),candidateEntity.getSecondaryskills(),candidateEntity.getNoticeperiod());
+			return candidate;
+		}
 	}
 		
 	
 		//VIEW CANDIDATE FOR TECH USING CANDIDATE ID AND CANDIDATE NAME
 				@Override
-				public Map<Candidate, String> viewCandidateForTech(String candidateId) throws CandidateNotFoundException {
+				public Map<Candidate, String> viewCandidateForTech(String candidateName) throws CandidateNotFoundException {
 
-					CandidateEntity candidateEntity = candidateRepo.findByCandidatename(candidateId);
+					CandidateEntity candidateEntity = candidateRepo.findByCandidatenameContaining(candidateName);
 					Map<Candidate, String> candidates = new HashMap<Candidate, String>();
 					if(candidateEntity!=null) {
 						candidates.put(new Candidate(candidateEntity.getCandidateid(), candidateEntity.getCandidatename(), candidateEntity.getLocation(),candidateEntity.getDesignation(),candidateEntity.getQualification(),
@@ -314,7 +335,7 @@ public class CandidateServiceImpl implements CandidateService{
 						return candidates;
 					}
 					else{
-						candidateEntity = candidateRepo.findByCandidateid(Integer.valueOf(candidateId));
+						candidateEntity = candidateRepo.findByCandidateid(Integer.valueOf(candidateName));
 						System.out.println("Entered the else loop...");
 						if(candidateEntity==null) {
 							throw new CandidateNotFoundException("Invalid Candidate Id");

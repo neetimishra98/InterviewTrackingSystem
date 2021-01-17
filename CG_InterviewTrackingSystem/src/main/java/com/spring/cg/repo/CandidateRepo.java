@@ -14,7 +14,7 @@ public interface CandidateRepo extends JpaRepository<CandidateEntity, Integer>  
 
 	public CandidateEntity findByCandidateid(int candidateid) throws CandidateNotFoundException;
 
-	public CandidateEntity findByCandidatename(String candidateId) throws CandidateNotFoundException;
+	public CandidateEntity findByCandidatenameContaining(String candidateName) throws CandidateNotFoundException;
 
 	
     @Query("SELECT ce FROM CandidateEntity ce WHERE UPPER(ce.candidatename) = UPPER(?1)")

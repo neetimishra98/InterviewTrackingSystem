@@ -108,9 +108,8 @@ public class PanelMemberControllerTest {
 		logger.info("[END] testPanelMemberSurrendered() - Already surrendered");
 	}
 	
-	
-	/*@Test
->>>>>>> 4aedf3c058fae8417c68ee2dbd434f8c3be8bda1
+	/*
+	@Test
 	//PANEL MEMBER WITH INVALID/BLANK EMPLOYEE FOREIGN KEY
 	public void testAddPanelMemberInvalidEmployee() {
 		logger.info("[START] testAddPanelMemberInvalidEmployee()");
@@ -127,8 +126,8 @@ public class PanelMemberControllerTest {
 			assertNull(panelMemberInvalid, "No panel member could be added/found");
 		}
 		logger.info("[END] testAddPanelMemberInvalidEmployee()");
-	}
-	*/
+	}*/
+	
 	//DELETE PANEL MEMBER TEST CASES
 		//TESTCASE_1
 		@Test
@@ -232,6 +231,8 @@ public class PanelMemberControllerTest {
 			logger.info("[END] testGetAllPanelMembersFail()");
 		}
 	
+<<<<<<< HEAD
+=======
 		//Tech Panel Service to surrender
 		//TEST CASE TO SURRENDER TECH PANEL USING PANEL ID - PASS
 		@Test
@@ -333,4 +334,5 @@ public class PanelMemberControllerTest {
 						logger.info("[END] testSurrenderByIdForTechSizeFail()");
 					}
 
+>>>>>>> fb5c9702b60aaa193992cd619f6595ab24b97232
 }

@@ -42,7 +42,8 @@ public interface CandidateService {
 
 	
 	//INTERFACE FOR VIEWING CANDIDATE DETAILS BY HR
-	public Map<Candidate, String> viewCandidateForHR(String candidateId) throws CandidateNotFoundException;
+	//public Map<Candidate, String> viewCandidateForHR(String candidateId) throws CandidateNotFoundException;
+	public Candidate viewCandidateForHRPanel(String candidateId) throws CandidateNotFoundException;
 	
 	//To view Candidate For Tech
 	public Map<Candidate, String> viewCandidateForTech(String candidateId) throws CandidateNotFoundException;
