@@ -82,7 +82,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     	Optional<PanelMemberEntity> opPanelMemberEntity = Optional.of(panelMemberRepo.findById(panelId));
         if(opPanelMemberEntity.isPresent()){
         	PanelMemberEntity panelMemberEntity = opPanelMemberEntity.get();
-        		panelMemberEntity.setType(null);
+        		panelMemberEntity.setType("null");
         		panelMemberEntity = panelMemberRepo.save(panelMemberEntity);
         	return PanelMemberUtil.convertPanelMemberEntitytoPanelMember(panelMemberEntity);
         }
@@ -99,8 +99,11 @@ public class PanelMemberServiceImpl implements PanelMemberService{
 		Optional<PanelMemberEntity> opPanelMemberEntity = Optional.of(panelMemberRepo.findById(panelid));
         if(opPanelMemberEntity.isPresent()){
         	PanelMemberEntity panelMemberEntity = opPanelMemberEntity.get();
+        	String type = panelMemberEntity.getType();
+        	if(type.equalsIgnoreCase("Hr") && type != null) {
         		panelMemberEntity.setType(null);
         		panelMemberEntity = panelMemberRepo.save(panelMemberEntity);
+        	}
         	return PanelMemberUtil.convertPanelMemberEntitytoPanelMember(panelMemberEntity);
         }
         else {

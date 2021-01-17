@@ -38,7 +38,7 @@
 		 <dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
+		</dependency>	
 		
 		<dependency>
             <groupId>io.springfox</groupId>
@@ -83,6 +83,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+				<execution>
+				<goals>
+				<goal>repackage</goal>
+				</goals>
+				<configuration>
+				<mainClass>
+				com.spring.cg.CgInterviewTrackingSystemApplication
+				</mainClass>
+				</configuration>
+				</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
