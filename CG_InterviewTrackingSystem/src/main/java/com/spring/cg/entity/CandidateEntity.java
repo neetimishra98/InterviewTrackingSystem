@@ -42,6 +42,10 @@ public class CandidateEntity {
 	public CandidateEntity() {
 		super();
 	}
+	
+	public CandidateEntity(String candidatename) {
+		this.candidatename = candidatename;
+	}
 
 	public CandidateEntity(int candidateid, String candidatename, String location, 
 			String qualification, String designation, int experience,  String primaryskills, String secondaryskills, int noticeperiod) {

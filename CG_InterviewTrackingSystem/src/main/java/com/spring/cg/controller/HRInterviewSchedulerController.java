@@ -116,6 +116,20 @@ public class HRInterviewSchedulerController {
 			public HRInterviewSchedulerEntity giveHrRating(@PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException{
 				return hrinterviewSchedulerService.giveHrRating(interviewid);
 			}
+			
+			
+			
+			//view Interview members for hr using interview id
+			@ApiOperation(value="Returns all InterviewMembers")
+			@ApiResponses(value= {
+					@ApiResponse(code=200, message="Candidate with given interviewid displayed successfully"),
+					@ApiResponse(code=404, message = "No such candidate found")
+			})
+			@GetMapping(value = "/interviewscheduler/hr/{interviewid}",produces = MediaType.APPLICATION_JSON_VALUE)
+			public CandidateEntity  viewInterviewMembersbyHr(@Valid @PathVariable("interviewid")int interviewid) throws InterviewSchedulerNotFoundException {
+				return hrinterviewSchedulerService.viewInterviewMembersbyHr(interviewid);
+			}
+	  
 			/*
 			//SCHARE AND SCHEDULE FOR HR INTERVIEW 
 			  @ApiOperation(value = "Schedules new Interview for hr")

@@ -359,6 +359,7 @@ public class CandidateControllerTest {
 				logger.info("[END] testViewCandidateByIdForHRFail()");
 		}			
 				
+<<<<<<< HEAD
 		
 		//TEST CASE TO VIEW A CANDIDATE FOR HR USING WRONG CANDIDATE ID SIZE - FAIL
 		@Test
@@ -419,5 +420,129 @@ public class CandidateControllerTest {
 			}
 			logger.info("[END] testViewCandidateByBlank()");
 		}		
+=======
+	//TEST CASE TO VIEW A CANDIDATE FOR HR USING <<BLANK>> PATH VARIABLE - FAIL
+	@Test
+	public void testViewCandidateByBlank() {
+		logger.info("[START] testViewCandidateByNameBlank()");
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			candidateInvalid = restTemplate.getForObject("http://localhost:9091/cgits/candidate/hr/", Candidate.class);
+		}
+		catch(Exception e){
+			candidateInvalid = null;
+		}
+		finally{
+			assertNull(candidateInvalid, "<<BLANK>> Was Not Found");
+		}
+		logger.info("[END] testViewCandidateByBlank()");
+	}			
+	
+	
+	
+	
+>>>>>>> fb5c9702b60aaa193992cd619f6595ab24b97232
 			
+	
+	
+	//Tech services for viewing a candidate
+	//TEST CASE TO VIEW A CANDIDATE FOR TECH USING <<BLANK>> PATH VARIABLE - FAIL
+	@Test
+	public void testTechViewCandidateByBlank() {
+		logger.info("[START] testTechViewCandidateByBlank()");
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			candidateInvalid = restTemplate.getForObject("http://localhost:8080/cgits/candidate/search/tech/", Candidate.class);
+		}
+		catch(Exception e){
+			candidateInvalid = null;
+		}
+		finally{
+			assertNull(candidateInvalid, "<<BLANK>> Was Not Found");
+		}
+		logger.info("CandidateID was blank. Enter valid ID");
+		logger.info("[END] testTechViewCandidateByBlank()");
+	}
+	
+	//TEST CASE TO VIEW A CANDIDATE FOR TECH USING NEGATIVE CANDIDATE ID - FAIL
+	@Test
+	public void testViewCandidateByIdForTechFail_CandidateNotFoundException(){
+		    logger.info("[START] testViewCandidateByIdForTechFail_CandidateNotFoundException()");		
+			RestTemplate restTemplate = new RestTemplate();
+			assertThrows(CandidateNotFoundException.class,
+			()->{
+					candidateService.viewCandidateForTech("-12345678");
+			}	
+		);
+			logger.info("CandidateID -12345678 is Invalid. Enter valid ID");
+			logger.info("[END] testViewCandidateByIdForTechFail_CandidateNotFoundException()");
+	}
+	
+	//TEST CASE TO VIEW A CANDIDATE FOR TECH USING WRONG CANDIDATE ID SIZE - FAIL
+		@Test
+		public void testViewCandidateByIdForTechSize_CandidateNotFoundException(){
+			    logger.info("[START] testViewCandidateByIdForTechSize_CandidateNotFoundException()");		
+				RestTemplate restTemplate = new RestTemplate();
+				assertThrows(CandidateNotFoundException.class,
+				()->{
+						candidateService.viewCandidateForTech("1111");
+				}	
+			);
+				logger.info("CandidateID 1111 is Invalid. Enter valid ID");
+				logger.info("[END] testViewCandidateByIdForTechSize_CandidateNotFoundException()");
+		}
+		
+		//TEST CASE TO VIEW A CANDIDATE FOR Tech USING CANDIDATE NAME - FAIL
+		@Test
+		public void testViewCandidateByNameTechFail() {
+			logger.info("[START] testViewCandidateByNameTechFail()");
+			RestTemplate restTemplate = new RestTemplate();
+			try {
+				candidateInvalid = restTemplate.getForObject("http://localhost:8080/cgits/candidate/search/tech/Jack", Candidate.class);
+			} catch (Exception e) {
+				candidateInvalid = null;
+				logger.error("testViewCandidateByNameHRFail()");
+			} finally {
+				assertNull(candidateInvalid, "Not Found");
+			}
+			logger.info("Candidate Name Jack Not Found");
+			logger.info("[END] testViewCandidateByNameTechFail()");
+		}
+		
+		//TEST CASE TO VIEW A CANDIDATE FOR TECH USING CANDIDATE ID - PASS
+		@Test
+		public void testFindCandidateByIdTech() {
+			logger.info("[START] testFindCandidateByIdTech()");
+			RestTemplate restTemplate = new RestTemplate();
+			ResponseEntity<Candidate> responseEntity = restTemplate.getForEntity("http://localhost:8080/cgits/candidate/search/tech/11111111", Candidate.class);
+		
+			assertNotNull(responseEntity);
+			logger.info("Candidate ID 11111111 Found");
+			logger.info("[END] testFindCandidateByIdTech()");
+		}
+		//TEST CASE TO VIEW A CANDIDATE FOR TECH USING CANDIDATE ID NOT PRESENT IN DB- FAIL
+		@Test
+		public void testFindCandidateByIdTechFail() {
+			logger.info("[START] testFindCandidateByIdTechFail()");		
+			RestTemplate restTemplate = new RestTemplate();
+			assertThrows(CandidateNotFoundException.class,
+			()->{
+					candidateService.viewCandidateForTech("12345678");
+			}	
+		);
+			logger.info("CandidateID 12345678 Not Found");
+			logger.info("[END] testFindCandidateByIdTechFail()");
+		}
+		
+		//TEST CASE TO VIEW A CANDIDATE FOR TECH USING CANDIDATE NAME - PASS
+		@Test
+		public void testFindCandidateByNameTech() {
+			logger.info("[START] testFindCandidateByNameTech()");
+			RestTemplate restTemplate = new RestTemplate();
+			ResponseEntity<Candidate> responseEntity = restTemplate.getForEntity("http://localhost:8080/cgits/candidate/search/tech/Pranav", Candidate.class);
+				
+			assertNotNull(responseEntity);
+			logger.info("Candidate Name Pranav Found");
+			logger.info("[END] testFindCandidateByNameTech()");
+		}
 }

@@ -85,6 +85,58 @@ public class CandidateServiceImpl implements CandidateService{
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	//Function for getting distinct Candidate Names
+	@Override
+	public List<String> getDistinctCandidateName() {
+		
+		return candidateRepo.findDistinctName();
+	}
+	
+	
+	//Function for getting location from table
+	@Override
+	public List<String> getLocationsFromTable() {
+		
+		return candidateRepo.findDistinctLocation();
+	}
+	
+	
+	//Function for getting qualification from table
+	@Override
+	public List<String> getQualificationsFromTable() {
+		
+		return candidateRepo.findDistinctQualification();
+	}
+	
+	
+	//Function for getting designation from table
+	@Override
+	public List<String> getDesignationsFromTable() {
+		
+		return candidateRepo.findDistinctDesignation();
+	}
+	
+	
+	//Function for getting primaryskills from table
+	@Override
+	public List<String> getPrimarySkillsFromTable() {
+		
+		return candidateRepo.findDistinctPrimarySkill();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	//Function for viewing details by specific Id
 	@Override
 	public Candidate viewCandidateById(int candidateid) throws CandidateNotFoundException{
@@ -293,6 +345,5 @@ public class CandidateServiceImpl implements CandidateService{
 						return candidates;
 					}
 				}
-		
 
 }

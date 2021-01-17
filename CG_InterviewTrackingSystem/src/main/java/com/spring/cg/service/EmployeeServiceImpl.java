@@ -66,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	//SEARCH EMPLOYEE
 	public Employee searchEmployee(String employeeId) throws EmployeeNotFoundException {
 
-		EmployeeEntity employeeEntity = employeeRepo.findByName(employeeId);
+		EmployeeEntity employeeEntity = employeeRepo.findByNameContaining(employeeId);
 		if(employeeEntity!=null) {
 			Employee employee = new Employee(employeeEntity.getEmployeeid(), employeeEntity.getName());
 			return employee;

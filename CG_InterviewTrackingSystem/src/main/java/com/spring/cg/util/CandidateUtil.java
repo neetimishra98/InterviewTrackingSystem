@@ -35,6 +35,7 @@ public class CandidateUtil {
 				candidateEntity.getSecondaryskills(), candidateEntity.getNoticeperiod());
 	}
 	
+	
 	public static List<Candidate> convertCandidateEntityListIntoCandidateList(List<CandidateEntity> candidateEntityList) {
 		
 		List<Candidate> candidates = new ArrayList<Candidate>();
@@ -44,7 +45,6 @@ public class CandidateUtil {
 		return candidates;
 	}
 
-	
 	
 	
 	

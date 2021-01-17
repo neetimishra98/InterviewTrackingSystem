@@ -28,7 +28,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
 
     @Override
     public PanelMember addPanelMember(PanelMember panelMember, String employeeName) throws EmployeeNotFoundException{
-        EmployeeEntity employeeEntity = employeeRepo.findByName(employeeName);
+        EmployeeEntity employeeEntity = employeeRepo.findByNameContaining(employeeName);
         PanelMemberEntity panelMemberEntity =
                 panelMemberRepo.save(new PanelMemberEntity(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType(), employeeEntity));
         return new PanelMember(panelMember.getPanelid(), panelMember.getLocation(), panelMember.getType(), panelMemberEntity.getEmployeeEntity());
@@ -57,7 +57,7 @@ public class PanelMemberServiceImpl implements PanelMemberService{
     //DELETE AN EMPLOYEE
     @Override
     public List<PanelMember> deletePanelMemberByName(String employeeName) throws PanelMemberNotFoundException, PanelMemberNotSurrenderedException, EmployeeNotFoundException{
-        EmployeeEntity employeeEntity = employeeRepo.findByName(employeeName);
+        EmployeeEntity employeeEntity = employeeRepo.findByNameContaining(employeeName);
         PanelMemberEntity panelMemberEntity =
                 panelMemberRepo.findByEmployeeEntity(employeeEntity);
         if(panelMemberEntity==null){

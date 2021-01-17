@@ -121,6 +121,63 @@ public class CandidateController {
 	}
 	
 
+	
+	
+	
+	
+	
+	@ApiOperation(value="Returns all Distinct Candidate Names")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidatenmdis",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getDistinctCandidateName(){
+		return candidateService.getDistinctCandidateName();
+	}
+	
+	@ApiOperation(value="Returns all Location from table")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidateloctb",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getLocationsFromTable(){
+		return candidateService.getLocationsFromTable();
+	}
+	
+	@ApiOperation(value="Returns all Qualification from table")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidatequaltb",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getQualificationsFromTable(){
+		return candidateService.getQualificationsFromTable();
+	}
+	
+	@ApiOperation(value="Returns all Designation from table")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidatedestb",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getDesignationsFromTable(){
+		return candidateService.getDesignationsFromTable();
+	}
+	
+	@ApiOperation(value="Returns all Primary Skills from table")
+	@ApiResponses(value= {
+			@ApiResponse(code=404, message = "No such candidate found")
+	})
+	@GetMapping(value ="/candidatepstb",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getPrimarySkillsFromTable(){
+		return candidateService.getPrimarySkillsFromTable();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@ApiOperation(value="Returns all Location")
 	@ApiResponses(value= {
 			@ApiResponse(code=404, message = "No such location found")
